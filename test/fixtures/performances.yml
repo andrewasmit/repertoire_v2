@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  piece_id: MyString
+  ensemble_id: MyString
+  concert_id: MyString
+  organization_id: MyString
+
+two:
+  piece_id: MyString
+  ensemble_id: MyString
+  concert_id: MyString
+  organization_id: MyString

@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  composer: MyString
+  number_of_players: MyString
+  genre: MyString
+  difficulty: MyString
+
+two:
+  title: MyString
+  composer: MyString
+  number_of_players: MyString
+  genre: MyString
+  difficulty: MyString
