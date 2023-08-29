@@ -9,7 +9,6 @@ class PieceTest < ActiveSupport::TestCase
     piece.difficulty = Faker::Number.between(from: 1, to: 5)
     piece.number_of_players = Faker::Number.between(from: 1, to: 12)
     piece.genre = Faker::Music.genre
-    byebug
 
     assert piece.save,  "Piece should save with correct validations"
   end
