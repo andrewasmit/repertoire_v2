@@ -8,8 +8,8 @@ class EnsembleTest < ActiveSupport::TestCase
 
     ens = Ensemble.new
     ens.organization_id = organization.id
-    ens.name = Faker::Lorem.characters(number: 5, min_alpha: 3, min_numeric: 1)
-    ens.grade_level = Faker::Lorem.characters(number: 5, min_alpha: 3, min_numeric: 1)
+    ens.name = Faker::Educator.primary_school
+    ens.grade_level = Faker::Lorem.characters(number: 1, min_alpha: 0, min_numeric: 1)
 
     
     assert ens.save, 'Ens should save with correct validations.'
