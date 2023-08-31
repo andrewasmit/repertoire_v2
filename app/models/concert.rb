@@ -3,5 +3,4 @@ class Concert < ApplicationRecord
   has_many :pieces, through: :performances
   belongs_to :organization
 
-  
 end
