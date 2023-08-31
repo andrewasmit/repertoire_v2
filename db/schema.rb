@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_28_011637) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_31_002648) do
   create_table "concerts", force: :cascade do |t|
     t.string "title"
     t.integer "year"
@@ -39,13 +39,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_28_011637) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "uuid"
   end
 
   create_table "performances", force: :cascade do |t|
     t.integer "piece_id"
     t.integer "ensemble_id"
     t.integer "concert_id"
-    t.integer "organization_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -58,6 +58,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_28_011637) do
     t.integer "difficulty"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "reference_recording"
   end
 
   create_table "users", force: :cascade do |t|
@@ -67,6 +68,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_28_011637) do
     t.integer "organization_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_admin"
   end
 
 end
