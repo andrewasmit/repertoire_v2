@@ -48,6 +48,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_31_002648) do
     t.integer "concert_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "organization_id"
   end
 
   create_table "pieces", force: :cascade do |t|
