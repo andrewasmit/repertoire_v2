@@ -15,6 +15,7 @@ class UserTest < ActiveSupport::TestCase
     user.password_confirmation = password
     user.email_address = username + '@gmail.com'
     user.organization_id = organization.id
+    # user.is_admin = false
     byebug
     assert user.save, 'User should save if validations are correct.'
   end
