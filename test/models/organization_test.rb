@@ -1,7 +1,10 @@
 require "test_helper"
 
 class OrganizationTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "Organizations should have a UUID auto-generated when initialized" do
+    org = Organization.create(name:'Test Org')
+    byebug
+    
+    assert org.uuid, "Organizations should have a UUID auto-generated when initialized"
+  end
 end
