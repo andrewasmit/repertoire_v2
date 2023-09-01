@@ -9,5 +9,6 @@ me = User.create(
   organization_id: org.id,
   is_admin: true
 )
+byebug
 
 puts 'Finished seeding db ✅'
