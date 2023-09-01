@@ -12,8 +12,8 @@ gem "validates_zipcode"
 gem "byebug", '~>11.1', '>= 11.1.3'
 gem 'active_model_serializers'
 
-# Use sqlite3 as the database for Active Record
-gem "sqlite3", "~> 1.4"
+# Use Postgres as the database for Active Record
+gem 'pg'
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
