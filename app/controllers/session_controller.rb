@@ -16,9 +16,4 @@ class SessionController < ApplicationController
     head :no_content
   end
 
-  # private
-  # def session_params
-  #   params.permit(:username, :password)
-  # end
-
 end
