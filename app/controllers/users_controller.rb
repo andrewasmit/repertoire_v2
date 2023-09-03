@@ -9,7 +9,11 @@ class UsersController < ApplicationController
 
   def show
     user = User.find(session[:user_id])
-    render json: user, status: :ok
+    if params[:id].to_i == user.id 
+      render json: user, status: :ok
+    else
+      render json: { error: "You are only authorized to view the user who is signed in." }, status: :unauthorized
+    end
   end
 
   def update
