@@ -1,4 +1,4 @@
-class OrganizationController < ApplicationController
+class OrganizationsController < ApplicationController
 
   def create
     org = Organization.create!(organization_params)
