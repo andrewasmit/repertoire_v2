@@ -35,7 +35,8 @@ class UsersController < ApplicationController
       :password, 
       :password_confirmation, 
       :email_address, 
-      :organization_id
+      :organization_id,
+      :id
     )
   end
 
