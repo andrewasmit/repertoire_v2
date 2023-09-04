@@ -2,12 +2,23 @@ require 'faker'
 puts 'Seeding db 🌱'
 
 org = Organization.create(name: 'Smit School of Percussion')
+test_org = Organization.create(name: 'This is a Test')
+
 me = User.create(
   username: 'andrewasmit',
   password: '123456',
   password_confirmation: '123456',
   email_address: 'fake@email.com',
   organization_id: org.id,
+  is_admin: true
+)
+
+test_user = User.create(
+  username: 'testing',
+  password: '123456',
+  password_confirmation: '123456',
+  email_address: 'test@email.com',
+  organization_id: test_org.id,
   is_admin: true
 )
 
@@ -23,6 +34,12 @@ june_bug = Piece.create(
 note = Note.create(
   piece_id: june_bug.id,
   user_id: me.id,
+  note: Faker::Lorem.paragraph
+)
+
+test_note = Note.create(
+  piece_id: june_bug.id,
+  user_id: test_user.id,
   note: Faker::Lorem.paragraph
 )
 
