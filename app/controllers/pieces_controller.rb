@@ -31,7 +31,8 @@ class PiecesController < ApplicationController
       :number_of_players, 
       :genre, 
       :difficulty, 
-      :reference_recording
+      :reference_recording,
+      :organization_id
     )
   end
 
