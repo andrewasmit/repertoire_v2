@@ -22,7 +22,6 @@ class ConcertsController < ApplicationController
   end
 
   def show_concert_details
-    # byebug
     performances = @concert.performances
     program = []
     for performance in performances do
