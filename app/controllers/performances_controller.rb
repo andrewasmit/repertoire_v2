@@ -6,7 +6,6 @@ class PerformancesController < ApplicationController
   end
 
   def destroy
-    byebug
     performance = Performance.find(params[:id])
     if User.find(session[:id]).is_admin
       performance.destroy

@@ -1,6 +1,6 @@
 class ConcertsController < ApplicationController
   attr_accessor :ensemble
-  before_action :find_and_authenticate_concert, only: [:show, :update, :destroy]
+  before_action :find_and_authenticate_concert, only: [:show, :update, :destroy, :show_concert_details]
 
   def create
     concert = Concert.create!(concert_params)
@@ -19,6 +19,23 @@ class ConcertsController < ApplicationController
   def destroy
     @concert.destroy
     head :no_content
+  end
+
+  def show_concert_details
+    # byebug
+    performances = @concert.performances
+    program = []
+    for performance in performances do
+      piece = Piece.find(performance.id)
+      ensemble = Ensemble.find(performance.ensemble.id)
+      program << {
+       piece: piece.title,
+       composer: piece.composer,
+       ensemble: ensemble.name,
+       grade_level: ensemble.grade_level
+      }
+    end
+    render json: program, status: :ok
   end
 
   private
