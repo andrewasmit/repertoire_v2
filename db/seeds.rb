@@ -28,7 +28,8 @@ june_bug = Piece.create(
   number_of_players: 1,
   genre: 'solo',
   difficulty: 2,
-  reference_recording: 'https://www.youtube.com/watch?v=kwUETmmisKY'
+  reference_recording: 'https://www.youtube.com/watch?v=kwUETmmisKY',
+  organization_id: org.id
 )
 
 note = Note.create(

@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_31_002648) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_05_154945) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "concerts", force: :cascade do |t|
     t.string "title"
     t.integer "year"
@@ -48,7 +51,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_31_002648) do
     t.integer "concert_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.decimal "organization_id"
   end
 
   create_table "pieces", force: :cascade do |t|
@@ -60,6 +62,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_31_002648) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "reference_recording"
+    t.integer "organization_id"
   end
 
   create_table "users", force: :cascade do |t|

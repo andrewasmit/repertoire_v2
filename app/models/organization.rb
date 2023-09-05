@@ -4,6 +4,7 @@ class Organization < ApplicationRecord
   has_many :users
   has_many :ensembles
   has_many :concerts
+  belongs_to :organization
 
   validates_presence_of :name
 

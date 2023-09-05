@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :notes, only: [:create, :show, :update, :destroy]
   resources :ensembles, only: [:create, :show, :update, :destroy]
   resources :pieces, only: [:create, :show, :update, :destroy]
+  resources :performances, only: [:create, :destroy]
 
   post '/signin', to: 'sessions#create'
   delete '/signout', to: 'sessions#destroy'
