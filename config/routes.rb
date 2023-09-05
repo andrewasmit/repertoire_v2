@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :ensembles, only: [:create, :show, :update, :destroy]
   resources :pieces, only: [:create, :show, :update, :destroy]
   resources :performances, only: [:create, :destroy]
+  resources :concerts, only: [:create, :show, :update, :destroy]
 
   post '/signin', to: 'sessions#create'
   delete '/signout', to: 'sessions#destroy'
