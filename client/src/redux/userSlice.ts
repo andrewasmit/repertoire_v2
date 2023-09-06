@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "./store";
 
-// Define a type for the slice state
 interface UserState {
   username: string;
   emailAddress: string;
@@ -10,40 +9,40 @@ interface UserState {
   isAdmin: boolean | undefined;
 }
 
-interface initialState {
-  user: UserState | null;
+interface UserResponse {
+  username: string;
+  email_address: string;
+  organization_id: number | undefined;
+  is_admin: boolean | undefined;
 }
 
-export const initialState: initialState = {
-  user: null,
+const initialState: { currentUser: UserState | null } = {
+  currentUser: null,
 };
-
-// const initialUserState: UserState = {
-//   username: "",
-//   emailAddress: "",
-//   organizationId: undefined,
-//   isAdmin: undefined,
-// };
 
 export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    // Use the PayloadAction type to declare the contents of `action.payload`
-    signIn: (state, action: PayloadAction<UserState>) => {
+    signIn: (state, action: PayloadAction<UserResponse>) => {
       console.log(`REDUX: ${action.payload.username} is now signed in.`);
-      state.user = action.payload;
+      console.log("PAYLOAD: ", action.payload);
+      state.currentUser = <UserState>{
+        username: action.payload.username,
+        emailAddress: action.payload.email_address,
+        organizationId: action.payload.organization_id,
+        isAdmin: action.payload.is_admin,
+      };
     },
     signOut: (state) => {
-      console.log(`REDUX: ${state.user?.username} has signed out.`);
-      state.user = null;
+      console.log(`REDUX: ${state.currentUser?.username} has signed out.`);
+      state.currentUser = null;
     },
   },
 });
 
 export const { signIn, signOut } = userSlice.actions;
 
-// Other code such as selectors can use the imported `RootState` type
 export const selectUser = (state: RootState) => state.user;
 
 export default userSlice.reducer;
