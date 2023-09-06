@@ -2,6 +2,7 @@
 import logo from '/logo-no-background.svg'
 import './App.css'
 import { useAppDispatch, useAppSelector } from './redux/hooks'
+import { signIn } from './redux/userSlice';
 
 function App() {
 
@@ -10,12 +11,12 @@ function App() {
 
   const handleBtnClick = ()=>{
     // 
-    dispatch({
+    dispatch(signIn({
       username: 'Your Mom',
       emailAddress: 'your@mom.com',
       isAdmin: true,
       organizationId: 19
-    })
+    }))
   }
 
   return (
