@@ -13,6 +13,11 @@ class UsersController < ApplicationController
     render json: @user, status: :ok
   end
 
+  def fetch_profile
+    user = User.find(session[:user_id])
+    render json: user, status: :ok
+  end
+
   def update
     @user.update(user_params)
     render json: user, status: :ok

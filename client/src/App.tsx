@@ -2,7 +2,7 @@
 import logo from '/logo-no-background.svg'
 import './App.css'
 import { useAppDispatch, useAppSelector } from './redux/hooks'
-import { signIn } from './redux/userSlice';
+import { signIn, signOut } from './redux/userSlice';
 
 function App() {
 
@@ -19,6 +19,11 @@ function App() {
     }))
   }
 
+  const handleSignOutBtnClick = ()=>{
+    console.log("CURRENT USER: ", user);
+    dispatch(signOut());
+  }
+
   return (
     <>
       <div>
@@ -26,7 +31,8 @@ function App() {
           <img src={logo} className="logo" alt="Main logo" />
         </a>
         <h1>Repertoire</h1>
-        <button onClick={handleBtnClick}>Access Redux</button>
+        <button onClick={handleBtnClick}>Sign In</button>
+        <button onClick={handleSignOutBtnClick}>Sign Out</button>
       </div>
     </>
   )

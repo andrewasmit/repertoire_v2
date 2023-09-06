@@ -31,15 +31,17 @@ export const userSlice = createSlice({
   reducers: {
     // Use the PayloadAction type to declare the contents of `action.payload`
     signIn: (state, action: PayloadAction<UserState>) => {
-      // console.log("REDUX: Signing in...");
-      console.log("REDUX: Payload", action.payload);
-      console.log("REDUX: Current status of State", state.user);
+      console.log(`REDUX: ${action.payload.username} is now signed in.`);
       state.user = action.payload;
+    },
+    signOut: (state) => {
+      console.log(`REDUX: ${state.user?.username} has signed out.`);
+      state.user = null;
     },
   },
 });
 
-export const { signIn } = userSlice.actions;
+export const { signIn, signOut } = userSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectUser = (state: RootState) => state.user;
