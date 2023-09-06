@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   attr_accessor :user
-  skip_before_action :authorize, only: [:create]
+  skip_before_action :authorize, only: [:create, :fetch_profile]
   before_action :find_and_authenticate_user, only: [:show, :update, :destroy]
 
   def create
@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   end
 
   def fetch_profile
+    # byebug
     user = User.find(session[:user_id])
     render json: user, status: :ok
   end
