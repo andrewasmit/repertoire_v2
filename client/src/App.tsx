@@ -1,13 +1,18 @@
+// External Dependencies
 import { useEffect } from 'react'
-// import logo from '/logo-no-background.svg'
-import './App.css'
 import { useAppDispatch, useAppSelector } from './redux/hooks'
+import { Routes, Route, useNavigate } from "react-router-dom";
+
+// Internal Dependencies
+import Home from './components/Home';
+
+// Local Dependencies
+import './App.css'
 import { 
   signIn, 
   // signOut 
 } from './redux/userSlice';
-import Home from './components/Home';
-import { Routes, Route, useNavigate } from "react-router-dom";
+// import logo from '/logo-no-background.svg'
 
 function App() {
 
