@@ -5,6 +5,7 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 
 // Internal Dependencies
 import Home from './components/Home';
+import SignIn from './components/SignIn';
 
 // Local Dependencies
 import './App.css'
@@ -31,7 +32,8 @@ function App() {
           navigate('/home');
         });
       } else {
-        console.log(" Probably unauthorized/Not logged in.");
+        navigate('/signin');
+        console.log("No Session Detected. Navigating to Signin page.");
       }
     })
     .catch((err) => console.log(err));
@@ -69,7 +71,9 @@ function App() {
     <>
       <Routes>
         <Route path='/home' element={<Home />} />
+        <Route path='signin' element={<SignIn /> } />
       </Routes>
+
       {/* <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
           <img src={logo} className="logo" alt="Main logo" />
         </a>
