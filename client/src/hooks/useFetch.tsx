@@ -1,17 +1,17 @@
 import { useQuery } from "@tanstack/react-query"
 
-const fetchData = (url: string): Promise<Group[]>=>{
+export const fetchData = async (url: string)=>{
   fetch(url)
-  .then(res=>{
-    if (res.ok){
-      res.json()
-    }
+  .then(res=> {
+    return res.json()
   })
+  // .then(data=>console.log(data));
 }
 
-export const useFetch = (url: string, key: string)=>{
-  useQuery({
+export const useFetch = (url: string, key: [])=>{
+  return useQuery({ 
     queryKey: [`${key}`],
     queryFn: fetchData(url),
+    retry: 1,
   })
 };

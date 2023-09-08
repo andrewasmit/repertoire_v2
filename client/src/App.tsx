@@ -5,6 +5,7 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 
 // Internal Dependencies
 import { useFetch } from './hooks/useFetch';
+import { fetchData } from './hooks/useFetch';
 import { 
   signIn, 
   // signOut 
@@ -22,6 +23,19 @@ function App() {
   const user = useAppSelector(state=> state.user)
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  // fetch('https://api.artic.edu/api/v1/artworks/search?q=cats')
+  // .then(res=>res.json())
+  // .then (data=>console.log("CATS JSON: ", data))
+
+  fetchData('https://api.artic.edu/api/v1/artworks/search?q=cats').then(data=>console.log(data))
+
+  // const { data, isLoading, error } = useFetch('https://api.artic.edu/api/v1/artworks/search?q=cats', 'cats')
+
+  // console.log("useQuery: DATA", data);
+  // console.log("useQuery: IS LOADING", isLoading);
+  // console.log("useQuery: ERROR", error);
+
 
   console.log("Currently signed in: ", user);
 
@@ -72,9 +86,7 @@ function App() {
 
   return (
     <>
-    { user.currentUser === null ? 
-      <Loading /> : null
-    }
+    {/* { isLoading && <Loading /> : null } */}
       <Routes>
         <Route path='/home' element={<Home />} />
         <Route path='signin' element={<SignIn /> } />

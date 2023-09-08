@@ -2,7 +2,10 @@ import { useCallback } from "react";
 import { useAppDispatch } from "../redux/hooks";
 import { signIn, signOut } from "../redux/userSlice";
 
+import { useNavigate } from "react-router-dom";
+
 const dispatch = useAppDispatch();
+const navigate = useNavigate();
 
 export const userSignIn = (username: string, password: string) => {
   fetch("/api/signin", {
@@ -35,12 +38,26 @@ export const useLogout = useCallback(() => {
 }, []);
 
 export const fetchMeIfYouCan = () => {
+  // fetch("/api/me")
+  //   .then((res) => {
+  //     if (res.ok) {
+  //       res.json().then((data) => dispatch(signIn(data)));
+  //     } else {
+  //       console.log(" Probably unauthorized/Not logged in.");
+  //     }
+  //   })
+  //   .catch((err) => console.log(err));
+
   fetch("/api/me")
     .then((res) => {
       if (res.ok) {
-        res.json().then((data) => dispatch(signIn(data)));
+        res.json().then((data) => {
+          dispatch(signIn(data));
+          navigate("/home");
+        });
       } else {
-        console.log(" Probably unauthorized/Not logged in.");
+        navigate("/signin");
+        console.log("No Session Detected. Navigating to Signin page.");
       }
     })
     .catch((err) => console.log(err));
