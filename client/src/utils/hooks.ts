@@ -4,7 +4,7 @@ import { signIn, signOut } from "../redux/userSlice";
 
 const dispatch = useAppDispatch();
 
-const login = (username: string, password: string) => {
+export const userSignIn = (username: string, password: string) => {
   fetch("/api/signin", {
     method: "POST",
     body: JSON.stringify({
@@ -20,9 +20,9 @@ const login = (username: string, password: string) => {
     .catch((err) => console.log("ERROR: ", err));
 };
 
-export const useLogin = useCallback((username: string, password: string) => {
-  return login(username, password);
-}, []);
+// export const useLogin = useCallback((username: string, password: string) => {
+//   return login(username, password);
+// }, []);
 
 export const useLogout = useCallback(() => {
   fetch("/api/signout", {
