@@ -13,6 +13,7 @@ import {
   signIn, 
   // signOut 
 } from './redux/userSlice';
+import Loading from './utils/loading';
 // import logo from '/logo-no-background.svg'
 
 function App() {
@@ -65,10 +66,14 @@ function App() {
   //     .then((data) => dispatch(signIn(data)))
   //     .catch((err) => console.log("ERROR: ", err));
   // };
-  
+
+  console.log(user)
 
   return (
     <>
+    { user.currentUser === null ? 
+      <Loading /> : null
+    }
       <Routes>
         <Route path='/home' element={<Home />} />
         <Route path='signin' element={<SignIn /> } />

@@ -24,6 +24,16 @@ export const useLogin = useCallback((username: string, password: string) => {
   return login(username, password);
 }, []);
 
+export const useLogout = useCallback(() => {
+  fetch("/api/signout", {
+    method: "DELETE",
+  })
+    .then((data) => console.log("DATA: ", data))
+    .catch((err) => console.log("ERROR: ", err));
+
+  dispatch(signOut());
+}, []);
+
 export const fetchMeIfYouCan = () => {
   fetch("/api/me")
     .then((res) => {
