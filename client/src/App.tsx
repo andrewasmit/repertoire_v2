@@ -6,6 +6,7 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 // Internal Dependencies
 import { useFetch } from './hooks/useFetch';
 // import { fetchData } from './hooks/useFetch';
+// import { fetchMeIfYouCan } from './utils/hooks';
 import { 
   signIn, 
   // signOut 
@@ -15,7 +16,7 @@ import {
 import './App.css'
 import Home from './components/Home';
 import SignIn from './components/SignIn';
-// import Loading from './utils/Loading';
+import Loading from './utils/Loading';
 // import logo from '/logo-no-background.svg'
 
 function App() {
@@ -75,10 +76,12 @@ function App() {
   //     .then((data) => dispatch(signIn(data)))
   //     .catch((err) => console.log("ERROR: ", err));
   // };
+  if (isLoading){
+    return <Loading />
+  }
 
   return (
     <>
-    {/* { isLoading && <Loading /> : null } */}
       <Routes>
         <Route path='/home' element={<Home />} />
         <Route path='signin' element={<SignIn /> } />
