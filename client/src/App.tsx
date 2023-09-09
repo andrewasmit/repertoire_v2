@@ -24,12 +24,6 @@ function App() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  // fetch('https://api.artic.edu/api/v1/artworks/search?q=cats')
-  // .then(res=>res.json())
-  // .then (data=>console.log("CATS JSON: ", data))
-
-  // fetchData('https://api.artic.edu/api/v1/artworks/search?q=cats').then(data=>console.log(data))
-
   const { data, isLoading, error } = useFetch('https://api.artic.edu/api/v1/artworks/search?q=cats', 'cats')
 
   console.log("useQuery: DATA", data);
@@ -81,8 +75,6 @@ function App() {
   //     .then((data) => dispatch(signIn(data)))
   //     .catch((err) => console.log("ERROR: ", err));
   // };
-
-  console.log(user)
 
   return (
     <>

@@ -12,12 +12,12 @@ function Loading() {
     loop: true
   };
 
-  const { View } = useLottie(options);
+  const { View } = useLottie(options, { height: 130 });
 
   return (
     <div>
-      {View}
-      <h3>Loading...</h3>
+      { View }
+      <h2>Loading...</h2>
     </div>
   )
 }
