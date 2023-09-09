@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
+import { useCallback } from "react";
 
 export const fetchData = async (url: string): Promise<{}>=>{
   return await fetch(url)
@@ -8,9 +9,13 @@ export const fetchData = async (url: string): Promise<{}>=>{
 }
 
 export const useFetch = (url: string, key: string)=>{
+  const queryFn = useCallback(()=>{
+    return fetchData(url)
+  }, [url]);
+
   return useQuery({ 
     queryKey: [`${key}`],
-    queryFn: ()=>fetchData(url),
+    queryFn,
     retry: 1
   })
 };
