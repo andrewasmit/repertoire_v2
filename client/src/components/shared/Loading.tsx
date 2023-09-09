@@ -1,9 +1,8 @@
 // External Dependencies
-// import React from 'react'
 import { useLottie } from 'lottie-react';
 
 // Local Dependencies
-import animation from '../assets/lottie/pianoLoading.json'
+import animation from '../../assets/lottie/pianoLoading.json'
 
 function Loading() {
 

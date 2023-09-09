@@ -16,7 +16,7 @@ import {
 import './App.css'
 import Home from './components/Home';
 import SignIn from './components/SignIn';
-import Loading from './utils/Loading';
+import Loading from './components/shared/Loading';
 // import logo from '/logo-no-background.svg'
 
 function App() {
@@ -30,7 +30,6 @@ function App() {
   console.log("useQuery: DATA", data);
   console.log("useQuery: IS LOADING", isLoading);
   console.log("useQuery: ERROR", error);
-
 
   console.log("Currently signed in: ", user);
 
@@ -50,32 +49,7 @@ function App() {
     .catch((err) => console.log(err));
   }, [])
 
-  
-  // const handleSignOutBtnClick = useCallback(()=>{
-  //   fetch("/api/signout", {
-  //     method: "DELETE"
-  //   })
-  //   .then(data=>console.log("DATA: ", data))
-  //   .catch(err=>console.log("ERROR: ", err));
 
-  //   dispatch(signOut());
-  // }, [])
-
-  // const handleFetchClick = () => {
-  //   fetch("/api/signin", {
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //       username: 'andrewasmit',
-  //       password: 123456,
-  //     }),
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => dispatch(signIn(data)))
-  //     .catch((err) => console.log("ERROR: ", err));
-  // };
   if (isLoading){
     return <Loading />
   }
@@ -86,14 +60,6 @@ function App() {
         <Route path='/home' element={<Home />} />
         <Route path='signin' element={<SignIn /> } />
       </Routes>
-
-      {/* <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
-          <img src={logo} className="logo" alt="Main logo" />
-        </a>
-        <h1>Repertoire</h1>
-        <button onClick={handleFetchClick}>Sign In</button>
-        <button onClick={handleSignOutBtnClick}>Sign Out</button>
-        <button onClick={fetchMeIfYouCan}>Fetch Me</button> */}
     </>
   )
 }

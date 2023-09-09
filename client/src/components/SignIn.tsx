@@ -1,6 +1,6 @@
 // import React from 'react'
 
-import Loading from "../utils/Loading"
+import Loading from "./shared/Loading"
 
 function SignIn() {
 
