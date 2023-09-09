@@ -18,6 +18,7 @@ import Home from './components/Home';
 import SignIn from './components/SignIn';
 import Loading from './components/shared/Loading';
 // import logo from '/logo-no-background.svg'
+// import { VITE_PERC_LIBRARY_BASE } from ".env"
 
 function App() {
 
@@ -25,7 +26,7 @@ function App() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const { data, isLoading, error } = useFetch('https://api.artic.edu/api/v1/artworks/search?q=cats', 'cats')
+  const { data, isLoading, error } = useFetch(import.meta.env.VITE_PERC_LIBRARY_BASE, 'percussionLibrary')
 
   console.log("useQuery: DATA", data);
   console.log("useQuery: IS LOADING", isLoading);
