@@ -5,7 +5,7 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 
 // Internal Dependencies
 import { useFetch } from './hooks/useFetch';
-import { fetchData } from './hooks/useFetch';
+// import { fetchData } from './hooks/useFetch';
 import { 
   signIn, 
   // signOut 
@@ -15,7 +15,7 @@ import {
 import './App.css'
 import Home from './components/Home';
 import SignIn from './components/SignIn';
-import Loading from './utils/Loading';
+// import Loading from './utils/Loading';
 // import logo from '/logo-no-background.svg'
 
 function App() {
@@ -28,13 +28,13 @@ function App() {
   // .then(res=>res.json())
   // .then (data=>console.log("CATS JSON: ", data))
 
-  fetchData('https://api.artic.edu/api/v1/artworks/search?q=cats').then(data=>console.log(data))
+  // fetchData('https://api.artic.edu/api/v1/artworks/search?q=cats').then(data=>console.log(data))
 
-  // const { data, isLoading, error } = useFetch('https://api.artic.edu/api/v1/artworks/search?q=cats', 'cats')
+  const { data, isLoading, error } = useFetch('https://api.artic.edu/api/v1/artworks/search?q=cats', 'cats')
 
-  // console.log("useQuery: DATA", data);
-  // console.log("useQuery: IS LOADING", isLoading);
-  // console.log("useQuery: ERROR", error);
+  console.log("useQuery: DATA", data);
+  console.log("useQuery: IS LOADING", isLoading);
+  console.log("useQuery: ERROR", error);
 
 
   console.log("Currently signed in: ", user);

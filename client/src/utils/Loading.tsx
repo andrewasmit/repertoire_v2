@@ -16,7 +16,8 @@ function Loading() {
 
   return (
     <div>
-      { View }
+      {View}
+      <h3>Loading...</h3>
     </div>
   )
 }
