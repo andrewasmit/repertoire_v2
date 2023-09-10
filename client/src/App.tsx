@@ -30,12 +30,12 @@ function App() {
     isLoading: fetchedSolosLoading, 
   } = useFetch(`${import.meta.env.VITE_PERC_LIBRARY_BASE}solos?`, 'fetchedPercussionSolos');
 
-  // console.log("useQuery: ENSEMBLE DATA", fetchedEnsemblesData);
-  // console.log("useQuery: SOLO DATA", fetchedSolosData);
+  console.log("useQuery: ENSEMBLE DATA", fetchedEnsemblesData);
+  console.log("useQuery: SOLO DATA", fetchedSolosData);
 
   const isLoading = fetchedEnsemblesLoading || fetchedSolosLoading;
  
-  // console.log("Currently signed in: ", user);
+  console.log("Currently signed in: ", user);
   useEffect(()=>{
     fetch("/api/me")
     .then((res) => {
@@ -45,7 +45,7 @@ function App() {
           navigate('/home');
         });
       } else {
-        navigate('/home');
+        navigate('/signin');
         console.log("No Session Detected. Navigating to Signin page.");
       }
     })
