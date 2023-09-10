@@ -4,9 +4,6 @@ import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 // import React from 'react'
 
-// Internal Dependencies
-
-
 // Local Dependencies
 // import Loading from "./shared/Loading"
 
@@ -15,20 +12,24 @@ function SignIn() {
 interface Values {
   username: string;
   password: string;
+  passwordConfirmation: string;
+  email: string;
 }
 
 const navigate = useNavigate();
-const handleSignUpClick = useCallback(()=>{
-  navigate('/signup');
+const handleSignInClick = useCallback(()=>{
+  navigate('/signin');
 }, []);
 
   return (
     <div>
-      <h1>This is the Sign In page.</h1>
+      <h1>This is the Sign Up page.</h1>
       <Formik
         initialValues={{
           username: '',
           password: '',
+          passwordConfirmation: '',
+          email: '',
         }}
         onSubmit={(
           values: Values,
@@ -41,27 +42,42 @@ const handleSignUpClick = useCallback(()=>{
         }}
       >
         <Form>
-          {/* <label htmlFor="username">Username</label> */}
+          <label htmlFor="username">Username</label>
           <Field 
             id="username" 
             name="username" 
             placeholder="Username" 
           />
 
-          {/* <label htmlFor="password">Password</label> */}
+          <label htmlFor="password">Password</label>
           <Field 
             id="password" 
             name="password" 
             placeholder="Password" 
             type= "password"
           />
+          
+          <label htmlFor="password">Confirm Password</label>
+          <Field 
+            id="passwordConfirmation" 
+            name="passwordConfirmation" 
+            placeholder="Confirm Password" 
+            type= "password"
+          />
 
-          <button type="submit">Sign In</button>
+          <label htmlFor="email">Email</label>
+          <Field
+            id="email"
+            name="email"
+            placeholder="Email Address"
+            type="email"
+          />
 
+          <button type="submit">Sign Up</button>
         </Form>
       </Formik>
 
-      <button onClick={handleSignUpClick}>Don't have an account yet?</button>
+      <button onClick={handleSignInClick}>Already have an account?</button>
     </div>
   )
 }

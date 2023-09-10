@@ -16,6 +16,7 @@ import {
 import './App.css'
 import Home from './components/Home';
 import SignIn from './components/SignIn';
+import SignUp from './components/SignUp';
 import Loading from './components/shared/Loading';
 // import logo from '/logo-no-background.svg'
 
@@ -73,7 +74,8 @@ function App() {
     <>
       <Routes>
         <Route path='/home' element={<Home />} />
-        <Route path='signin' element={<SignIn /> } />
+        <Route path='/signin' element={<SignIn /> } />
+        <Route path='/signup' element={<SignUp /> } />
       </Routes>
     </>
   )
