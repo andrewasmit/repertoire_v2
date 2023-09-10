@@ -2,24 +2,28 @@
 import { Formik, Field, Form, FormikHelpers } from 'formik';
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import React from 'react'
 
 // Internal Dependencies
-
+import { userSignIn } from '../hooks/userSignIn';
+import { Values } from '../hooks/userSignIn';
+import { useAppDispatch } from '../redux/hooks';
+import { signIn } from '../redux/userSlice';
 
 // Local Dependencies
 // import Loading from "./shared/Loading"
 
 function SignIn() {
 
-interface Values {
-  username: string;
-  password: string;
-}
-
 const navigate = useNavigate();
+const dispatch = useAppDispatch();
 const handleSignUpClick = useCallback(()=>{
   navigate('/signup');
+}, []);
+
+const handleSubmitSignIn = useCallback((values: Values)=>{
+  userSignIn(values)
+  .then(data=>dispatch(signIn(data)));
+  navigate('/home');
 }, []);
 
   return (
@@ -36,6 +40,7 @@ const handleSignUpClick = useCallback(()=>{
         ) => {
           setTimeout(() => {
             alert(JSON.stringify(values, null, 2));
+            handleSubmitSignIn(values);
             setSubmitting(false);
           }, 500);
         }}

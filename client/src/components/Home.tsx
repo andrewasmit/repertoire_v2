@@ -3,18 +3,28 @@ import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Internal Depencies
+import { userSignOut } from "../hooks/userSignOut";
+import { useAppDispatch } from "../redux/hooks";
+import { signOut } from "../redux/userSlice";
 
 // Local Depencies
 import "../App.css";
 import logo from '/logo-no-background.svg'
 
+
 function Home() {
 
-
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const handleSignInClick = useCallback(()=>{
     navigate('/signin');
   }, []);
+
+  const handleSignOutClick = useCallback(()=>{
+    userSignOut();
+    dispatch(signOut());
+    navigate('/signin');
+  }, [])
 
   return (
     <div>
@@ -24,6 +34,7 @@ function Home() {
       <h1>Repertoire</h1>
       <h4>This is the Home Page</h4>
       <button onClick={handleSignInClick}>Sign in to your account</button>
+      <button onClick={handleSignOutClick}>Sign Out</button>
     </div>
   );
 }

@@ -5,7 +5,6 @@ export const fetchData = async (url: string): Promise<{}>=>{
   const res= await fetch(url)
   const data = await res.json()
 
-  console.log('RES: ',data)
   if (res.status === 200){
     return data
   } else 
