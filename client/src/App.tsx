@@ -20,15 +20,17 @@ function App() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
+  console.log("QUERYLINK: ", `${import.meta.env.VITE_PERC_LIBRARY_BASE}?ensembles`)
+
   const { 
     data: fetchedEnsemblesData, 
     isLoading: fetchedEnsemblesLoading, 
-  } = useFetch(`${import.meta.env.VITE_PERC_LIBRARY_BASE}?/ensembles`, 'fetchedPercussionEnsmebles');
+  } = useFetch(`${import.meta.env.VITE_PERC_LIBRARY_BASE}?ensembles`, 'fetchedPercussionEnsmebles');
 
   const { 
     data: fetchedSolosData, 
     isLoading: fetchedSolosLoading, 
-  } = useFetch(`${import.meta.env.VITE_PERC_LIBRARY_BASE}?/solos`, 'fetchedPercussionSolos');
+  } = useFetch(`${import.meta.env.VITE_PERC_LIBRARY_BASE}solos?`, 'fetchedPercussionSolos');
 
   console.log("useQuery: ENSEMBLE DATA", fetchedEnsemblesData);
   console.log("useQuery: SOLO DATA", fetchedSolosData);

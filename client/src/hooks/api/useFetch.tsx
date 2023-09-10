@@ -2,10 +2,14 @@ import { useQuery } from "@tanstack/react-query"
 import { useCallback } from "react";
 
 export const fetchData = async (url: string): Promise<{}>=>{
-  return await fetch(url)
-  .then(res=> {
-    return res.json()
-  })
+  const res= await fetch(url)
+  const data = await res.json()
+
+  console.log('RES: ',data)
+  if (res.status === 200){
+    return data
+  } else 
+  throw new Error(data.message);
 }
 
 export const useFetch = (url: string, key: string)=>{
