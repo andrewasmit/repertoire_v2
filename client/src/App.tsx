@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from './redux/hooks'
 import { Routes, Route, useNavigate } from "react-router-dom";
 
 // Internal Dependencies
-import { useFetch } from './hooks/useFetch';
+import { useFetch } from './hooks/api/useFetch';
 // import { fetchData } from './hooks/useFetch';
 // import { fetchMeIfYouCan } from './utils/hooks';
 import { 
@@ -25,12 +25,24 @@ function App() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const { data, isLoading, error } = useFetch(import.meta.env.VITE_PERC_LIBRARY_BASE, 'fetchedPercussionLibrary')
-  // const { data, isLoading, error } = useFetch(import.meta.env.VITE_PERC_LIBRARY_BASE, 'cats')
+  const { 
+    data: fetchedEnsemblesData, 
+    isLoading: fetchedEnsemblesLoading, 
+    // error: fetchedEnsemblesErrors 
+  } = useFetch(`${import.meta.env.VITE_PERC_LIBRARY_BASE}?/ensembles`, 'fetchedPercussionEnsmebles');
 
-  console.log("useQuery: DATA", data);
-  console.log("useQuery: IS LOADING", isLoading);
-  console.log("useQuery: ERROR", error);
+  const { 
+    data: fetchedSolosData, 
+    isLoading: fetchedSolosLoading, 
+    // error: fetchedSolosErrors 
+  } = useFetch(`${import.meta.env.VITE_PERC_LIBRARY_BASE}?/solos`, 'fetchedPercussionSolos');
+
+  const isLoading = fetchedEnsemblesLoading || fetchedSolosLoading;
+
+
+  console.log("useQuery: ENSEMBLE DATA", fetchedEnsemblesData);
+  console.log("useQuery: SOLO DATA", fetchedSolosData);
+
 
   console.log("Currently signed in: ", user);
 
