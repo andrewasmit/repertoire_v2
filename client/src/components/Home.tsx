@@ -31,7 +31,7 @@ function Home() {
       <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
         <img src={logo} className="logo" alt="Main logo" />
       </a>
-      <h1 className="text-6xl font-bold underline" >Repertoire</h1>
+      <h1>Repertoire</h1>
       <h4>This is the Home Page</h4>
       <button onClick={handleSignInClick}>Sign in to your account</button>
       <button onClick={handleSignOutClick}>Sign Out</button>
