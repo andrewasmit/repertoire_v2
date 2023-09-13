@@ -1,6 +1,6 @@
 // External Dependencies
 import { useEffect } from 'react'
-import { useAppDispatch, useAppSelector } from './redux/hooks'
+import { useAppDispatch } from './redux/hooks'
 import { Routes, Route, useNavigate } from "react-router-dom";
 
 // Internal Dependencies
