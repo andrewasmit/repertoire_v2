@@ -13,12 +13,16 @@ import Home from './components/Home';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import Loading from './components/shared/Loading';
+import { hydrateEnsembles } from './redux/fetchedLibrarySlice';
 
 function App() {
 
   const user = useAppSelector(state=> state.user)
+  const library = useAppSelector(state=> state.fetchedLibrary);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  console.log("LIBRARY: ", library);
 
   const { 
     data: fetchedEnsemblesData, 
@@ -30,8 +34,14 @@ function App() {
     isLoading: fetchedSolosLoading, 
   } = useFetch(`${import.meta.env.VITE_PERC_LIBRARY_BASE}solos?`, 'fetchedPercussionSolos');
 
-  console.log("useQuery: ENSEMBLE DATA", fetchedEnsemblesData);
-  console.log("useQuery: SOLO DATA", fetchedSolosData);
+  // console.log("useQuery: ENSEMBLE DATA", fetchedEnsemblesData);
+  // console.log("useQuery: SOLO DATA", fetchedSolosData);
+
+  useEffect(()=>{
+    if (fetchedEnsemblesData !== undefined){
+      dispatch(hydrateEnsembles(fetchedEnsemblesData));
+    }
+  }, [fetchedEnsemblesData]);
 
   const isLoading = fetchedEnsemblesLoading || fetchedSolosLoading;
  
