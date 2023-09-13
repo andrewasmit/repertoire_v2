@@ -45,13 +45,16 @@ export const fetchedLibrarySlice = createSlice({
   reducers: {
     hydrateEnsembles: (state, action: PayloadAction<FetchedPiece[]>) => {
       console.log(`REDUX: Hydrating Ensembles.`);
-      console.log("PAYLOAD: ", action.payload);
       state.fetchedEnsembles = action.payload;
+    },
+    hydrateSolos: (state, action: PayloadAction<FetchedPiece[]>) => {
+      console.log(`REDUX: Hydrating Solos.`);
+      state.fetchedSolos = action.payload;
     },
   },
 });
 
-export const { hydrateEnsembles } = fetchedLibrarySlice.actions;
+export const { hydrateEnsembles, hydrateSolos } = fetchedLibrarySlice.actions;
 
 export const selectFetchedEnsembles = (state: RootState) =>
   state.fetchedLibrary;

@@ -13,16 +13,18 @@ import Home from './components/Home';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import Loading from './components/shared/Loading';
-import { hydrateEnsembles } from './redux/fetchedLibrarySlice';
+import { hydrateEnsembles, hydrateSolos } from './redux/fetchedLibrarySlice';
 
 function App() {
 
-  const user = useAppSelector(state=> state.user)
-  const library = useAppSelector(state=> state.fetchedLibrary);
+  // const user = useAppSelector(state=> state.user)
+  // const library = useAppSelector(state=> state.fetchedLibrary);
+  const state = useAppSelector(state=> state);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  console.log("LIBRARY: ", library);
+  // console.log("LIBRARY: ", library);
+  console.log("STATE: ", state);
 
   const { 
     data: fetchedEnsemblesData, 
@@ -38,14 +40,14 @@ function App() {
   // console.log("useQuery: SOLO DATA", fetchedSolosData);
 
   useEffect(()=>{
-    if (fetchedEnsemblesData !== undefined){
+    if (fetchedEnsemblesData !== undefined && fetchedEnsemblesData !== undefined){
       dispatch(hydrateEnsembles(fetchedEnsemblesData));
+      dispatch(hydrateSolos(fetchedSolosData));
     }
-  }, [fetchedEnsemblesData]);
+  }, [fetchedEnsemblesData, fetchedSolosData]);
 
   const isLoading = fetchedEnsemblesLoading || fetchedSolosLoading;
  
-  console.log("Currently signed in: ", user);
   useEffect(()=>{
     fetch("/api/me")
     .then((res) => {
