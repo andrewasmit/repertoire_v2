@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 // Internal Depencies
 import { userSignOut } from "../hooks/userSignOut";
-import { useAppDispatch } from "../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { signOut } from "../redux/userSlice";
 
 // Local Depencies
@@ -16,6 +16,8 @@ function Home() {
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const { currentUser } = useAppSelector(state=>state.user);
+
   const handleSignInClick = useCallback(()=>{
     navigate('/signin');
   }, []);
@@ -33,7 +35,11 @@ function Home() {
       </a>
       <h1>Repertoire</h1>
       <h4>This is the Home Page</h4>
-      <button onClick={handleSignInClick}>Sign in to your account</button>
+
+      {currentUser !== null && 
+        <button onClick={handleSignInClick}>Sign in to your account</button>
+      }
+
       <button onClick={handleSignOutClick}>Sign Out</button>
     </div>
   );

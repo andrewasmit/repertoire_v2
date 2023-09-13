@@ -16,14 +16,17 @@ function SignIn() {
 
 const navigate = useNavigate();
 const dispatch = useAppDispatch();
+
 const handleSignUpClick = useCallback(()=>{
   navigate('/signup');
 }, []);
 
 const handleSubmitSignIn = useCallback((values: Values)=>{
   userSignIn(values)
-  .then(data=>dispatch(signIn(data)));
-  navigate('/home');
+  .then(data=>{
+    dispatch(signIn(data))
+    navigate('/home');
+  });
 }, []);
 
   return (
@@ -39,7 +42,7 @@ const handleSubmitSignIn = useCallback((values: Values)=>{
           { setSubmitting }: FormikHelpers<Values>
         ) => {
           setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
+            // alert(JSON.stringify(values, null, 2));
             handleSubmitSignIn(values);
             setSubmitting(false);
           }, 500);

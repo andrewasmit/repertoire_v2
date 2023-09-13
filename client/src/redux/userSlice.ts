@@ -26,7 +26,6 @@ export const userSlice = createSlice({
   reducers: {
     signIn: (state, action: PayloadAction<UserResponse>) => {
       console.log(`REDUX: ${action.payload.username} is now signed in.`);
-      // console.log("PAYLOAD: ", action.payload);
       state.currentUser = <UserState>{
         username: action.payload.username,
         emailAddress: action.payload.email_address,
