@@ -4,7 +4,7 @@ import { useAppDispatch } from './redux/hooks'
 import { Routes, Route, useNavigate } from "react-router-dom";
 
 // Internal Dependencies
-import { useFetch } from './hooks/api/useFetch';
+import { useFetchExternalLibrary } from './hooks/api/useFetchExternalLibrary';
 import { signIn} from './redux/userSlice';
 
 // Local Dependencies
@@ -24,12 +24,12 @@ function App() {
   const { 
     data: fetchedEnsemblesData, 
     isLoading: fetchedEnsemblesLoading, 
-  } = useFetch(`${import.meta.env.VITE_PERC_LIBRARY_BASE}?ensembles`, 'fetchedPercussionEnsmebles');
+  } = useFetchExternalLibrary(`${import.meta.env.VITE_PERC_LIBRARY_BASE}?ensembles`, 'fetchedPercussionEnsmebles');
 
   const { 
     data: fetchedSolosData, 
     isLoading: fetchedSolosLoading, 
-  } = useFetch(`${import.meta.env.VITE_PERC_LIBRARY_BASE}solos?`, 'fetchedPercussionSolos');
+  } = useFetchExternalLibrary(`${import.meta.env.VITE_PERC_LIBRARY_BASE}solos?`, 'fetchedPercussionSolos');
 
 
   useEffect(()=>{

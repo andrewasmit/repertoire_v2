@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "./store";
 
-interface ConcertProgram {
+export interface ConcertProgram {
   name: string;
   concert_id: number;
   year: number;
