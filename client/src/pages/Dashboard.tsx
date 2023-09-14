@@ -6,8 +6,9 @@ import { useNavigate } from "react-router-dom";
 import { userSignOut } from "../hooks/userSignOut";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { signOut } from "../redux/userSlice";
-import { hydrateConcertPrograms } from "../redux/organizationSlice";
+import { hydrateConcertPrograms, hydrateOrganization, hydrateUsers, hydrateEnsembles  } from "../redux/organizationSlice";
 import { useFetchOrganizationConcerts } from "../hooks/api/useFetchOrganizationConcerts";
+import { useFetchOrganizationData } from "../hooks/api/useFetchOrganizationData";
 
 // Local Depencies
 import "../App.css";
@@ -27,11 +28,25 @@ function Dashboard() {
     isLoading: fetchedConcertProgramsLoading, 
   } = useFetchOrganizationConcerts(`api/organizations/${currentUser?.organizationId}/concerts`, 'organizationConcertPrograms');
 
+  const { 
+    data: fetchedOrganizationData, 
+    isLoading: fetchedOrganizationLoading, 
+  } = useFetchOrganizationData(`api/organizations/${currentUser?.organizationId}`, 'organizationData');
+
+
   useEffect(()=>{
-    if(fetchedConcertProgramData !== undefined){
+    if(fetchedConcertProgramData !== undefined && fetchedOrganizationData !== undefined){
+      const orgData= {
+        id: fetchedOrganizationData.id,
+        name: fetchedOrganizationData.name,
+        uuid: fetchedOrganizationData.uuid
+      }
       dispatch(hydrateConcertPrograms(fetchedConcertProgramData));
+      dispatch(hydrateOrganization(orgData));
+      dispatch(hydrateEnsembles(fetchedOrganizationData.ensembles));
+      dispatch(hydrateUsers(fetchedOrganizationData.users));
     }
-  },[fetchedConcertProgramData]);
+  },[fetchedConcertProgramData, fetchedOrganizationData]);
 
   const handleSignOutClick = useCallback(()=>{
     userSignOut();
@@ -39,7 +54,7 @@ function Dashboard() {
     navigate('/signin');
   }, [])
 
-  const isLoading = fetchedConcertProgramsLoading;
+  const isLoading = fetchedConcertProgramsLoading || fetchedOrganizationLoading;
 
   if (isLoading){
     return <Loading />

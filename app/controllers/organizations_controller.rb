@@ -8,7 +8,7 @@ class OrganizationsController < ApplicationController
   end
 
   def show
-    render json: @org, status: :ok 
+    render json: @org, status: :ok, include: [:ensembles, :users]
   end
 
   def update
