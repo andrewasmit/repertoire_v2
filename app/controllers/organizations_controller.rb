@@ -26,37 +26,29 @@ class OrganizationsController < ApplicationController
     concerts = @org.concerts
 
     for concert in concerts
+      performances = concert.performances
       concert_program = {
         name: concert.title,
         year: concert.year,
         concert_id: concert.id,
         program: []
       }
-      # Catch the concert name, year and ID and return in the format below
-      # { 
-        # name: "Concert Name"
-        # year: 2023
-        # id: 1
-        # program: [{performance}, {performance}, {performance}]
-      # }
-      # byebug
 
-      performances = concert.performances
       for performance in performances
         piece = Piece.find(performance.piece_id)
         ensemble = Ensemble.find(performance.ensemble_id)
-        
         performed_piece = { 
           performance_id: performance.id,
           piece: piece.title, 
           ensemble: ensemble.name, 
         }  
+        
         concert_program[:program] << performed_piece
-        # byebug 
       end
 
       concert_programs << concert_program 
     end
+
     render json: concert_programs, status: :ok
   end
 
