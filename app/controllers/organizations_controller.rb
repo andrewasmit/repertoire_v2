@@ -1,6 +1,6 @@
 class OrganizationsController < ApplicationController
   attr_accessor :org
-  before_action :authorize_user_crud, only: [:show, :update, :delete]
+  before_action :authorize_user_crud, only: [:show, :update, :delete, :concert_programs]
 
   def create
     org = Organization.create!(organization_params)
@@ -26,25 +26,40 @@ class OrganizationsController < ApplicationController
     concerts = @org.concerts
 
     for concert in concerts
-      program = []
+      concert_program = {
+        name: concert.title,
+        year: concert.year,
+        concert_id: concert.id,
+        program: []
+      }
+      # Catch the concert name, year and ID and return in the format below
+      # { 
+        # name: "Concert Name"
+        # year: 2023
+        # id: 1
+        # program: [{performance}, {performance}, {performance}]
+      # }
+      # byebug
+
       performances = concert.performances
-      
       for performance in performances
         piece = Piece.find(performance.piece_id)
         ensemble = Ensemble.find(performance.ensemble_id)
-        # concert = Concert.find(performance.concert_id) // Can we save this query and just use the info from the above scope?
-
-        program << { 
+        
+        performed_piece = { 
+          performance_id: performance.id,
           piece: piece.title, 
           ensemble: ensemble.name, 
-          performance: performance.id, 
-          concert: concert.id 
         }  
+        concert_program[:program] << performed_piece
+        # byebug 
       end
-      return program 
+
+      concert_programs << concert_program 
     end
-    return json: concert_programs
+    render json: concert_programs, status: :ok
   end
+
 
   private
   def organization_params

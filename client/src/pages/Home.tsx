@@ -23,6 +23,8 @@ function Home() {
     navigate('/signin');
   }, [])
 
+  //Grab organization information
+
   return (
     <div>
       <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">

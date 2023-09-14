@@ -32,6 +32,16 @@ june_bug = Piece.create(
   organization_id: org.id
 )
 
+final_boss = Piece.create(
+  title: 'The Final Boss',
+  composer: 'Andrew Smit',
+  number_of_players: 8,
+  genre: 'ensemble',
+  difficulty: 3,
+  reference_recording: 'https://soundcloud.com/tapspacepublications/the-final-boss-andrew-smit',
+  organization_id: org.id
+)
+
 note = Note.create(
   piece_id: june_bug.id,
   user_id: me.id,
@@ -56,9 +66,21 @@ ensemble = Ensemble.create(
   grade_level: 6
 )
 
+ensemble2 = Ensemble.create(
+  organization_id: org.id,
+  name: 'Junior High Percussion',
+  grade_level: 7
+)
+
 performance = Performance.create(
   piece_id: june_bug.id,
   ensemble_id: ensemble.id,
+  concert_id: concert.id
+)
+
+performance2 = Performance.create(
+  piece_id: final_boss.id,
+  ensemble_id: ensemble2.id,
   concert_id: concert.id
 )
 
