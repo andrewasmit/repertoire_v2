@@ -9,9 +9,10 @@ import { signIn} from './redux/userSlice';
 
 // Local Dependencies
 import './App.css'
-import Home from './components/Home';
-import SignIn from './components/SignIn';
-import SignUp from './components/SignUp';
+import Home from './pages/Home';
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
+import Welcome from './pages/Welcome';
 import Loading from './components/shared/Loading';
 import { hydrateEnsembles, hydrateSolos } from './redux/fetchedLibrarySlice';
 
@@ -49,7 +50,7 @@ function App() {
           navigate('/home');
         });
       } else {
-        navigate('/signin');
+        navigate('/welcome');
         console.log("No Session Detected. Navigating to Signin page.");
       }
     })
@@ -64,6 +65,7 @@ function App() {
   return (
     <>
       <Routes>
+        <Route path='/welcome' element={<Welcome />} />
         <Route path='/home' element={<Home />} />
         <Route path='/signin' element={<SignIn /> } />
         <Route path='/signup' element={<SignUp /> } />

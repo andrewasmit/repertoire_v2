@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 // Internal Depencies
 import { userSignOut } from "../hooks/userSignOut";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { useAppDispatch } from "../redux/hooks";
 import { signOut } from "../redux/userSlice";
 
 // Local Depencies
@@ -16,11 +16,6 @@ function Home() {
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { currentUser } = useAppSelector(state=>state.user);
-
-  const handleSignInClick = useCallback(()=>{
-    navigate('/signin');
-  }, []);
 
   const handleSignOutClick = useCallback(()=>{
     userSignOut();
@@ -34,11 +29,8 @@ function Home() {
         <img src={logo} className="logo" alt="Main logo" />
       </a>
       <h1>Repertoire</h1>
-      <h4>This is the Home Page</h4>
-
-      {currentUser !== null && 
-        <button onClick={handleSignInClick}>Sign in to your account</button>
-      }
+      <h2>This is the Home Page</h2>
+      <h3>This is where the dashboard will be with all of your information</h3>
 
       <button onClick={handleSignOutClick}>Sign Out</button>
     </div>
