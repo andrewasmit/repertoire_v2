@@ -21,6 +21,24 @@ class OrganizationsController < ApplicationController
     head :no_content
   end
 
+  def concert_programs
+    concert_programs = []
+    concerts = @org.concerts
+
+    for concert in concerts
+      program = []
+      performances = concert.performances
+      
+      for performance in performances
+        piece = Piece.find(performance.piece_id)
+        ensemble = Ensemble.find(performance.ensemble_id)
+        program << { piece: piece, ensemble: ensemble }  
+      end
+      return program 
+    end
+    return json: concert_programs
+  end
+
   private
   def organization_params
     params.permit(:name, :id)
