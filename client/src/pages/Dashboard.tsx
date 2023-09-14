@@ -15,7 +15,7 @@ import logo from '/logo-no-background.svg'
 import Loading from "../components/shared/Loading";
 
 
-function Home() {
+function Dashboard() {
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -51,12 +51,12 @@ function Home() {
         <img src={logo} className="logo" alt="Main logo" />
       </a>
       <h1>Repertoire</h1>
-      <h2>This is the Home Page</h2>
-      <h3>This is where the dashboard will be with all of your information</h3>
+      <h2>This is the Dashboard</h2>
+      <h3>This is where all of your organization information will be</h3>
 
       <button onClick={handleSignOutClick}>Sign Out</button>
     </div>
   );
 }
 
-export default Home;
+export default Dashboard;

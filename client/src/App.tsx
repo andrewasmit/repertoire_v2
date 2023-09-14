@@ -9,7 +9,7 @@ import { signIn} from './redux/userSlice';
 
 // Local Dependencies
 import './App.css'
-import Home from './pages/Home';
+import Dashboard from './pages/Dashboard';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Welcome from './pages/Welcome';
@@ -66,7 +66,7 @@ function App() {
     <>
       <Routes>
         <Route path='/welcome' element={<Welcome />} />
-        <Route path='/home' element={<Home />} />
+        <Route path='/home' element={<Dashboard />} />
         <Route path='/signin' element={<SignIn /> } />
         <Route path='/signup' element={<SignUp /> } />
       </Routes>

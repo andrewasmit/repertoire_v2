@@ -15,8 +15,18 @@ interface PerformedPiece {
   ensemble: string;
 }
 
-const initialState: { concertPrograms: ConcertProgram[] | null } = {
+interface Ensemble {
+  performance_id: number;
+  piece: string;
+  ensemble: string;
+}
+
+const initialState: {
+  concertPrograms: ConcertProgram[] | null;
+  ensembles: Ensemble[] | null;
+} = {
   concertPrograms: null,
+  ensembles: null,
 };
 
 export const organizationSlice = createSlice({
