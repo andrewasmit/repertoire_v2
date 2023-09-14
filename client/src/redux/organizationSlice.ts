@@ -21,6 +21,7 @@ export interface OrganizationResponse {
   uuid: string;
   ensembles: Ensemble[];
   users: User[];
+  pieces: Piece[];
 }
 interface Organization {
   id: number;
@@ -41,16 +42,28 @@ interface User {
   isAdmin: boolean;
 }
 
+interface Piece {
+  id: number;
+  title: string;
+  composer: string;
+  number_of_players: number;
+  genre: string;
+  difficulty: number;
+  reference_recording: string;
+}
+
 const initialState: {
   concertPrograms: ConcertProgram[] | null;
   ensembles: Ensemble[] | null;
   organization: Organization | null;
   users: User[] | null;
+  library: Piece[] | null;
 } = {
   concertPrograms: null,
   ensembles: null,
   organization: null,
   users: null,
+  library: null,
 };
 
 export const organizationSlice = createSlice({
@@ -61,20 +74,24 @@ export const organizationSlice = createSlice({
       state,
       action: PayloadAction<ConcertProgram[]>
     ) => {
-      console.log(`REDUX: Hydrating concert programs for organization`);
+      console.log("REDUX: Hydrating Concert Programs for organization");
       state.concertPrograms = action.payload;
     },
     hydrateEnsembles: (state, action: PayloadAction<Ensemble[]>) => {
-      console.log(`REDUX: Hydrating ensembles for organization`);
+      console.log("REDUX: Hydrating Ensembles for organization");
       state.ensembles = action.payload;
     },
     hydrateOrganization: (state, action: PayloadAction<Organization>) => {
-      console.log(`REDUX: Hydrating organization data`);
+      console.log("REDUX: Hydrating Organization Data");
       state.organization = action.payload;
     },
     hydrateUsers: (state, action: PayloadAction<User[]>) => {
-      console.log(`REDUX: Hydrating organization data`);
+      console.log("REDUX: Hydrating organization data");
       state.users = action.payload;
+    },
+    hydrateLibrary: (state, action: PayloadAction<Piece[]>) => {
+      console.log("REDUX: Hydrating organization's Music Library");
+      state.library = action.payload;
     },
   },
 });
@@ -84,6 +101,7 @@ export const {
   hydrateEnsembles,
   hydrateOrganization,
   hydrateUsers,
+  hydrateLibrary,
 } = organizationSlice.actions;
 
 export const selectOrganization = (state: RootState) => state.organization;

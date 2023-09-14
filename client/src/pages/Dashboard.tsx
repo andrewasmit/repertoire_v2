@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { userSignOut } from "../hooks/userSignOut";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { signOut } from "../redux/userSlice";
-import { hydrateConcertPrograms, hydrateOrganization, hydrateUsers, hydrateEnsembles  } from "../redux/organizationSlice";
+import { hydrateConcertPrograms, hydrateOrganization, hydrateUsers, hydrateEnsembles, hydrateLibrary  } from "../redux/organizationSlice";
 import { useFetchOrganizationConcerts } from "../hooks/api/useFetchOrganizationConcerts";
 import { useFetchOrganizationData } from "../hooks/api/useFetchOrganizationData";
 
@@ -45,6 +45,7 @@ function Dashboard() {
       dispatch(hydrateOrganization(orgData));
       dispatch(hydrateEnsembles(fetchedOrganizationData.ensembles));
       dispatch(hydrateUsers(fetchedOrganizationData.users));
+      dispatch(hydrateLibrary(fetchedOrganizationData.pieces));
     }
   },[fetchedConcertProgramData, fetchedOrganizationData]);
 

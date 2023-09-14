@@ -24,13 +24,6 @@ export interface FetchedPiece {
   video_link1: string | null;
 }
 
-// export interface UserResponse {
-//   username: string;
-//   email_address: string;
-//   organization_id: number | undefined;
-//   is_admin: boolean | undefined;
-// }
-
 const initialState: {
   fetchedEnsembles: FetchedPiece[] | null;
   fetchedSolos: FetchedPiece[] | null;
@@ -44,11 +37,11 @@ export const fetchedLibrarySlice = createSlice({
   initialState,
   reducers: {
     hydrateEnsembles: (state, action: PayloadAction<FetchedPiece[]>) => {
-      console.log(`REDUX: Hydrating Ensembles.`);
+      console.log(`REDUX: Hydrating Ensembles in Browse Library`);
       state.fetchedEnsembles = action.payload;
     },
     hydrateSolos: (state, action: PayloadAction<FetchedPiece[]>) => {
-      console.log(`REDUX: Hydrating Solos.`);
+      console.log(`REDUX: Hydrating Solos in Browse Library`);
       state.fetchedSolos = action.payload;
     },
   },
