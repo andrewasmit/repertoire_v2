@@ -20,10 +20,7 @@ function Home() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { currentUser } = useAppSelector(state=>state.user);
-  const { concertPrograms } = useAppSelector(state=>state.organization);
-
-  console.log("CONCERT PROGRAMS (in Home.ts): ", concertPrograms);
-  console.log("CURRENT USER(in Home): ", currentUser);
+  // const { concertPrograms } = useAppSelector(state=>state.organization);
 
   const { 
     data: fetchedConcertProgramData, 
@@ -32,7 +29,6 @@ function Home() {
 
   useEffect(()=>{
     if(fetchedConcertProgramData !== undefined){
-      console.log("RES FROM Concert Program API CALL (in Welcome.ts): ", fetchedConcertProgramData);
       dispatch(hydrateConcertPrograms(fetchedConcertProgramData));
     }
   },[fetchedConcertProgramData]);
