@@ -32,7 +32,14 @@ class OrganizationsController < ApplicationController
       for performance in performances
         piece = Piece.find(performance.piece_id)
         ensemble = Ensemble.find(performance.ensemble_id)
-        program << { piece: piece, ensemble: ensemble }  
+        # concert = Concert.find(performance.concert_id) // Can we save this query and just use the info from the above scope?
+
+        program << { 
+          piece: piece.title, 
+          ensemble: ensemble.name, 
+          performance: performance.id, 
+          concert: concert.id 
+        }  
       end
       return program 
     end
