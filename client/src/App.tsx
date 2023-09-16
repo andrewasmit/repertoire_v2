@@ -64,6 +64,7 @@ function App() {
 
   return (
     <>
+      {/* <h1>THIS IS THE NAVBAR</h1> */}
       <Routes>
         <Route path='/welcome' element={<Welcome />} />
         <Route path='/home' element={<Dashboard />} />
