@@ -5,16 +5,17 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 
 // Internal Dependencies
 import { useFetchExternalLibrary } from './hooks/api/useFetchExternalLibrary';
+import { hydrateEnsembles, hydrateSolos } from './redux/fetchedLibrarySlice';
 import { signIn} from './redux/userSlice';
 
 // Local Dependencies
 import './App.css'
-import Dashboard from './pages/Dashboard';
+// import Dashboard from './pages/Dashboard';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Welcome from './pages/Welcome';
 import Loading from './components/shared/Loading';
-import { hydrateEnsembles, hydrateSolos } from './redux/fetchedLibrarySlice';
+import Home from './pages/Home';
 
 function App() {
 
@@ -67,7 +68,7 @@ function App() {
       {/* <h1>THIS IS THE NAVBAR</h1> */}
       <Routes>
         <Route path='/welcome' element={<Welcome />} />
-        <Route path='/home' element={<Dashboard />} />
+        <Route path='/home' element={<Home />} />
         <Route path='/signin' element={<SignIn /> } />
         <Route path='/signup' element={<SignUp /> } />
       </Routes>
