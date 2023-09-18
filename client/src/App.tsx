@@ -16,6 +16,8 @@ import SignUp from './pages/SignUp';
 import Welcome from './pages/Welcome';
 import Loading from './components/shared/Loading';
 import Home from './pages/Home';
+import Dashboard from './pages/Dashboard';
+import Ensembles from './pages/Ensembles';
 
 
 function App() {
@@ -71,7 +73,11 @@ function App() {
         <Route path='/welcome' element={<Welcome />} />
         <Route path='/signin' element={<SignIn /> } />
         <Route path='/signup' element={<SignUp /> } />
-        <Route path='/home' element={<Home />} />
+        {/* <Route path='/home' element={<Home />} /> */}
+        <Route path='/' element={<Home />} >
+          <Route path='home' element={<Dashboard />} />
+          <Route path='ensembles' element={<Ensembles />} />
+        </Route>
       </Routes>
     </>
   )

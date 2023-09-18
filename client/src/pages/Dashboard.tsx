@@ -55,6 +55,10 @@ function Dashboard() {
     navigate('/signin');
   }, [])
 
+  const handleNavToEns = useCallback(()=>{
+    navigate('/ensembles');
+  }, [])
+
   const isLoading = fetchedConcertProgramsLoading || fetchedOrganizationLoading;
 
   if (isLoading){
@@ -71,6 +75,7 @@ function Dashboard() {
       <h3>This is where all of your organization information will be</h3>
 
       <button onClick={handleSignOutClick}>Sign Out</button>
+      <button onClick={handleNavToEns}>Ensembles</button>
     </div>
   );
 }

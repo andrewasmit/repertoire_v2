@@ -7,6 +7,7 @@ import {
 
 //Local Dependencies
 import Dashboard from "../../pages/Dashboard";
+import Ensembles from "../../pages/Ensembles";
 
 
 function MainContainer() {
@@ -16,7 +17,8 @@ function MainContainer() {
   return (
     <>
       <Routes>
-        <Route path='/home' element={<Dashboard />} />
+        <Route path='home' element={<Dashboard />} />
+        <Route path='ensembles' element={<Ensembles />} />
       </Routes>
       {/* <Dashboard /> */}
     </>
