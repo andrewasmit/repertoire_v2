@@ -17,6 +17,7 @@ import Welcome from './pages/Welcome';
 import Loading from './components/shared/Loading';
 import Home from './pages/Home';
 
+
 function App() {
 
   const dispatch = useAppDispatch();
@@ -68,9 +69,9 @@ function App() {
       {/* <h1>THIS IS THE NAVBAR</h1> */}
       <Routes>
         <Route path='/welcome' element={<Welcome />} />
-        <Route path='/home' element={<Home />} />
         <Route path='/signin' element={<SignIn /> } />
         <Route path='/signup' element={<SignUp /> } />
+        <Route path='/home' element={<Home />} />
       </Routes>
     </>
   )

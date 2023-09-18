@@ -1,5 +1,7 @@
+//External Dependencies
+
 //Internal Dependencies
-import MainContainer from "../components/shared/MainContainer"
+import MainContainer from "../../components/MainContainer"
 
 function Home() {
 
