@@ -59,17 +59,9 @@ function Ensembles() {
     navigate('/signin');
   }, [])
 
-  // const isLoading = fetchedConcertProgramsLoading || fetchedOrganizationLoading;
-
-  // if (isLoading){
-  //   return <Loading />
-  // }
 
   return (
     <div>
-      {/* <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
-        <img src={logo} className="logo" alt="Main logo" />
-      </a> */}
       <h1>Repertoire</h1>
       <h2>This is the ENSEMBLES PAGE</h2>
       <h3>This is where all of your organization ensembles will be</h3>

@@ -1,7 +1,10 @@
 //External Dependencies
 
 //Internal Dependencies
+
+//Local Dependencies
 import MainContainer from "../../components/MainContainer"
+import './home.css'
 
 function Home() {
 
