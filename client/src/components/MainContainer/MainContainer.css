@@ -1,0 +1,8 @@
+.main-container {
+  border: solid blue 3px;
+  position: fixed;
+  width: 90%;
+  margin-left: 10%;
+  margin-top: 3rem;
+  height: 100%;
+}

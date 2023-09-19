@@ -20,7 +20,6 @@ function MainContainer() {
         <Route path='home' element={<Dashboard />} />
         <Route path='ensembles' element={<Ensembles />} />
       </Routes>
-      {/* <Dashboard /> */}
     </div>
   )
 }

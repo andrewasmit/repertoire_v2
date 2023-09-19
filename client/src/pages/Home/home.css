@@ -3,11 +3,14 @@
   margin: 0;
   padding: 0;
   position: fixed;
-  width: auto;
+  width: 100%;
+  height: 3rem;
 }
 
 .side-navbar {
   border: solid red 4px;
   position: fixed;
-  width: auto;
+  width: 10%;
+  height: 100%;
+  margin-top: 3rem;
 }
