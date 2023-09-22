@@ -10,7 +10,7 @@
 .side-navbar {
   border: solid red 4px;
   position: fixed;
-  width: 10%;
+  width: 6rem;
   height: 100%;
   margin-top: 3rem;
 }

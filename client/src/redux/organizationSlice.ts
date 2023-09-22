@@ -74,23 +74,23 @@ export const organizationSlice = createSlice({
       state,
       action: PayloadAction<ConcertProgram[]>
     ) => {
-      console.log("REDUX: Hydrating Concert Programs for organization");
+      console.log("REDUX: Hydrating CONCERTS for organization");
       state.concertPrograms = action.payload;
     },
     hydrateEnsembles: (state, action: PayloadAction<Ensemble[]>) => {
-      console.log("REDUX: Hydrating Ensembles for organization");
+      console.log("REDUX: Hydrating ENSMEBLES for organization");
       state.ensembles = action.payload;
     },
     hydrateOrganization: (state, action: PayloadAction<Organization>) => {
-      console.log("REDUX: Hydrating Organization Data");
+      console.log("REDUX: Hydrating ORGANIZATION Data");
       state.organization = action.payload;
     },
     hydrateUsers: (state, action: PayloadAction<User[]>) => {
-      console.log("REDUX: Hydrating organization data");
+      console.log("REDUX: Hydrating USERS for organization");
       state.users = action.payload;
     },
     hydrateLibrary: (state, action: PayloadAction<Piece[]>) => {
-      console.log("REDUX: Hydrating organization's Music Library");
+      console.log("REDUX: Hydrating MUSIC LIBRARY for organization");
       state.library = action.payload;
     },
   },
