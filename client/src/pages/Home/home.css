@@ -16,11 +16,19 @@
   width: 6rem;
   height: 100%;
   margin-top: 3rem;
-  display: flex;
-  align-items: center;
+  /* display: flex;
+  align-items: center; */
 }
 
 .logout-btn {
   margin: 50px;
   padding: 5px;
+}
+
+.nav-btn {
+  background-color: greenyellow;
+}
+
+.nav-btn:hover {
+  background-color: grey;
 }
