@@ -29,10 +29,10 @@ interface Organization {
   uuid: string;
 }
 
-interface Ensemble {
+export interface Ensemble {
   id: number;
   name: string;
-  gradeLevel: string;
+  grade_level: string;
 }
 
 interface User {
