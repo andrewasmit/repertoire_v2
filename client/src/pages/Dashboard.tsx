@@ -1,11 +1,8 @@
 // External Depencies
-import { useCallback, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 // Internal Depencies
-import { userSignOut } from "../hooks/userSignOut";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { signOut } from "../redux/userSlice";
 import { hydrateConcertPrograms, hydrateOrganization, hydrateUsers, hydrateEnsembles, hydrateLibrary  } from "../redux/organizationSlice";
 import { useFetchOrganizationConcerts } from "../hooks/api/useFetchOrganizationConcerts";
 import { useFetchOrganizationData } from "../hooks/api/useFetchOrganizationData";
@@ -18,10 +15,8 @@ import Loading from "../components/shared/Loading";
 
 function Dashboard() {
 
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { currentUser } = useAppSelector(state=>state.user);
-  // const { concertPrograms } = useAppSelector(state=>state.organization);
 
   const { 
     data: fetchedConcertProgramData, 
@@ -49,16 +44,6 @@ function Dashboard() {
     }
   },[fetchedConcertProgramData, fetchedOrganizationData]);
 
-  const handleSignOutClick = useCallback(()=>{
-    userSignOut();
-    dispatch(signOut());
-    navigate('/signin');
-  }, [])
-
-  const handleNavToEns = useCallback(()=>{
-    navigate('/ensembles');
-  }, [])
-
   const isLoading = fetchedConcertProgramsLoading || fetchedOrganizationLoading;
 
   if (isLoading){
@@ -70,12 +55,11 @@ function Dashboard() {
       <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
         <img src={logo} className="logo" alt="Main logo" />
       </a>
+
       <h1>Repertoire</h1>
       <h2>This is the Dashboard</h2>
       <h3>This is where all of your organization information will be</h3>
 
-      <button onClick={handleSignOutClick}>Sign Out</button>
-      <button onClick={handleNavToEns}>Ensembles</button>
     </div>
   );
 }
