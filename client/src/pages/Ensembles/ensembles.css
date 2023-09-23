@@ -2,3 +2,19 @@
   display: flex;
   justify-content: center;
 }
+
+.ens-card {
+  border: solid red 1px;
+  margin: 4px;
+  padding: 4px;
+}
+
+.ens-card:hover {
+  background-color: lightblue;
+  cursor: pointer;
+}
+
+.ens-card:active {
+  background-color: beige;
+  cursor: grab;
+}

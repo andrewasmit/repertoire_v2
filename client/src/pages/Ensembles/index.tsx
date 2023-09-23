@@ -2,7 +2,7 @@
 import { useMemo } from "react";
 
 // Internal Depencies
-import EnsembleCard from "./EnsembleCard";
+import EnsembleCard from "./components/EnsembleCard";
 import { useAppSelector } from "../../redux/hooks";
 // import { useAppDispatch } from "../../redux/hooks";
 

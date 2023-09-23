@@ -1,4 +1,8 @@
+// External Dependencies
 import { FC } from 'react'
+
+// Internal Dependencies
+import '../ensembles.css'
 
 interface EnsembleCardProps{
   id: number,
