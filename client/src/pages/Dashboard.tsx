@@ -1,5 +1,5 @@
 // External Depencies
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 
 // Internal Depencies
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
@@ -17,6 +17,7 @@ function Dashboard() {
 
   const dispatch = useAppDispatch();
   const { currentUser } = useAppSelector(state=>state.user);
+  const { organization, ensembles, concertPrograms, users, library } = useAppSelector(state=>state.organization);
 
   const { 
     data: fetchedConcertProgramData, 
@@ -28,9 +29,14 @@ function Dashboard() {
     isLoading: fetchedOrganizationLoading, 
   } = useFetchOrganizationData(`api/organizations/${currentUser?.organizationId}`, 'organizationData');
 
+  const isOrganizationNull = useMemo((): boolean=>{
+    return (!organization || !ensembles || !concertPrograms || !users || !library) ? true : false
+  }, [organization, ensembles, concertPrograms, users, library]);
+
+  console.log(isOrganizationNull)
 
   useEffect(()=>{
-    if(fetchedConcertProgramData !== undefined && fetchedOrganizationData !== undefined){
+    if(fetchedConcertProgramData !== undefined && fetchedOrganizationData !== undefined && isOrganizationNull){
       const orgData= {
         id: fetchedOrganizationData.id,
         name: fetchedOrganizationData.name,

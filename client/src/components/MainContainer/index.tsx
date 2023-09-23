@@ -13,6 +13,7 @@ import { useAppSelector } from "../../redux/hooks";
 import Dashboard from "../../pages/Dashboard";
 import Ensembles from "../../pages/Ensembles";
 import EnsembleShow from "../../pages/Ensembles/Show";
+import NewEnsembleForm from "../../pages/Ensembles/Add/NewEnsembleForm";
 import './MainContainer.css'
 
 // Component Definition
@@ -33,6 +34,7 @@ function MainContainer() {
         <Route path='home' element={<Dashboard />} />
         <Route path='ensembles' element={<Ensembles />} />
         <Route path='ensembles/:id' element={<EnsembleShow id={ensemble?.id} name={ensemble?.name} grade_level={ensemble?.grade_level} />} />
+        <Route path='ensembles/new' element={<NewEnsembleForm />} />
       </Routes>
     </div>
   )

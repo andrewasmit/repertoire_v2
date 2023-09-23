@@ -1,5 +1,6 @@
 // External Depencies
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 
 // Internal Depencies
 import EnsembleCard from "./components/EnsembleCard";
@@ -12,6 +13,8 @@ function Ensembles() {
 
   const { ensembles, organization } = useAppSelector(state=>state.organization);
 
+  const navigate = useNavigate();
+
   const ensembleCards = useMemo(()=>{
     return ensembles?.map(ens=>{
       return <EnsembleCard 
@@ -23,10 +26,15 @@ function Ensembles() {
     });
   }, [ensembles])
 
+  const handleAddEnsClick = useCallback(()=>{
+    navigate('/ensembles/new');
+  }, []);
+
   return (
-    <div>
+    <div className="ens-page">
       <h1>{organization?.name}</h1>
       <h2>Here are the ensembles currently in your organization</h2>
+      <button onClick={handleAddEnsClick}>Add New Ensemble</button>
 
       {ensembleCards}
     </div>

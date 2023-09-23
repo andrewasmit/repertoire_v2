@@ -19,6 +19,7 @@ import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import Ensembles from './pages/Ensembles';
 import EnsembleShow from './pages/Ensembles/Show';
+import NewEnsembleForm from './pages/Ensembles/Add/NewEnsembleForm';
 
 
 function App() {
@@ -69,7 +70,6 @@ function App() {
 
   return (
     <>
-      {/* <h1>THIS IS THE NAVBAR</h1> */}
       <Routes>
         <Route path='/welcome' element={<Welcome />} />
         <Route path='/signin' element={<SignIn /> } />
@@ -78,6 +78,7 @@ function App() {
           <Route path='home' element={<Dashboard />} />
           <Route path='ensembles' element={<Ensembles />} />
           <Route path='ensembles/:id' element={<EnsembleShow />} />
+          <Route path='ensembles/new' element={<NewEnsembleForm />} />
         </Route>
       </Routes>
     </>

@@ -19,3 +19,17 @@
   background-color: beige;
   cursor: grab;
 }
+
+.back-btn {
+  background-color: aqua;
+}
+
+.back-btn:hover {
+  background-color: lightblue;
+  cursor: pointer;
+}
+
+.back-btn:active {
+  background-color: beige;
+  cursor: grab;
+}
