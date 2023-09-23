@@ -1,14 +1,15 @@
 // External Depencies
-import { FC, useMemo } from "react";
+import { FC } from "react";
 
 // Internal Depencies
 // import EnsembleCard from "./components/EnsembleCard";
 // import { useAppSelector } from "../../../redux/hooks";
 // import { useAppDispatch } from "../../../redux/hooks";
 import { Ensemble } from "../../../redux/organizationSlice";
-import '../ensembles.css'
 
 // Local Depencies
+import '../ensembles.css'
+
 
 // Component Definition
 const EnsembleShow: FC<Ensemble> = ({
