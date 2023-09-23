@@ -93,6 +93,10 @@ export const organizationSlice = createSlice({
       console.log("REDUX: Hydrating MUSIC LIBRARY for organization");
       state.library = action.payload;
     },
+    addNewEns: (state, action: PayloadAction<Ensemble>) => {
+      console.log("REDUX: Adding NEW ENSEMBLE to organization");
+      state.ensembles = state.ensembles?.push(action.payload);
+    },
   },
 });
 
@@ -102,6 +106,7 @@ export const {
   hydrateOrganization,
   hydrateUsers,
   hydrateLibrary,
+  addNewEns,
 } = organizationSlice.actions;
 
 export const selectOrganization = (state: RootState) => state.organization;
