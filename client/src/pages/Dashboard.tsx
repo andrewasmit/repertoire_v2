@@ -33,8 +33,6 @@ function Dashboard() {
     return (!organization || !ensembles || !concertPrograms || !users || !library) ? true : false
   }, [organization, ensembles, concertPrograms, users, library]);
 
-  console.log(isOrganizationNull)
-
   useEffect(()=>{
     if(fetchedConcertProgramData !== undefined && fetchedOrganizationData !== undefined && isOrganizationNull){
       const orgData= {
