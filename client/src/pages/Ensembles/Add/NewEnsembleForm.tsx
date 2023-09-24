@@ -1,10 +1,10 @@
 // External Dependencies
-// import { FC } from 'react'
+import { useMemo } from 'react';
 import { Formik, Field, Form, FormikHelpers } from 'formik';
 
 // Internal Dependencies
 import { useAppSelector } from '../../../redux/hooks';
-import { useMemo } from 'react';
+import { postNewEnsemble } from '../../../hooks/api/ensembleHooks';
 
 // Local Dependencies
 
@@ -14,6 +14,7 @@ type Values={
   name: string;
   organization_id: number | undefined;
 }
+
 
 // Component Definition
 const NewEnsembleForm = () => {
@@ -43,7 +44,9 @@ const orgId = useMemo((): number | undefined=>{
         ) => {
           setTimeout(() => {
             alert(JSON.stringify(values, null, 2));
-            // handleSubmitSignIn(values);
+            postNewEnsemble(values)
+            .then(res=>console.log(res));
+            
             setSubmitting(false);
           }, 500);
         }}

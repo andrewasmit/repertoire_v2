@@ -2,20 +2,17 @@
 import { Ensemble } from "../../redux/organizationSlice";
 // import { useCallback } from "react";
 // import { FetchedPiece } from "../../redux/fetchedLibrarySlice";
-import { useAppSelector } from "../../redux/hooks";
-
-const { organization } = useAppSelector((state) => state.organization);
 
 type EnsembleData = {
   name: string;
   grade_level: string;
-  organization_id: string;
+  organization_id: number | undefined;
 };
 
 export const postNewEnsemble = async (
   newEnsData: EnsembleData
 ): Promise<Ensemble> => {
-  const res = await fetch("api/ensembles", {
+  const res = await fetch("/api/ensembles", {
     method: "POST",
     body: JSON.stringify(newEnsData),
     headers: {
@@ -25,7 +22,7 @@ export const postNewEnsemble = async (
 
   const data = await res.json();
 
-  if (res.status === 200) {
+  if (res.status === 201) {
     return data;
   } else throw new Error(data.message);
 };
