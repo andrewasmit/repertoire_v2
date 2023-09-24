@@ -3,6 +3,8 @@
 import { Formik, Field, Form, FormikHelpers } from 'formik';
 
 // Internal Dependencies
+import { useAppSelector } from '../../../redux/hooks';
+import { useMemo } from 'react';
 
 // Local Dependencies
 
@@ -10,10 +12,21 @@ import { Formik, Field, Form, FormikHelpers } from 'formik';
 type Values={
   grade_level: string;
   name: string;
+  organization_id: number | undefined;
 }
 
 // Component Definition
 const NewEnsembleForm = () => {
+
+const { organization } = useAppSelector((state) => state.organization);
+
+const orgId = useMemo((): number | undefined=>{
+  if (organization !== null){
+    return organization.id
+  }
+  return undefined
+}, [organization])
+
   return (
     <div>
       <h1>THIS IS WHERE YOU CAN ADD A NEW ENSEMBLE</h1>
@@ -22,6 +35,7 @@ const NewEnsembleForm = () => {
         initialValues={{
           grade_level: '',
           name: '',
+          organization_id: orgId
         }}
         onSubmit={(
           values: Values,

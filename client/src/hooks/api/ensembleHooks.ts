@@ -1,11 +1,15 @@
-import { useQuery } from "@tanstack/react-query";
+// import { useQuery } from "@tanstack/react-query";
 import { Ensemble } from "../../redux/organizationSlice";
 // import { useCallback } from "react";
 // import { FetchedPiece } from "../../redux/fetchedLibrarySlice";
+import { useAppSelector } from "../../redux/hooks";
+
+const { organization } = useAppSelector((state) => state.organization);
 
 type EnsembleData = {
   name: string;
   grade_level: string;
+  organization_id: string;
 };
 
 export const postNewEnsemble = async (
@@ -26,14 +30,14 @@ export const postNewEnsemble = async (
   } else throw new Error(data.message);
 };
 
-export const useFetchExternalLibrary = (url: string, key: string) => {
-  const queryFn = useCallback(() => {
-    return fetchData(url);
-  }, [url]);
+// export const useFetchExternalLibrary = (url: string, key: string) => {
+//   const queryFn = useCallback(() => {
+//     return fetchData(url);
+//   }, [url]);
 
-  return useQuery({
-    queryKey: [`${key}`],
-    queryFn,
-    retry: 1,
-  });
-};
+//   return useQuery({
+//     queryKey: [`${key}`],
+//     queryFn,
+//     retry: 1,
+//   });
+// };
