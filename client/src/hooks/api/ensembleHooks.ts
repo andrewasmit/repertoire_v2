@@ -1,7 +1,8 @@
-// import { useQuery } from "@tanstack/react-query";
-import { Ensemble } from "../../redux/organizationSlice";
-// import { useCallback } from "react";
-// import { FetchedPiece } from "../../redux/fetchedLibrarySlice";
+// External Dependencies
+// import { useMutation, useQueryClient } from "@tanstack/react-query";
+
+// Internal Dependencies
+// import { Ensemble } from "../../redux/organizationSlice";
 
 type EnsembleData = {
   name: string;
@@ -9,9 +10,16 @@ type EnsembleData = {
   organization_id: number | undefined;
 };
 
+type EnsembleResponse = {
+  id: number;
+  grade_level: string;
+  name: string;
+  organization_id: number;
+};
+
 export const postNewEnsemble = async (
   newEnsData: EnsembleData
-): Promise<Ensemble> => {
+): Promise<EnsembleResponse> => {
   const res = await fetch("/api/ensembles", {
     method: "POST",
     body: JSON.stringify(newEnsData),
@@ -26,15 +34,3 @@ export const postNewEnsemble = async (
     return data;
   } else throw new Error(data.message);
 };
-
-// export const useFetchExternalLibrary = (url: string, key: string) => {
-//   const queryFn = useCallback(() => {
-//     return fetchData(url);
-//   }, [url]);
-
-//   return useQuery({
-//     queryKey: [`${key}`],
-//     queryFn,
-//     retry: 1,
-//   });
-// };

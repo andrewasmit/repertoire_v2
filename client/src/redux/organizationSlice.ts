@@ -95,7 +95,8 @@ export const organizationSlice = createSlice({
     },
     addNewEns: (state, action: PayloadAction<Ensemble>) => {
       console.log("REDUX: Adding NEW ENSEMBLE to organization");
-      state.ensembles = state.ensembles?.push(action.payload);
+      // state.ensembles = state.ensembles?.push(action.payload);
+      state.ensembles?.push(action.payload);
     },
   },
 });

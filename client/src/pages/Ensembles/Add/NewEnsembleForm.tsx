@@ -3,8 +3,9 @@ import { useMemo } from 'react';
 import { Formik, Field, Form, FormikHelpers } from 'formik';
 
 // Internal Dependencies
-import { useAppSelector } from '../../../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import { postNewEnsemble } from '../../../hooks/api/ensembleHooks';
+import { addNewEns } from '../../../redux/organizationSlice';
 
 // Local Dependencies
 
@@ -20,6 +21,7 @@ type Values={
 const NewEnsembleForm = () => {
 
 const { organization } = useAppSelector((state) => state.organization);
+const dispatch = useAppDispatch();
 
 const orgId = useMemo((): number | undefined=>{
   if (organization !== null){
@@ -45,7 +47,7 @@ const orgId = useMemo((): number | undefined=>{
           setTimeout(() => {
             alert(JSON.stringify(values, null, 2));
             postNewEnsemble(values)
-            .then(res=>console.log(res));
+            .then(res=>dispatch(addNewEns(res)));
             
             setSubmitting(false);
           }, 500);
