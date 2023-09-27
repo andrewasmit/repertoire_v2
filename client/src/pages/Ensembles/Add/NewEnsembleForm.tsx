@@ -45,7 +45,6 @@ const orgId = useMemo((): number | undefined=>{
           { setSubmitting }: FormikHelpers<Values>
         ) => {
           setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
             postNewEnsemble(values)
             .then(res=>dispatch(addNewEns(res)));
             
