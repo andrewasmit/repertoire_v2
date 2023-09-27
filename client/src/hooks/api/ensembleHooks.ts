@@ -34,3 +34,15 @@ export const postNewEnsemble = async (
     return data;
   } else throw new Error(data.message);
 };
+
+export const deleteEnsemble = async (ensId: number | string): Promise<any> => {
+  const res = await fetch(`/api/ensembles/${ensId}`, {
+    method: "DELETE",
+  });
+
+  const data = await res.json();
+
+  if (res.status === 204) {
+    console.log("Ensemble successfully deleted");
+  } else throw new Error(data.message);
+};

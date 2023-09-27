@@ -33,7 +33,6 @@ class EnsemblesController < ApplicationController
 
   def authenticate
     me = User.find(session[:user_id])
-    byebug
     return render json: { error: 'You must be an administrator to make edits to this ensemble.' } unless me.is_admin
   end
 end

@@ -95,8 +95,25 @@ export const organizationSlice = createSlice({
     },
     addNewEns: (state, action: PayloadAction<Ensemble>) => {
       console.log("REDUX: Adding NEW ENSEMBLE to organization");
-      // state.ensembles = state.ensembles?.push(action.payload);
+      // const newEnsState = state.ensembles?.push(action.payload);
+      // return {
+      //   ...state,
+      //   ensembles: newEnsState,
+      // };
       state.ensembles?.push(action.payload);
+    },
+    deleteEns: (state, action: PayloadAction) => {
+      console.log(
+        `REDUX: REMOVING ENSEMBLE with ID:${action.payload} from organization`
+      );
+      // state.ensembles = state.ensembles?.push(action.payload);
+      const newEnsState = [...state.ensembles].filter(
+        (ens) => ens.id !== action.payload
+      );
+      return {
+        ...state,
+        ensembles: newEnsState,
+      };
     },
   },
 });
@@ -108,6 +125,7 @@ export const {
   hydrateUsers,
   hydrateLibrary,
   addNewEns,
+  deleteEns,
 } = organizationSlice.actions;
 
 export const selectOrganization = (state: RootState) => state.organization;
