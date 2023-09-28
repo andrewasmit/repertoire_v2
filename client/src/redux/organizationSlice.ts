@@ -102,7 +102,7 @@ export const organizationSlice = createSlice({
       // };
       state.ensembles?.push(action.payload);
     },
-    deleteEns: (state, action: PayloadAction) => {
+    deleteEns: (state, action: PayloadAction<number>) => {
       console.log(
         `REDUX: REMOVING ENSEMBLE with ID:${action.payload} from organization`
       );
