@@ -9,7 +9,7 @@ export interface ConcertProgram {
   program: PerformedPiece[] | null;
 }
 
-interface PerformedPiece {
+export interface PerformedPiece {
   performance_id: number;
   piece: string;
   ensemble: string;
