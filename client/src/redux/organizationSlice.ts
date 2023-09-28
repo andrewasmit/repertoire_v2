@@ -13,6 +13,7 @@ interface PerformedPiece {
   performance_id: number;
   piece: string;
   ensemble: string;
+  ensemble_id: number;
 }
 
 export interface OrganizationResponse {
@@ -110,6 +111,9 @@ export const organizationSlice = createSlice({
       const newEnsState = [...state.ensembles].filter(
         (ens) => ens.id !== action.payload
       );
+      // const newEnsState = state.ensembles?.filter(
+      //   (ens) => ens.id !== action.payload
+      // );
       return {
         ...state,
         ensembles: newEnsState,

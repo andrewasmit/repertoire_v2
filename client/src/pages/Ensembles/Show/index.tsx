@@ -35,8 +35,10 @@ const EnsembleShow: FC<Ensemble> = ({
   return (
     <div className='ens-show'>
       <button className="back-btn" onClick={handleBackClick}>BACK</button>
+
       <h3>{name}</h3>
       <h4>{grade_level}th grade</h4>
+      
       <button onClick={handleDeleteEns}>Delete Ensemble</button>
     </div>
   )
