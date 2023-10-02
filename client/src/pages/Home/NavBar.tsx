@@ -24,9 +24,24 @@ function NavBar() {
     navigate('/signin');
   }, [])
 
+  const handleNavToDash = useCallback((): void=>{
+    navigate('/home');
+  }, []);
+
   return (
     <div className="navbar">
       <h2>This is the NAVBAR</h2>
+      <ul>
+        <li>
+          <button >Home</button>
+        </li>
+        <li>
+          <button onClick={handleNavToDash} >Dashboard</button>
+        </li>
+        <li>
+          <button  >About Us</button>
+        </li>
+      </ul>
       <button className="logout-btn" onClick={handleSignOutClick}>Sign Out</button>
     </div>
   )

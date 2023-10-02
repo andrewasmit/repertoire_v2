@@ -1,13 +1,43 @@
+* {
+  box-sizing: border-box;
+}
+
 .navbar {
-  border: solid red 4px;
-  margin: 0;
+  border: #f4f4f4 solid 3px;
+  margin: 0px;
   padding: 0;
-  position: fixed;
+  background: #4c6ca0;
+  border-radius: 10px;
   width: 100%;
-  height: 3rem;
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.navbar li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: inline-block;
+}
+
+.navbar li button {
+  text-decoration: none;
+  color: coral;
+  padding: 15px 20px;
+  border-radius: 10px;
+  background-color: #d5f5f5;
+}
+.navbar li button:hover {
+  cursor: pointer;
+  background-color: #b1f1f1;
+}
+
+.navbar li button:active {
+  cursor: pointer;
+  color: orangered;
+  background-color: #d1f1f1;
 }
 
 .side-navbar {

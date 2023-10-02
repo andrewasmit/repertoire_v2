@@ -4,8 +4,8 @@
 
 //Local Dependencies
 import MainContainer from "../../components/MainContainer"
-import NavBar from "../../components/shared/NavBar"
-import SideBar from "../../components/shared/SideBar"
+import NavBar from "./NavBar"
+import SideBar from "./SideBar"
 import './home.css'
 
 function Home() {

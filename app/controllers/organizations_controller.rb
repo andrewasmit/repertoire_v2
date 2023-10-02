@@ -41,7 +41,7 @@ class OrganizationsController < ApplicationController
           performance_id: performance.id,
           piece: piece.title, 
           ensemble: ensemble.name, 
-          ensemble_id: performance.ensemble_id
+          ensemble_id: performance.ensemble_id,
         }  
         
         concert_program[:program] << performed_piece
