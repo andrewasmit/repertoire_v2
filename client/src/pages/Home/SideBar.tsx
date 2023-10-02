@@ -17,13 +17,17 @@ function SideBar() {
     navigate('home')
   }, []);
 
+  const handleNavToConcerts = useCallback(()=>{
+    navigate('concerts')
+  }, []);
+
   return (
     <div className="side-navbar">
       <h2>This is the SIDEBAR</h2>
       
       <button onClick={handleNavToHome} className="nav-btn">Home</button>
-
       <button onClick={handleNavToEnsembles} className="nav-btn">Ensembles</button>
+      <button onClick={handleNavToConcerts} className="nav-btn">Concerts</button>
     </div>
   )
 }

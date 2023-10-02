@@ -1,0 +1,33 @@
+.concert-card {
+  border: 1px solid gray;
+  max-width: 300px;
+  text-align: center;
+}
+
+.concert-card ul {
+  padding: 0;
+}
+
+.concert-card li h3,
+h4 {
+  margin: 0;
+}
+
+.concert-card li {
+  list-style: none;
+  background-color: #f4f4f4;
+}
+
+.concert-card li:nth-child(2) {
+  background-color: #fafafa;
+}
+/* .concert-card li:hover {
+  background-color: #416161;
+  color: #ccc;
+} */
+
+.concert-card:hover {
+  background-color: #416161;
+  color: #ccc;
+  cursor: pointer;
+}

@@ -15,6 +15,7 @@ import Ensembles from "../../pages/Ensembles";
 import EnsembleShow from "../../pages/Ensembles/Show";
 import NewEnsembleForm from "../../pages/Ensembles/Add/NewEnsembleForm";
 import './MainContainer.css'
+import Concerts from "../../pages/Concerts";
 
 // Component Definition
 function MainContainer() {
@@ -35,6 +36,7 @@ function MainContainer() {
         <Route path='ensembles' element={<Ensembles />} />
         <Route path='ensembles/:id' element={<EnsembleShow id={ensemble?.id} name={ensemble?.name} grade_level={ensemble?.grade_level} />} />
         <Route path='ensembles/new' element={<NewEnsembleForm />} />
+        <Route path='concerts' element={<Concerts />} />
       </Routes>
     </div>
   )
