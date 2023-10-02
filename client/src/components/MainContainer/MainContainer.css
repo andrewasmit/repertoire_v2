@@ -1,12 +1,10 @@
 .main-container {
-  border: solid blue 3px;
+  border: solid cyan 3px;
   position: fixed;
-  width: 90%;
-  margin-left: 6rem;
-  margin-top: 3rem;
-  /* min-height: 100%; */
+  margin-left: 150px;
+  margin-top: 70px;
   height: auto;
-  padding: 15px;
-  bottom: 0;
-  top: 0;
+  padding: 15px 30px;
+  width: 90.5%;
+  height: 91%;
 }
