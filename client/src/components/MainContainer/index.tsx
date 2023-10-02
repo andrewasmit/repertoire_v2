@@ -24,7 +24,7 @@ function MainContainer() {
 
   const ensemble = useMemo(()=>{
     if(params.id !== undefined){
-      return ensembles?.filter(ens=>ens.id === parseInt(params?.id))[0];
+      return ensembles?.filter(ens=>ens.id === parseInt(params.id))[0];
     }
   },[params, ensembles]);
 

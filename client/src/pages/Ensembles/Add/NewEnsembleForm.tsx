@@ -1,6 +1,7 @@
 // External Dependencies
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { Formik, Field, Form, FormikHelpers } from 'formik';
+import { useNavigate } from 'react-router-dom';
 
 // Internal Dependencies
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
@@ -22,6 +23,7 @@ const NewEnsembleForm = () => {
 
 const { organization } = useAppSelector((state) => state.organization);
 const dispatch = useAppDispatch();
+const navigate = useNavigate();
 
 const orgId = useMemo((): number | undefined=>{
   if (organization !== null){
@@ -30,9 +32,14 @@ const orgId = useMemo((): number | undefined=>{
   return undefined
 }, [organization])
 
+const handleNavigateBack = useCallback(()=>{
+  navigate('/ensembles');
+}, []);
+
   return (
     <div>
       <h1>THIS IS WHERE YOU CAN ADD A NEW ENSEMBLE</h1>
+      <button onClick={handleNavigateBack}>EXIT</button>
 
       <Formik
         initialValues={{
