@@ -40,29 +40,44 @@
   background-color: #d1f1f1;
 }
 
-.side-navbar {
-  border: solid red 4px;
-  position: fixed;
-  width: 6rem;
-  height: 100%;
-  margin-top: 3rem;
-  /* display: flex;
-  align-items: center; */
-}
-
 .logout-btn {
   margin: 50px;
   padding: 5px;
+  background-color: #f4f4f4;
+}
+
+.logout-btn:hover {
+  background-color: antiquewhite;
+  cursor: pointer;
+}
+
+.logout-btn:active {
+  background-color: #fff;
+  color: orange;
+}
+
+.side-navbar {
+  border: solid red 4px;
+  border-radius: 5px;
+  position: fixed;
+  width: 150px;
+  height: 100%;
+  /* margin: 0; */
 }
 
 .nav-btn {
   background-color: greenyellow;
+  border-bottom: 2px solid gray;
+  border-radius: 5px;
+  padding: 5px 10px;
+  width: 100%;
 }
 
 .nav-btn:hover {
-  background-color: grey;
+  background-color: #aad11c;
+  cursor: pointer;
 }
 
 .nav-btn:active {
-  background-color: yellowgreen;
+  background-color: grey;
 }
