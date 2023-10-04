@@ -36,6 +36,7 @@ function ConcertShow({ id, name, year, program}: ConcertParams) {
   const handleDeleteEnsemble: ()=> void = useCallback(():void =>{
     destroyConcert(id);
     dispatch(deleteConcert(id));
+    navigate('/concerts');
   }, [])
 
   return (
