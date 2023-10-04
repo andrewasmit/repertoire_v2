@@ -119,6 +119,17 @@ export const organizationSlice = createSlice({
         ensembles: newEnsState,
       };
     },
+    deleteConcert: (state, action: PayloadAction<number | string>) => {
+      console.log("REDUX: DELETING CONCERT");
+      // state.ensembles = state.ensembles?.push(action.payload);
+      const newState = [...state.concertPrograms].filter(
+        (concert) => concert.concert_id !== action.payload
+      );
+      return {
+        ...state,
+        concertPrograms: newState,
+      };
+    },
   },
 });
 
@@ -130,6 +141,7 @@ export const {
   hydrateLibrary,
   addNewEns,
   deleteEns,
+  deleteConcert,
 } = organizationSlice.actions;
 
 export const selectOrganization = (state: RootState) => state.organization;

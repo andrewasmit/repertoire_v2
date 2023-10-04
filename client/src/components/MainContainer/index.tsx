@@ -22,7 +22,7 @@ import ConcertShow from "../../pages/Concerts/Show";
 // Component Definition
 function MainContainer() {
 
-  const params: Readonly<Params<string | undefined>> = useParams();
+  const params = useParams();
   const { ensembles, concertPrograms } = useAppSelector(state=>state.organization);
 
   const ensemble = useMemo(()=>{
@@ -48,7 +48,7 @@ function MainContainer() {
         <Route path='concerts/new' element={<NewConcertForm />} />
         <Route path='concerts/:id' element={<ConcertShow id={concert?.concert_id} name={concert?.name} year={concert?.year} program={concert?.program} />} />
       </Routes>
-      
+
     </div>
   )
 }
