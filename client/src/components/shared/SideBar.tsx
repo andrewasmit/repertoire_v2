@@ -3,7 +3,7 @@ import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Internal Depencies
-import '../../pages/Home/home.css'
+import './navigation.css'
 
 function SideBar() {
 
@@ -23,7 +23,6 @@ function SideBar() {
 
   return (
     <div className="side-navbar">
-      <h2>This is the SIDEBAR</h2>
       
       <button onClick={handleNavToHome} className="nav-btn">Home</button>
       <button onClick={handleNavToEnsembles} className="nav-btn">Ensembles</button>

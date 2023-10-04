@@ -1,4 +1,4 @@
-/* * {
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -16,28 +16,27 @@
 }
 
 .navbar li {
-  margin: 0;
-  padding: 0;
   list-style: none;
   display: inline-block;
 }
 
 .navbar li button {
   text-decoration: none;
-  color: coral;
+  color: #333;
   padding: 15px 20px;
-  border-radius: 10px;
-  background-color: #d5f5f5;
+  border-radius: 5px;
+  background-color: #f4f4f4;
 }
 .navbar li button:hover {
   cursor: pointer;
-  background-color: #b1f1f1;
+  background-color: orange;
+  color: #fff;
 }
 
 .navbar li button:active {
   cursor: pointer;
-  color: orangered;
-  background-color: #d1f1f1;
+  color: #fff;
+  background-color: #784d1a;
 }
 
 .logout-btn {
@@ -47,37 +46,43 @@
 }
 
 .logout-btn:hover {
-  background-color: antiquewhite;
+  background-color: #f76f00;
+  color: #f4f4f4;
   cursor: pointer;
 }
 
 .logout-btn:active {
-  background-color: #fff;
-  color: orange;
+  background-color: #f4f4f4;
+  color: #883d1a;
 }
 
 .side-navbar {
-  border: solid red 4px;
-  border-radius: 5px;
+  /* border: solid red 2px; */
   position: fixed;
   width: 150px;
   height: 100%;
   margin-top: 70px;
+  padding-top: 20px;
+  background: #555;
+  color: #fff;
 }
 
 .nav-btn {
-  background-color: greenyellow;
+  background-color: #f4f4f4;
   border-bottom: 2px solid gray;
   border-radius: 5px;
   padding: 5px 10px;
+  margin-top: 5px;
   width: 100%;
 }
 
 .nav-btn:hover {
-  background-color: #aad11c;
+  background-color: orange;
+  color: #fff;
   cursor: pointer;
 }
 
 .nav-btn:active {
-  background-color: grey;
-} */
+  background-color: #ffa320;
+  color: #fff;
+}

@@ -6,11 +6,11 @@ import { useNavigate } from "react-router-dom";
 
 // Internal Depencies
 import { userSignOut } from "../../hooks/userSignOut";
-import { useAppDispatch,
-  //  useAppSelector 
-  } from "../../redux/hooks";
+import { useAppDispatch } from "../../redux/hooks";
 import { signOut } from "../../redux/userSlice";
-import '../../pages/Home/home.css'
+import './navigation.css'
+import logo from '/logo-no-background.svg'
+
 
 
 function NavBar() {
@@ -30,7 +30,9 @@ function NavBar() {
 
   return (
     <div className="navbar">
-      <h2>This is the NAVBAR</h2>
+      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
+        <img src={logo} className="logo" alt="Main logo" />
+      </a>
       <ul>
         <li>
           <button >Home</button>
