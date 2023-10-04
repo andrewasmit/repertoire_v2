@@ -14,8 +14,6 @@ function Concerts() {
   const navigate = useNavigate();
   const { concertPrograms, organization } = useAppSelector(state=>state.organization)
 
-  console.log("IN CONCERTS: ", concertPrograms);
-
   const concertProgramsToDisplay = concertPrograms?.map(concert=>{
     return <ConcertCard 
               key={concert.concert_id} 

@@ -1,6 +1,12 @@
-import { PerformedPiece } from "../../../redux/organizationSlice"
-import '../concerts.css'
+// External Dependencies
+import { useNavigate } from "react-router-dom";
+import { useCallback } from "react";
 
+// Internal Dependencies
+import { PerformedPiece } from "../../../redux/organizationSlice"
+
+// Local Dependencies
+import '../concerts.css'
 
 type ConcertCardParams = {
   year: number;
@@ -9,8 +15,14 @@ type ConcertCardParams = {
   program: PerformedPiece[];
 }
 
-
 function ConcertCard({ year, id, name, program }: ConcertCardParams) {
+
+  const navigate = useNavigate();
+
+  const handleNavToShowPage = useCallback((): void=>{
+    navigate(`/concerts/${id}`);
+  }, []);
+
 
   const performancesToDisplay = program.map(performance=>{
     // ensemble, ensemble_id, performance_id, piece
@@ -18,9 +30,11 @@ function ConcertCard({ year, id, name, program }: ConcertCardParams) {
       <h5>{performance.piece}</h5>
       <h6>{performance.ensemble}</h6>
     </li>
-  })
+  });
+
+
   return (
-    <div id={`concert-${id}`} className="concert-card">
+    <div id={`concert-${id}`} className="concert-card" onClick={handleNavToShowPage}>
       <div className="concert-card-wrapper">
         <h3>{name}</h3>
         <h4>{year}</h4>
@@ -32,4 +46,4 @@ function ConcertCard({ year, id, name, program }: ConcertCardParams) {
   )
 }
 
-export default ConcertCard
+export default ConcertCard;

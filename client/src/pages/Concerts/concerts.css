@@ -27,7 +27,7 @@ h4 {
 } */
 
 .concert-card:hover {
-  background-color: #416161;
-  color: #ccc;
+  border: 3px solid #416161;
   cursor: pointer;
+  box-shadow: 5px 5px #516161;
 }
