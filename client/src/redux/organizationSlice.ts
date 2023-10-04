@@ -119,6 +119,10 @@ export const organizationSlice = createSlice({
         ensembles: newEnsState,
       };
     },
+    addNewConcert: (state, action: PayloadAction<ConcertProgram>) => {
+      console.log("REDUX: Adding NEW CONCERT");
+      state.concertPrograms?.push(action.payload);
+    },
     deleteConcert: (state, action: PayloadAction<number | string>) => {
       console.log("REDUX: DELETING CONCERT");
       // state.ensembles = state.ensembles?.push(action.payload);
@@ -141,6 +145,7 @@ export const {
   hydrateLibrary,
   addNewEns,
   deleteEns,
+  addNewConcert,
   deleteConcert,
 } = organizationSlice.actions;
 
