@@ -17,18 +17,25 @@ import NewEnsembleForm from "../../pages/Ensembles/Add/NewEnsembleForm";
 import './MainContainer.css'
 import Concerts from "../../pages/Concerts";
 import NewConcertForm from "../../pages/Concerts/Add/NewConcertForm";
+import ConcertShow from "../../pages/Concerts/Show";
 
 // Component Definition
 function MainContainer() {
 
-  const params = useParams();
-  const { ensembles } = useAppSelector(state=>state.organization);
+  const params: Readonly<Params<string | undefined>> = useParams();
+  const { ensembles, concertPrograms } = useAppSelector(state=>state.organization);
 
   const ensemble = useMemo(()=>{
     if(params.id !== undefined){
       return ensembles?.filter(ens=>ens.id === parseInt(params.id))[0];
     }
   },[params, ensembles]);
+
+  const concert = useMemo(()=>{
+    if(params.id !== undefined){
+      return concertPrograms?.filter(concert=>concert.concert_id === parseInt(params.id))[0];
+    }
+  }, [params, concertPrograms])
 
   return (
     <div className="main-container">
@@ -39,7 +46,9 @@ function MainContainer() {
         <Route path='ensembles/new' element={<NewEnsembleForm />} />
         <Route path='concerts' element={<Concerts />} />
         <Route path='concerts/new' element={<NewConcertForm />} />
+        <Route path='concerts/:id' element={<ConcertShow id={concert?.concert_id} name={concert?.name} year={concert?.year} program={concert?.program} />} />
       </Routes>
+      
     </div>
   )
 }
