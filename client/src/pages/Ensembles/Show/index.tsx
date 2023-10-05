@@ -43,12 +43,21 @@ const EnsembleShow: FC<Ensemble> = ({
     deleteEnsemble(id);
     dispatch(deleteEns(id))
   }, [])
-
   
   const performancesToDisplay = ensPerformances?.map(performance=>{
-    return <div>
-      <h3>{performance.piece}</h3>
-      <h4>The Concert Name</h4>
+    const handleNavToConcertShow = ()=>{
+      navigate(`/concerts/${performance.concertId}`)
+    }
+
+    // Ideally, here we would have the piece_id associated with each performance so that a user 
+    // can either click on the Concert name to go tot eh concert OR the piece name to navigate to the piece show page
+    // const handleNavToPieceShow = ()=>{
+    //   navigate(`/library/${performance.performance.pieceId}`)
+    // }
+
+    return <div onClick={handleNavToConcertShow} className="ens-performance">
+      <h3>{performance.performance.piece}</h3>
+      <h4>{performance.name}</h4>
     </div>
   })
 
