@@ -8,6 +8,7 @@ type EnsembleData = {
   name: string;
   grade_level: string;
   organization_id: number | undefined;
+  ensemble_id?: number;
 };
 
 type EnsembleResponse = {
@@ -44,5 +45,24 @@ export const deleteEnsemble = async (ensId: number | string): Promise<any> => {
 
   if (res.status === 204) {
     console.log("Ensemble successfully deleted");
+  } else throw new Error(data.message);
+};
+
+export const editEnsemble = async (
+  newEnsData: EnsembleData
+): Promise<EnsembleResponse> => {
+  const res = await fetch(`/api/ensembles/${newEnsData.ensemble_id}`, {
+    method: "PATCH",
+    body: JSON.stringify(newEnsData),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const data = await res.json();
+  console.log("RESPONSE: ", data);
+
+  if (res.status === 200) {
+    return data;
   } else throw new Error(data.message);
 };

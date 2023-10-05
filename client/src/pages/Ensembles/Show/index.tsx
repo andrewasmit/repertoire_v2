@@ -12,6 +12,8 @@ import ConfirmationDialog from "../../../components/shared/ConfirmationDialog/Co
 
 // Local Depencies
 import '../ensembles.css'
+import EditEnsembleForm from "./EditEnsembleForm";
+import { Collapse } from "@mui/material";
 
 
 // Component Definition
@@ -20,6 +22,7 @@ const EnsembleShow: FC<Ensemble> = ({
 })=>{
 
   const [isOpen, setIsOpen] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -46,8 +49,8 @@ const EnsembleShow: FC<Ensemble> = ({
   }, []);
 
   const handleClickEditEns: ()=> void = useCallback((): void=>{
-    console.log(`EDIT ENS w/ ID of ${id} clicked`);
-  }, []);
+    setIsEdit(!isEdit)
+  }, [isEdit]);
 
   const handleConfirmDelete: ()=> void = useCallback((): void=>{
     setIsOpen(false);
@@ -81,8 +84,22 @@ const EnsembleShow: FC<Ensemble> = ({
       <h3 className="heading">{name}</h3>
       <h4 className="heading">{grade_level}th grade</h4>
 
-      <button onClick={handleClickEditEns}>Edit Ensemble Details</button>
-      <button onClick={handleClickDeleteEns}>Delete Ensemble</button>
+      <button onClick={handleClickEditEns}>
+        {!isEdit ? "Edit Ensemble Details"
+        : "Discard Edits" }
+        </button> 
+
+      {!isEdit && 
+        <button onClick={handleClickDeleteEns}>Delete Ensemble</button>
+      }
+
+      <Collapse in={isEdit} timeout="auto" unmountOnExit>
+        <EditEnsembleForm 
+          name={name} 
+          gradeLevel={grade_level} 
+          ensembleId={id} 
+        />
+      </Collapse>
 
       {performancesToDisplay.length > 0 ? 
         <h2>Performances from {name}</h2> : 
