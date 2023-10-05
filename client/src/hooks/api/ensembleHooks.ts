@@ -60,7 +60,6 @@ export const editEnsemble = async (
   });
 
   const data = await res.json();
-  console.log("RESPONSE: ", data);
 
   if (res.status === 200) {
     return data;

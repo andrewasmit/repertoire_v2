@@ -25,6 +25,14 @@ export interface OrganizationResponse {
   users: User[];
   pieces: Piece[];
 }
+
+interface EnsembleResponse {
+  id: number;
+  name: string;
+  organization_id: string | number;
+  grade_level: string;
+}
+
 interface Organization {
   id: number;
   name: string;
@@ -120,6 +128,26 @@ export const organizationSlice = createSlice({
         ensembles: newEnsState,
       };
     },
+    editEns: (state, action: PayloadAction<EnsembleResponse>) => {
+      console.log(`REDUX: UPDATING ENSEMBLE with ID:${action.payload.id}`);
+
+      const newEns: Ensemble = {
+        name: action.payload.name,
+        id: action.payload.id,
+        grade_level: action.payload.grade_level,
+      };
+
+      const oldState = [...state.ensembles];
+      const idx = oldState.findIndex((ens) => ens.id === action.payload.id);
+      // const targetEns = oldState[idx];
+      oldState.splice(idx, 1, newEns);
+      state.ensembles = oldState;
+
+      // return {
+      //   ...state,
+      //   ensembles: newEnsState,
+      // };
+    },
     addNewConcert: (state, action: PayloadAction<ConcertProgram>) => {
       console.log("REDUX: Adding NEW CONCERT");
       state.concertPrograms?.push(action.payload);
@@ -146,6 +174,7 @@ export const {
   hydrateLibrary,
   addNewEns,
   deleteEns,
+  editEns,
   addNewConcert,
   deleteConcert,
 } = organizationSlice.actions;

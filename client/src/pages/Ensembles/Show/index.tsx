@@ -98,6 +98,7 @@ const EnsembleShow: FC<Ensemble> = ({
           name={name} 
           gradeLevel={grade_level} 
           ensembleId={id} 
+          handleCloseForm={handleClickEditEns}
         />
       </Collapse>
 
