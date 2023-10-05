@@ -57,7 +57,8 @@ const EnsembleShow: FC<Ensemble> = ({
   }, [])
 
   
-  const performancesToDisplay = ensPerformances?.map(performance=>{
+  const performancesToDisplay: JSX.Element[] = useMemo(()=>{
+    return ensPerformances.map(performance=>{
     const handleNavToConcertShow = ()=>{
       navigate(`/concerts/${performance.concertId}`)
     }
@@ -71,6 +72,7 @@ const EnsembleShow: FC<Ensemble> = ({
       <h4 onClick={handleNavToConcertShow}>{performance.name} -{performance.year}</h4>
     </div>
   })
+}, [ensPerformances]);
 
   return (
     <div className='ens-show'>
