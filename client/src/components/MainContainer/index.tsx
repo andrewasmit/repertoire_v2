@@ -18,6 +18,7 @@ import './MainContainer.css'
 import Concerts from "../../pages/Concerts";
 import NewConcertForm from "../../pages/Concerts/Add/NewConcertForm";
 import ConcertShow from "../../pages/Concerts/Show";
+import Library from "../../pages/Library";
 
 // Component Definition
 function MainContainer() {
@@ -47,6 +48,7 @@ function MainContainer() {
         <Route path='concerts' element={<Concerts />} />
         <Route path='concerts/new' element={<NewConcertForm />} />
         <Route path='concerts/:id' element={<ConcertShow id={concert?.concert_id} name={concert?.name} year={concert?.year} program={concert?.program} />} />
+        <Route path='library' element={<Library />} />
       </Routes>
 
     </div>

@@ -13,5 +13,5 @@
 }
 
 .logo:hover {
-  filter: drop-shadow(0 0 2em #883d1a);
+  filter: drop-shadow(0 0 1em #883d1a);
 }

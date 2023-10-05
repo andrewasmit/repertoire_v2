@@ -23,6 +23,7 @@ import NewEnsembleForm from './pages/Ensembles/Add/NewEnsembleForm';
 import Concerts from './pages/Concerts';
 import NewConcertForm from './pages/Concerts/Add/NewConcertForm';
 import ConcertShow from './pages/Concerts/Show';
+import Library from './pages/Library';
 
 
 function App() {
@@ -85,6 +86,7 @@ function App() {
           <Route path='concerts' element={<Concerts />} />
           <Route path='concerts/new' element={<NewConcertForm />} />
           <Route path='concerts/:id' element={<ConcertShow />} />
+          <Route path='library' element={<Library />} />
         </Route>
       </Routes>
     </>

@@ -41,7 +41,10 @@ function NavBar() {
           <button onClick={handleNavToDash} >Dashboard</button>
         </li>
         <li>
-          <button  >About Us</button>
+          <button  >Find New Music</button>
+        </li>
+        <li>
+          <button  >My Account</button>
         </li>
       </ul>
       <button className="logout-btn" onClick={handleSignOutClick}>Sign Out</button>
