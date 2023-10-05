@@ -15,11 +15,20 @@ import './ConfirmationDialog.css'
 
 interface ConfirmationDialogParams {
   isOpen: boolean;
-  handleClose: ()=> void
+  handleClose: ()=> void;
+  onConfirm: ()=> void;
+  headerText: string;
+  bodyText: string;
+
 }
 
-function ConfirmationDialog({ isOpen, handleClose }: ConfirmationDialogParams) {
-
+function ConfirmationDialog({ 
+  isOpen, 
+  handleClose, 
+  onConfirm, 
+  bodyText, 
+  headerText 
+}: ConfirmationDialogParams) {
 
   return (
     <div>
@@ -30,17 +39,17 @@ function ConfirmationDialog({ isOpen, handleClose }: ConfirmationDialogParams) {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          "Are you absolutely sure?"
+          {headerText}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            If you do this, there is no coming back.
+            {bodyText}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Nevermind</Button>
-          <Button onClick={handleClose} autoFocus>
-            Yes
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={onConfirm} autoFocus variant="contained">
+            Yes, Do It!
           </Button>
         </DialogActions>
       </Dialog>

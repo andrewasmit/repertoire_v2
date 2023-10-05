@@ -36,7 +36,9 @@ function Ensembles() {
       <h2>Here are the ensembles currently in your organization</h2>
       <button onClick={handleAddEnsClick}>Add New Ensemble</button>
 
-      {ensembleCards}
+      <div id="ens-card-container">
+        {ensembleCards}
+      </div>
     </div>
   );
 }

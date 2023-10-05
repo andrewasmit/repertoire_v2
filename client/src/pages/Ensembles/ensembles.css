@@ -4,20 +4,38 @@
   align-items: center;
 }
 
+.heading {
+  font-size: 2rem;
+  padding: 10px 30px;
+}
+
+#ens-card-container {
+  display: flex;
+  margin-top: 40px;
+}
+
 .ens-card {
-  border: solid red 1px;
+  width: 200px;
+  height: 150px;
+  border: solid #333 1px;
+  border-radius: 5px;
   margin: 4px;
   padding: 4px;
 }
 
 .ens-card:hover {
-  background-color: lightblue;
+  background-color: #f4e377;
   cursor: pointer;
 }
 
 .ens-card:active {
-  background-color: beige;
+  background-color: #f9c44f;
   cursor: grab;
+}
+
+.ens-card h3 {
+  padding: 10px 20px;
+  margin-bottom: 10px;
 }
 
 .back-btn {

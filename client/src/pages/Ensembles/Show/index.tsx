@@ -45,10 +45,15 @@ const EnsembleShow: FC<Ensemble> = ({
     setIsOpen(false);
   }, []);
 
-  const handleDeleteEns: ()=> void = useCallback((): void=>{
-    navigate('/ensembles')
+  const handleClickEditEns: ()=> void = useCallback((): void=>{
+    console.log(`EDIT ENS w/ ID of ${id} clicked`);
+  }, []);
+
+  const handleConfirmDelete: ()=> void = useCallback((): void=>{
+    setIsOpen(false);
     deleteEnsemble(id);
-    dispatch(deleteEns(id))
+    dispatch(deleteEns(id));
+    navigate('/ensembles');
   }, [])
 
   
@@ -67,25 +72,30 @@ const EnsembleShow: FC<Ensemble> = ({
     </div>
   })
 
-  console.log(ensPerformances)
-
   return (
     <div className='ens-show'>
       <button className="back-btn" onClick={handleBackClick}>BACK</button>
 
-      <h3>{name}</h3>
-      <h4>{grade_level}th grade</h4>
+      <h3 className="heading">{name}</h3>
+      <h4 className="heading">{grade_level}th grade</h4>
 
+      <button onClick={handleClickEditEns}>Edit Ensemble Details</button>
       <button onClick={handleClickDeleteEns}>Delete Ensemble</button>
 
-      {performancesToDisplay !== undefined ? 
+      {performancesToDisplay.length > 0 ? 
         <h2>Performances from {name}</h2> : 
         <h2>{name} has not yet performed</h2>
       }
 
       {performancesToDisplay}
 
-      <ConfirmationDialog isOpen={isOpen} handleClose={handleCloseDialog}/>
+      <ConfirmationDialog 
+        isOpen={isOpen} 
+        handleClose={handleCloseDialog}
+        onConfirm={handleConfirmDelete}
+        headerText={`Are you sure you want to delete ${name}`}
+        bodyText="Deleting this ensemble will also erase all corresponding performances. This action is permanent and cannot be undone."
+      />
     </div>
   )
 }
