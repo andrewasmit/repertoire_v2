@@ -39,3 +39,8 @@
   background: #f4f4f4;
   cursor: pointer;
 }
+
+.ens-performance h3:hover,
+.ens-performance h4:hover {
+  color: orange;
+}

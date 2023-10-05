@@ -57,18 +57,17 @@ const EnsembleShow: FC<Ensemble> = ({
       navigate(`/concerts/${performance.concertId}`)
     }
 
-    // Ideally, here we would have the piece_id associated with each performance so that a user 
-    // can either click on the Concert name to go tot eh concert OR the piece name to navigate to the piece show page
-    // const handleNavToPieceShow = ()=>{
-    //   navigate(`/library/${performance.performance.pieceId}`)
-    // }
+    const handleNavToPieceShow = ()=>{
+      navigate(`/library/${performance.performance.piece_id}`)
+    }
 
-    return <div onClick={handleNavToConcertShow} className="ens-performance">
-      <h3>{performance.performance.piece}</h3>
-      <h4>{performance.name}</h4>
+    return <div className="ens-performance">
+      <h3 onClick={handleNavToPieceShow}>{performance.performance.piece}</h3>
+      <h4 onClick={handleNavToConcertShow}>{performance.name} -{performance.year}</h4>
     </div>
   })
 
+  console.log(ensPerformances)
 
   return (
     <div className='ens-show'>
@@ -79,7 +78,7 @@ const EnsembleShow: FC<Ensemble> = ({
 
       <button onClick={handleClickDeleteEns}>Delete Ensemble</button>
 
-      {!performancesToDisplay ? 
+      {performancesToDisplay !== undefined ? 
         <h2>Performances from {name}</h2> : 
         <h2>{name} has not yet performed</h2>
       }
