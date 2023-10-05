@@ -12,6 +12,7 @@ export interface ConcertProgram {
 export interface PerformedPiece {
   performance_id: number;
   piece: string;
+  piece_id: number;
   ensemble: string;
   ensemble_id: number;
 }

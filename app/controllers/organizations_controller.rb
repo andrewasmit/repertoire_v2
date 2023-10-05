@@ -40,6 +40,7 @@ class OrganizationsController < ApplicationController
         performed_piece = { 
           performance_id: performance.id,
           piece: piece.title, 
+          piece_id: piece.id,
           ensemble: ensemble.name, 
           ensemble_id: performance.ensemble_id,
         }  
