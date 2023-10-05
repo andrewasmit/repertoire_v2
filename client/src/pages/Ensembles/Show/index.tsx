@@ -3,18 +3,14 @@ import { FC, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Internal Depencies
-// import EnsembleCard from "./components/EnsembleCard";
-// import { useAppSelector } from "../../../redux/hooks";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { Ensemble } from "../../../redux/organizationSlice";
 import { deleteEns } from "../../../redux/organizationSlice";
 import { deleteEnsemble } from "../../../hooks/api/ensembleHooks";
-import { PerformedPiece } from "../../../redux/organizationSlice";
 import { findEnsemblePerformances } from "../../../utils/findEnsemblePerformances";
 
 // Local Depencies
 import '../ensembles.css'
-
 
 
 // Component Definition
@@ -71,13 +67,12 @@ const EnsembleShow: FC<Ensemble> = ({
 
       <button onClick={handleDeleteEns}>Delete Ensemble</button>
 
-
-      {performancesToDisplay.length > 0 ? 
+      {!performancesToDisplay ? 
         <h2>Performances from {name}</h2> : 
         <h2>{name} has not yet performed</h2>
       }
-      {performancesToDisplay}
 
+      {performancesToDisplay}
     </div>
   )
 }
