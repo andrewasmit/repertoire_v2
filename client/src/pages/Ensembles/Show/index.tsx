@@ -1,5 +1,5 @@
 // External Depencies
-import { FC, useCallback, useMemo } from "react";
+import { FC, useCallback, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Internal Depencies
@@ -8,6 +8,7 @@ import { Ensemble } from "../../../redux/organizationSlice";
 import { deleteEns } from "../../../redux/organizationSlice";
 import { deleteEnsemble } from "../../../hooks/api/ensembleHooks";
 import { findEnsemblePerformances } from "../../../utils/findEnsemblePerformances";
+import ConfirmationDialog from "../../../components/shared/ConfirmationDialog/ConfirmationDialog";
 
 // Local Depencies
 import '../ensembles.css'
@@ -17,6 +18,8 @@ import '../ensembles.css'
 const EnsembleShow: FC<Ensemble> = ({
   name, grade_level, id
 })=>{
+
+  const [isOpen, setIsOpen] = useState(false);
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -34,11 +37,20 @@ const EnsembleShow: FC<Ensemble> = ({
     navigate('/ensembles')
   }, [])
 
+  const handleClickDeleteEns: ()=> void = useCallback((): void=>{
+    setIsOpen(true);
+  }, []);
+
+  const handleCloseDialog: ()=> void = useCallback((): void=>{
+    setIsOpen(false);
+  }, []);
+
   const handleDeleteEns: ()=> void = useCallback((): void=>{
     navigate('/ensembles')
     deleteEnsemble(id);
     dispatch(deleteEns(id))
   }, [])
+
   
   const performancesToDisplay = ensPerformances?.map(performance=>{
     const handleNavToConcertShow = ()=>{
@@ -65,7 +77,7 @@ const EnsembleShow: FC<Ensemble> = ({
       <h3>{name}</h3>
       <h4>{grade_level}th grade</h4>
 
-      <button onClick={handleDeleteEns}>Delete Ensemble</button>
+      <button onClick={handleClickDeleteEns}>Delete Ensemble</button>
 
       {!performancesToDisplay ? 
         <h2>Performances from {name}</h2> : 
@@ -73,6 +85,8 @@ const EnsembleShow: FC<Ensemble> = ({
       }
 
       {performancesToDisplay}
+
+      <ConfirmationDialog isOpen={isOpen} handleClose={handleCloseDialog}/>
     </div>
   )
 }
