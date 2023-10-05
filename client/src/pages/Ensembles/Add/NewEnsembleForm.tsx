@@ -54,7 +54,7 @@ const handleNavigateBack = useCallback(()=>{
           setTimeout(() => {
             postNewEnsemble(values)
             .then(res=>dispatch(addNewEns(res)));
-            
+            handleNavigateBack();
             setSubmitting(false);
           }, 500);
         }}
