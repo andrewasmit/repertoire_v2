@@ -15,3 +15,14 @@
 .logo:hover {
   filter: drop-shadow(0 0 1em #883d1a);
 }
+
+#loading-container {
+  display: block;
+  background-color: #333;
+  padding-top: 300px;
+  height: 100vh;
+}
+
+#loading-container h1 {
+  color: #fff;
+}
