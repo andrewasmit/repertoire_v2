@@ -5,18 +5,16 @@ import { useNavigate } from 'react-router-dom';
 
 // Internal Dependencies
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
-import { postNewEnsemble } from '../../../hooks/api/ensembleHooks';
-import { addNewEns } from '../../../redux/organizationSlice';
+import { addNewConcert } from '../../../redux/organizationSlice';
+import { postNewConcert } from '../../../hooks/api/concertHooks';
 
-// Local Dependencies
 
 // Local Items
 type Values={
-  name: string;
-  year: number | null;
+  title: string;
+  year: string;
   organization_id: number | undefined;
 }
-
 
 // Component Definition
 const NewConcertForm = () => {
@@ -39,12 +37,12 @@ const handleNavigateBack = useCallback(()=>{
   return (
     <div>
       <h1>THIS IS WHERE YOU CAN ADD A NEW CONCERT</h1>
-      <button onClick={handleNavigateBack}>EXIT</button>
+      <button onClick={handleNavigateBack}>Discard New Concert</button>
 
       <Formik
         initialValues={{
-          year: null,
-          name: '',
+          year: '',
+          title: '',
           organization_id: orgId
         }}
         onSubmit={(
@@ -52,31 +50,31 @@ const handleNavigateBack = useCallback(()=>{
           { setSubmitting }: FormikHelpers<Values>
         ) => {
           setTimeout(() => {
-            // postNewEnsemble(values)
-            // .then(res=>dispatch(addNewEns(res)));
-            console.log("CLICKED SUBMIT: ", values)
-
+            postNewConcert(values)
+            .then(res=>{
+              dispatch(addNewConcert(res))
+              handleNavigateBack();
+            });
             setSubmitting(false);
           }, 500);
         }}
       >
         <Form>
-          {/* <label htmlFor="username">Username</label> */}
+          <label htmlFor="username">Title of Concert</label>
           <Field 
-            id="name" 
-            name="name" 
-            placeholder="Name of Concert" 
+            id="title" 
+            name="title" 
+            // placeholder="Name of Concert" 
           />
 
-          {/* <label htmlFor="password">Password</label> */}
+          <label htmlFor="password">Year</label>
           <Field 
             id="year" 
             name="year" 
-            placeholder="Year" 
+            // placeholder="Year" 
           />
 
           <button type="submit">Create New Concert</button>
-
         </Form>
       </Formik>
     </div>

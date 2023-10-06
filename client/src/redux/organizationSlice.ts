@@ -5,7 +5,7 @@ import type { RootState } from "./store";
 export interface ConcertProgram {
   name: string;
   concert_id: number;
-  year: number;
+  year: number | string;
   program: PerformedPiece[] | null;
 }
 
@@ -32,6 +32,13 @@ interface EnsembleResponse {
   organization_id: string | number;
   grade_level: string;
 }
+
+export type ConcertResponse = {
+  id: number;
+  title: string;
+  year: number | string;
+  organization_id: number;
+};
 
 interface Organization {
   id: number;
@@ -105,11 +112,6 @@ export const organizationSlice = createSlice({
     },
     addNewEns: (state, action: PayloadAction<Ensemble>) => {
       console.log("REDUX: Adding NEW ENSEMBLE to organization");
-      // const newEnsState = state.ensembles?.push(action.payload);
-      // return {
-      //   ...state,
-      //   ensembles: newEnsState,
-      // };
       state.ensembles?.push(action.payload);
     },
     deleteEns: (state, action: PayloadAction<number>) => {
@@ -140,9 +142,17 @@ export const organizationSlice = createSlice({
       oldState.splice(idx, 1, newEns);
       state.ensembles = oldState;
     },
-    addNewConcert: (state, action: PayloadAction<ConcertProgram>) => {
+    addNewConcert: (state, action: PayloadAction<ConcertResponse>) => {
       console.log("REDUX: Adding NEW CONCERT");
-      state.concertPrograms?.push(action.payload);
+
+      const newConcert = {
+        name: action.payload.title,
+        concert_id: action.payload.id,
+        year: action.payload.year,
+        program: [],
+      };
+
+      state.concertPrograms?.push(newConcert);
     },
     deleteConcert: (state, action: PayloadAction<number | string>) => {
       console.log("REDUX: DELETING CONCERT");

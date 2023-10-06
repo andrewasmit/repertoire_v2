@@ -1,37 +1,31 @@
 // External Dependencies
 
 // Internal Dependencies
+import { ConcertResponse } from "../../redux/organizationSlice";
 
-// type EnsembleData = {
-//   name: string;
-//   grade_level: string;
-//   organization_id: number | undefined;
-// };
+type ConcertData = {
+  title: string;
+  year: string;
+  organization_id: number | undefined;
+};
 
-// type EnsembleResponse = {
-//   id: number;
-//   grade_level: string;
-//   name: string;
-//   organization_id: number;
-// };
+export const postNewConcert = async (
+  newConcertData: ConcertData
+): Promise<ConcertResponse> => {
+  const res = await fetch("/api/concerts", {
+    method: "POST",
+    body: JSON.stringify(newConcertData),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 
-// export const postNewEnsemble = async (
-//   newEnsData: EnsembleData
-// ): Promise<EnsembleResponse> => {
-//   const res = await fetch("/api/ensembles", {
-//     method: "POST",
-//     body: JSON.stringify(newEnsData),
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//   });
+  const data = await res.json();
 
-//   const data = await res.json();
-
-//   if (res.status === 201) {
-//     return data;
-//   } else throw new Error(data.message);
-// };
+  if (res.status === 201) {
+    return data;
+  } else throw new Error(data.message);
+};
 
 export const destroyConcert = async (
   concertId: number | string
