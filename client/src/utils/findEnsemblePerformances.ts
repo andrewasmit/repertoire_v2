@@ -4,7 +4,7 @@ type EnsemblePerformances = {
   performance: PerformedPiece;
   name: string;
   concertId: number;
-  year: number;
+  year: number | string;
 };
 
 export const findEnsemblePerformances: (
