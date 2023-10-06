@@ -26,7 +26,7 @@ function ConcertCard({ year, id, name, program }: ConcertCardParams) {
 
   const performancesToDisplay = program.map(performance=>{
     // ensemble, ensemble_id, performance_id, piece
-    return <li>
+    return <li key ={performance.performance_id}>
       <h5>{performance.piece}</h5>
       <h6>{performance.ensemble}</h6>
     </li>
