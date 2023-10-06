@@ -157,12 +157,6 @@ export const organizationSlice = createSlice({
     updateConcert: (state, action: PayloadAction<ConcertResponse>) => {
       console.log(`REDUX: UPDATING ENSEMBLE with ID:${action.payload.id}`);
 
-      // const updatedConcert: ConcertProgram = {
-      //   name: action.payload.name,
-      //   id: action.payload.id,
-      //   grade_level: action.payload.grade_level,
-      // };
-
       const oldState = [...state.concertPrograms];
       const idx = oldState.findIndex(
         (concert) => concert.concert_id === action.payload.id
