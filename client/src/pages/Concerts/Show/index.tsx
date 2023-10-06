@@ -1,11 +1,12 @@
 // External Dependencies
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Internal Dependencies
 import { PerformedPiece, deleteConcert } from "../../../redux/organizationSlice";
 import { destroyConcert } from "../../../hooks/api/concertHooks";
 import { useAppDispatch } from "../../../redux/hooks";
+import ConfirmationDialog from "../../../components/shared/ConfirmationDialog/ConfirmationDialog";
 
 
 type ConcertParams = {
@@ -16,6 +17,8 @@ type ConcertParams = {
 }
 
 function ConcertShow({ id, name, year, program}: ConcertParams) {
+
+  const [isOpen, setIsOpen] = useState(false);
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -33,7 +36,11 @@ function ConcertShow({ id, name, year, program}: ConcertParams) {
     navigate('/concerts');
   }, []);
 
-  const handleDeleteEnsemble: ()=> void = useCallback(():void =>{
+  const handleClickDeleteConcert: ()=>void = useCallback(():void=>{
+    setIsOpen(true);
+  }, []);
+
+  const handleDeleteConcert: ()=> void = useCallback(():void =>{
     destroyConcert(id);
     dispatch(deleteConcert(id));
     navigate('/concerts');
@@ -46,7 +53,14 @@ function ConcertShow({ id, name, year, program}: ConcertParams) {
       <h4>{year}</h4>
       {performancesToDisplay}
       <button>Edit Concert</button>
-      <button onClick={handleDeleteEnsemble}>Delete Concert</button>
+      <button onClick={handleClickDeleteConcert}>Delete Concert</button>
+      <ConfirmationDialog 
+        isOpen={isOpen}
+        handleClose={()=>setIsOpen(false)}
+        onConfirm={handleDeleteConcert}
+        headerText={`Are you sure you want to delete the concert: ${name}?`}
+        bodyText="This will delete the concert program as well as all corresponding performances"
+      />
     </div>
   )
 }
