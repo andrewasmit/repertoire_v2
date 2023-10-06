@@ -87,7 +87,7 @@ const EnsembleShow: FC<Ensemble> = ({
       <button onClick={handleClickEditEns}>
         {!isEdit ? "Edit Ensemble Details"
         : "Discard Edits" }
-        </button> 
+      </button> 
 
       {!isEdit && 
         <button onClick={handleClickDeleteEns}>Delete Ensemble</button>

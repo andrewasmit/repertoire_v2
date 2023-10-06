@@ -154,6 +154,32 @@ export const organizationSlice = createSlice({
 
       state.concertPrograms?.push(newConcert);
     },
+    updateConcert: (state, action: PayloadAction<ConcertResponse>) => {
+      console.log(`REDUX: UPDATING ENSEMBLE with ID:${action.payload.id}`);
+
+      // const updatedConcert: ConcertProgram = {
+      //   name: action.payload.name,
+      //   id: action.payload.id,
+      //   grade_level: action.payload.grade_level,
+      // };
+
+      const oldState = [...state.concertPrograms];
+      const idx = oldState.findIndex(
+        (concert) => concert.concert_id === action.payload.id
+      );
+      const targetConcert = oldState[idx];
+
+      const updatedConcert = {
+        ...targetConcert,
+        name: action.payload.title,
+        year: action.payload.year,
+      };
+      console.log("Target Concert: ", targetConcert);
+      console.log("updated concert: ", updatedConcert);
+      oldState.splice(idx, 1, updatedConcert);
+      state.concertPrograms = oldState;
+    },
+
     deleteConcert: (state, action: PayloadAction<number | string>) => {
       console.log("REDUX: DELETING CONCERT");
 
@@ -179,6 +205,7 @@ export const {
   deleteEns,
   editEns,
   addNewConcert,
+  updateConcert,
   deleteConcert,
 } = organizationSlice.actions;
 

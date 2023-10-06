@@ -5,8 +5,9 @@ import { ConcertResponse } from "../../redux/organizationSlice";
 
 type ConcertData = {
   title: string;
-  year: string;
+  year: string | number;
   organization_id: number | undefined;
+  concert_id?: number | string;
 };
 
 export const postNewConcert = async (
@@ -38,5 +39,23 @@ export const destroyConcert = async (
 
   if (res.status === 204) {
     console.log("Concert successfully deleted");
+  } else throw new Error(data.message);
+};
+
+export const editConcert = async (
+  updatedConcertData: ConcertData
+): Promise<ConcertResponse> => {
+  const res = await fetch(`/api/concerts/${updatedConcertData.concert_id}`, {
+    method: "PATCH",
+    body: JSON.stringify(updatedConcertData),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const data = await res.json();
+
+  if (res.status === 200) {
+    return data;
   } else throw new Error(data.message);
 };
