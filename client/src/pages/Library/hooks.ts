@@ -1,15 +1,6 @@
 // External Dependencies
 import { GridColDef } from "@mui/x-data-grid";
 
-// {
-// composer: "Someone",
-// difficulty: 5,
-// genre: "mallet",
-// number_of_players: 4,
-// reference_recording: "click here",
-// title: "Title of the song",
-// }
-
 export const useColumns = (): GridColDef[] => {
   return [
     {
