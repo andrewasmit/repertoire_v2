@@ -116,13 +116,11 @@ export const organizationSlice = createSlice({
       console.log(
         `REDUX: REMOVING ENSEMBLE with ID:${action.payload} from organization`
       );
-      // state.ensembles = state.ensembles?.push(action.payload);
+
       const newEnsState = [...state.ensembles].filter(
         (ens) => ens.id !== action.payload
       );
-      // const newEnsState = state.ensembles?.filter(
-      //   (ens) => ens.id !== action.payload
-      // );
+
       return {
         ...state,
         ensembles: newEnsState,
@@ -139,14 +137,8 @@ export const organizationSlice = createSlice({
 
       const oldState = [...state.ensembles];
       const idx = oldState.findIndex((ens) => ens.id === action.payload.id);
-      // const targetEns = oldState[idx];
       oldState.splice(idx, 1, newEns);
       state.ensembles = oldState;
-
-      // return {
-      //   ...state,
-      //   ensembles: newEnsState,
-      // };
     },
     addNewConcert: (state, action: PayloadAction<ConcertProgram>) => {
       console.log("REDUX: Adding NEW CONCERT");
@@ -154,10 +146,11 @@ export const organizationSlice = createSlice({
     },
     deleteConcert: (state, action: PayloadAction<number | string>) => {
       console.log("REDUX: DELETING CONCERT");
-      // state.ensembles = state.ensembles?.push(action.payload);
+
       const newState = [...state.concertPrograms].filter(
         (concert) => concert.concert_id !== action.payload
       );
+
       return {
         ...state,
         concertPrograms: newState,
