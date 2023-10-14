@@ -1,5 +1,5 @@
 // External Dependencies
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { Collapse } from "@mui/material";
 
@@ -7,6 +7,7 @@ import { Collapse } from "@mui/material";
 import { PerformedPiece, deleteConcert } from "../../../redux/organizationSlice";
 import { destroyConcert } from "../../../hooks/api/concertHooks";
 import { useAppDispatch } from "../../../redux/hooks";
+import { useIsOpen } from "../../../hooks/useIsOpen";
 import ConfirmationDialog from "../../../components/shared/ConfirmationDialog/ConfirmationDialog";
 
 // Local Dependencies
@@ -22,8 +23,17 @@ type ConcertParams = {
 
 function ConcertShow({ id, name, year, program}: ConcertParams) {
 
-  const [isOpen, setIsOpen] = useState(false);
-  const [isEdit, setIsEdit] = useState(false);
+  const { 
+    isOpen: isDialogOpen, 
+    handleClose: handleCloseDialog, 
+    handleOpen: handleOpenDialog 
+  } = useIsOpen();
+
+  const { 
+    isOpen: isEditOpen,
+    handleClose: handleCloseEdit,
+    toggleIsOpen: toggleEdit
+  } = useIsOpen();
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -41,14 +51,6 @@ function ConcertShow({ id, name, year, program}: ConcertParams) {
     navigate('/concerts');
   }, []);
 
-  const handleClickEditConcert: ()=>void = useCallback(():void=>{
-    setIsEdit(!isEdit);
-  }, [isEdit]);
-
-  const handleClickDeleteConcert: ()=>void = useCallback(():void=>{
-    setIsOpen(true);
-  }, []);
-
   const handleDeleteConcert: ()=> void = useCallback(():void =>{
     destroyConcert(id);
     dispatch(deleteConcert(id));
@@ -64,30 +66,30 @@ function ConcertShow({ id, name, year, program}: ConcertParams) {
 
       {performancesToDisplay}
 
-      <button onClick={handleClickEditConcert}>
-        {!isEdit ? "Edit Concert Details"
+      <button onClick={toggleEdit}>
+        {!isEditOpen ? "Edit Concert Details"
         : "Discard Edits" }
       </button> 
 
-      <Collapse in={isEdit} timeout="auto" unmountOnExit>
+      <Collapse in={isEditOpen} timeout="auto" unmountOnExit>
         <EditConcertForm
           title={name} 
           year={year} 
           concertId={id} 
-          handleCloseForm={handleClickEditConcert}
+          handleCloseForm={handleCloseEdit}
         />
       </Collapse>
 
-      {!isEdit && 
-        <button onClick={handleClickDeleteConcert}>Delete Concert</button>
+      {!isEditOpen && 
+        <button onClick={handleOpenDialog}>Delete Concert</button>
       }
 
       <ConfirmationDialog 
-        isOpen={isOpen}
-        handleClose={()=>setIsOpen(false)}
+        isOpen={isDialogOpen}
+        handleClose={handleCloseDialog}
         onConfirm={handleDeleteConcert}
-        headerText={`Are you sure you want to delete the concert: ${name}?`}
-        bodyText="This will delete the concert program as well as all corresponding performances"
+        headerText={`Are you sure you want to delete the concert: ${name} from ${year}?`}
+        bodyText="This will also delete all corresponding performances"
       />
     </div>
   )
