@@ -1,6 +1,14 @@
 // External Dependencies
-import { GridColDef, GridValueFormatterParams } from "@mui/x-data-grid";
+import {
+  GridColDef,
+  GridRenderCellParams,
+  GridValueFormatterParams,
+} from "@mui/x-data-grid";
 import { getDifficultyString } from "../../utils/getDifficultyString";
+import { Button } from "@mui/material";
+
+// Internal Dependencies
+import RefRecordingBtn from "../../components/shared/RefRecordingBtn";
 
 export const useColumns = (): GridColDef[] => {
   return [
@@ -37,17 +45,11 @@ export const useColumns = (): GridColDef[] => {
     {
       field: "reference_recording",
       headerName: "Reference Recording",
-      // type: "number",
-      width: 250,
+      sortable: false,
+      width: 180,
+      renderCell: (params) => {
+        return <RefRecordingBtn link={params.value} />
+      },
     },
-    // {
-    // field: "difficulty",
-    // headerName: "Difficulty",
-    // description: "This column has a value getter and is not sortable.",
-    // sortable: false,
-    //   width: 160,
-    //   valueGetter: (params: GridValueGetterParams) =>
-    //     `${params.row.firstName || ""} ${params.row.lastName || ""}`,
-    // },
   ];
 };
