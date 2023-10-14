@@ -1,5 +1,6 @@
 // External Dependencies
-import { GridColDef } from "@mui/x-data-grid";
+import { GridColDef, GridValueFormatterParams } from "@mui/x-data-grid";
+import { getDifficultyString } from "../../utils/getDifficultyString";
 
 export const useColumns = (): GridColDef[] => {
   return [
@@ -22,13 +23,16 @@ export const useColumns = (): GridColDef[] => {
       field: "number_of_players",
       headerName: "# of Players",
       type: "number",
-      width: 105,
+      width: 120,
     },
     {
       field: "difficulty",
       headerName: "Difficulty",
       type: "number",
-      width: 80,
+      width: 170,
+      valueFormatter: (params: GridValueFormatterParams<number>) => {
+        return getDifficultyString(params.value);
+      },
     },
     {
       field: "reference_recording",

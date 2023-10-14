@@ -21,22 +21,21 @@ function Library() {
 
         <h1>This is the Library Page</h1>
 
-        { library !== null ? 
-        <DataGrid
-          rows={library}
-          columns={columns}
-          initialState={{
-            pagination: {
-              paginationModel: {
-                pageSize: 10,
+        { library ? 
+          <DataGrid
+            rows={library}
+            columns={columns}
+            initialState={{
+              pagination: {
+                paginationModel: {
+                  pageSize: 10,
+                },
               },
-            },
-          }}
-          pageSizeOptions={[10]}
-          // checkboxSelection
-          disableRowSelectionOnClick
-        /> :
-        <h2>There are currently no pieces in your library</h2>
+            }}
+            pageSizeOptions={[10]}
+            disableRowSelectionOnClick
+          /> :
+          <h2>There are currently no pieces in your library</h2>
         }
       </Box>
     </div>
