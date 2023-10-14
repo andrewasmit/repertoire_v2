@@ -4,11 +4,11 @@ import {
   GridRenderCellParams,
   GridValueFormatterParams,
 } from "@mui/x-data-grid";
-import { getDifficultyString } from "../../utils/getDifficultyString";
-import { Button } from "@mui/material";
 
 // Internal Dependencies
 import RefRecordingBtn from "../../components/shared/RefRecordingBtn";
+import { getDifficultyString } from "../../utils/getDifficultyString";
+
 
 export const useColumns = (): GridColDef[] => {
   return [
@@ -47,8 +47,8 @@ export const useColumns = (): GridColDef[] => {
       headerName: "Reference Recording",
       sortable: false,
       width: 180,
-      renderCell: (params) => {
-        return <RefRecordingBtn link={params.value} />
+      renderCell: (params: GridRenderCellParams<any, string>) => {
+        return <RefRecordingBtn link={params.value} id={params.row.id} />
       },
     },
   ];
