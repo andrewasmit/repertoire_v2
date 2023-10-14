@@ -9,10 +9,10 @@ import { PerformedPiece } from "../../../redux/organizationSlice"
 import '../concerts.css'
 
 type ConcertCardParams = {
-  year: number;
+  year: number | string;
   id: number;
   name: string;
-  program: PerformedPiece[];
+  program: PerformedPiece[] | null;
 }
 
 function ConcertCard({ year, id, name, program }: ConcertCardParams) {
@@ -24,8 +24,7 @@ function ConcertCard({ year, id, name, program }: ConcertCardParams) {
   }, []);
 
 
-  const performancesToDisplay = program.map(performance=>{
-    // ensemble, ensemble_id, performance_id, piece
+  const performancesToDisplay = program?.map(performance=>{
     return <li key ={performance.performance_id}>
       <h5>{performance.piece}</h5>
       <h6>{performance.ensemble}</h6>
