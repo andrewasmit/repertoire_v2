@@ -2,31 +2,47 @@
 import { Box, Button, Typography } from "@mui/material"
 
 // Internal Dependencies
-import { PerformedPiece } from "../../../redux/organizationSlice"
-import { useNavigate } from "react-router-dom"
+import { PerformedPiece, deletePerformance } from "../../../redux/organizationSlice"
+import { useNavigate, useParams } from "react-router-dom"
 import { useCallback, useMemo } from "react";
 import { useIsOpen } from "../../../hooks/useIsOpen";
 import ConfirmationDialog from "../../../components/shared/ConfirmationDialog/ConfirmationDialog";
+import { useAppDispatch } from "../../../redux/hooks";
 
 
 
 function Performance({ performance_id, piece, piece_id, ensemble, ensemble_id }: PerformedPiece) {
 
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const params = useParams();
   const { isOpen, handleClose, handleOpen } = useIsOpen();
+
+  const concertId = useMemo(()=>{
+    if(params){
+      return params.id
+    }
+  }, [params]);
+
 
   const handleNavToEns = useCallback(()=>{
     navigate(`/ensembles/${ensemble_id}`);
   }, [ensemble_id]);
 
+
   const handleNavToPiece = useCallback(()=>{
     navigate(`/library/${piece_id}`);
   }, [piece_id]);
 
+
   const handleDeletePerformanceClick = useCallback(()=>{
-    console.log(`Performance # ${performance_id} was clicked to be deleted.`)
+    // Redux takes in 2 arguments; Concert ID and Performance ID
+    // console.log(`Performance # ${performance_id} was clicked to be deleted.`)
+
+    dispatch(deletePerformance([concertId, performance_id]));
     handleClose();
-  }, [performance_id, handleClose]);
+  }, [concertId, performance_id, handleClose, params]);
+
 
   const hoverStyle = useMemo(()=>{
     return {

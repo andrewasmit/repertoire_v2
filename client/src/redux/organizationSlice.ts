@@ -119,7 +119,7 @@ export const organizationSlice = createSlice({
         `REDUX: REMOVING ENSEMBLE with ID:${action.payload} from organization`
       );
 
-      const newEnsState = [...state.ensembles].filter(
+      const newEnsState: Ensemble[] = [...state.ensembles].filter(
         (ens) => ens.id !== action.payload
       );
 
@@ -168,8 +168,7 @@ export const organizationSlice = createSlice({
         name: action.payload.title,
         year: action.payload.year,
       };
-      console.log("Target Concert: ", targetConcert);
-      console.log("updated concert: ", updatedConcert);
+
       oldState.splice(idx, 1, updatedConcert);
       state.concertPrograms = oldState;
     },
@@ -186,6 +185,18 @@ export const organizationSlice = createSlice({
         concertPrograms: newState,
       };
     },
+    deletePerformance: (state, action: PayloadAction<any>) => {
+      // console.log("REDUX: DELETING Performance");
+      console.log(`REDUX 1st: ${action.payload[0]}`);
+      console.log(`REDUX 2nd: ${action.payload[1]}`);
+      console.log("Current State: ", state.concertPrograms);
+
+      const targetConcert = [...state.concertPrograms].filter(
+        (concert) => concert.concert_id === action.payload[0]
+      );
+
+      console.log("IN REDUX: TARGET CONCERT", targetConcert);
+    },
   },
 });
 
@@ -201,6 +212,7 @@ export const {
   addNewConcert,
   updateConcert,
   deleteConcert,
+  deletePerformance,
 } = organizationSlice.actions;
 
 export const selectOrganization = (state: RootState) => state.organization;
