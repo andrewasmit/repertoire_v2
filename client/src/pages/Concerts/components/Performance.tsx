@@ -26,6 +26,7 @@ function Performance({ performance_id, piece, piece_id, ensemble, ensemble_id }:
 
   const hoverStyle = useMemo(()=>{
     return {
+      padding: .5,
       ':hover':{ 
         color: '#333', 
         backgroundColor: '#cef987', 
@@ -48,7 +49,8 @@ function Performance({ performance_id, piece, piece_id, ensemble, ensemble_id }:
         maxWidth: 500, 
         '&:nth-of-type(2)':{
           backgroundColor: '#fff'
-        } 
+        },
+        padding: 1
       }}
     >
       <Typography 
