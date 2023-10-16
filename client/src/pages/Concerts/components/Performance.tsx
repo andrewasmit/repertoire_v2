@@ -5,12 +5,15 @@ import { Box, Button, Typography } from "@mui/material"
 import { PerformedPiece } from "../../../redux/organizationSlice"
 import { useNavigate } from "react-router-dom"
 import { useCallback, useMemo } from "react";
+import { useIsOpen } from "../../../hooks/useIsOpen";
+import ConfirmationDialog from "../../../components/shared/ConfirmationDialog/ConfirmationDialog";
 
 
 
 function Performance({ performance_id, piece, piece_id, ensemble, ensemble_id }: PerformedPiece) {
 
   const navigate = useNavigate();
+  const { isOpen, handleClose, handleOpen } = useIsOpen();
 
   const handleNavToEns = useCallback(()=>{
     navigate(`/ensembles/${ensemble_id}`);
@@ -22,7 +25,8 @@ function Performance({ performance_id, piece, piece_id, ensemble, ensemble_id }:
 
   const handleDeletePerformanceClick = useCallback(()=>{
     console.log(`Performance # ${performance_id} was clicked to be deleted.`)
-  }, [performance_id]);
+    handleClose();
+  }, [performance_id, handleClose]);
 
   const hoverStyle = useMemo(()=>{
     return {
@@ -70,10 +74,18 @@ function Performance({ performance_id, piece, piece_id, ensemble, ensemble_id }:
       </Typography>
 
       <Button 
-        onClick={handleDeletePerformanceClick}
+        onClick={handleOpen}
       >
         Delete Performance
       </Button>
+
+      <ConfirmationDialog 
+        isOpen={isOpen}
+        handleClose={handleClose}
+        onConfirm={handleDeletePerformanceClick}
+        headerText={`Are you sure?`}
+        bodyText={`This will permanently delete ${ensemble}'s performance of ${piece}`}
+      />
     </Box>
   )
 }
