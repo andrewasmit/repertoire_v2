@@ -12,6 +12,7 @@ import ConfirmationDialog from "../../../components/shared/ConfirmationDialog/Co
 
 // Local Dependencies
 import EditConcertForm from "./EditConcertForm";
+import Performance from "../components/Performance";
 
 
 type ConcertParams = {
@@ -38,12 +39,17 @@ function ConcertShow({ id, name, year, program}: ConcertParams) {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
+  console.log(program)
+
   const performancesToDisplay = useMemo(()=>{ 
     return program.map(performance=>{
-      return <div>
-        <h4>{performance.piece}</h4>
-        <h6>{performance.ensemble}</h6>
-      </div>
+      return <Performance 
+                ensemble={performance.ensemble}
+                ensemble_id={performance.ensemble_id}
+                performance_id={performance.performance_id}
+                piece={performance.piece}
+                piece_id={performance.piece_id}
+              />
     })
   }, [program]);
 
