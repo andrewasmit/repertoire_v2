@@ -1,7 +1,7 @@
 // External Dependencies
 import { useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { Collapse } from "@mui/material";
+import { Box, Collapse } from "@mui/material";
 
 // Internal Dependencies
 import { PerformedPiece, deleteConcert } from "../../../redux/organizationSlice";
@@ -69,8 +69,21 @@ function ConcertShow({ id, name, year, program}: ConcertParams) {
 
       <h2>{name}</h2>
       <h4>{year}</h4>
-
-      {performancesToDisplay}
+      <Box 
+        component= 'div' 
+        sx={{ 
+          display: 'block',
+          margin: 'auto',
+          width: 500,
+          border: '1px solid #333',
+          // justifyContent: 'center',
+          // alignItems: 'center',
+          // padding: 2,
+          // margin: 5
+        }}
+      >
+        {performancesToDisplay}
+      </Box>
 
       <button onClick={toggleEdit}>
         {!isEditOpen ? "Edit Concert Details"

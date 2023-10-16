@@ -34,10 +34,23 @@ function Performance({ performance_id, piece, piece_id, ensemble, ensemble_id }:
         cursor: 'pointer'
       },
     }
-  }, [])
+  }, []);
 
   return (
-    <Box component= 'div' sx={{ backgroundColor: '#f4f4f4', maxWidth: 500, '&:nth-of-type(2)':{backgroundColor: '#fff'} }}>
+    <Box 
+      component= 'div' 
+      sx={{ 
+        backgroundColor: '#f4f4f4', 
+        borderBottom: '1px dotted #333',
+        '&:last-child':{
+          borderBottom: 'none'
+        },
+        maxWidth: 500, 
+        '&:nth-of-type(2)':{
+          backgroundColor: '#fff'
+        } 
+      }}
+    >
       <Typography 
         variant="h5" 
         onClick={handleNavToPiece} 
@@ -49,7 +62,7 @@ function Performance({ performance_id, piece, piece_id, ensemble, ensemble_id }:
       <Typography 
         variant="h6" 
         onClick={handleNavToEns} 
-        sx={hoverStyle}
+        sx={{ ...hoverStyle, fontSize: 16 }}
       >
         {ensemble}
       </Typography>
