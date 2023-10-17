@@ -59,7 +59,6 @@ const orgId = useMemo((): number | undefined=>{
             editConcert(values)
             .then(res=>{
               dispatch(updateConcert(res))
-              console.log(res)
               handleCloseForm();
             });
             setSubmitting(false);

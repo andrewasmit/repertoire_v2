@@ -39,8 +39,6 @@ function ConcertShow({ id, name, year, program}: ConcertParams) {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  console.log(program)
-
   const performancesToDisplay = useMemo(()=>{ 
     return program.map(performance=>{
       return <Performance
