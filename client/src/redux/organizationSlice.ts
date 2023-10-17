@@ -192,7 +192,7 @@ export const organizationSlice = createSlice({
       );
 
       const newConcertProgram = targetConcert[0].program.filter(
-        (perf) => perf.performance_id !== action.payload[1]
+        (perf: PerformedPiece) => perf.performance_id !== action.payload[1]
       );
       targetConcert[0].program = newConcertProgram;
     },
