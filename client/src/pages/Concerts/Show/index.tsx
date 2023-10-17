@@ -43,7 +43,8 @@ function ConcertShow({ id, name, year, program}: ConcertParams) {
 
   const performancesToDisplay = useMemo(()=>{ 
     return program.map(performance=>{
-      return <Performance 
+      return <Performance
+                key={performance.performance_id} 
                 ensemble={performance.ensemble}
                 ensemble_id={performance.ensemble_id}
                 performance_id={performance.performance_id}
