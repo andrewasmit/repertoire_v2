@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "./store";
 
@@ -186,16 +186,15 @@ export const organizationSlice = createSlice({
       };
     },
     deletePerformance: (state, action: PayloadAction<any>) => {
-      // console.log("REDUX: DELETING Performance");
-      console.log(`REDUX 1st: ${action.payload[0]}`);
-      console.log(`REDUX 2nd: ${action.payload[1]}`);
-      console.log("Current State: ", state.concertPrograms);
-
-      const targetConcert = [...state.concertPrograms].filter(
+      const targetConcert = [...state.concertPrograms];
+      targetConcert.filter(
         (concert) => concert.concert_id === action.payload[0]
       );
 
-      console.log("IN REDUX: TARGET CONCERT", targetConcert);
+      const newConcertProgram = targetConcert[0].program.filter(
+        (perf) => perf.performance_id !== action.payload[1]
+      );
+      targetConcert[0].program = newConcertProgram;
     },
   },
 });
