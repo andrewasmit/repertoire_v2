@@ -8,6 +8,7 @@ import { useCallback, useMemo } from "react";
 import { useIsOpen } from "../../../hooks/useIsOpen";
 import ConfirmationDialog from "../../../components/shared/ConfirmationDialog/ConfirmationDialog";
 import { useAppDispatch } from "../../../redux/hooks";
+import { deletePerformanceApi } from "../../../hooks/api/performanceHooks";
 
 
 
@@ -36,10 +37,10 @@ function Performance({ performance_id, piece, piece_id, ensemble, ensemble_id }:
 
 
   const handleDeletePerformanceClick = useCallback(()=>{
-    // Redux takes in 2 arguments; Concert ID and Performance ID
-    // console.log(`Performance # ${performance_id} was clicked to be deleted.`)
-
+    // Redux takes in an array of 2 arguments; Concert ID and Performance ID
+    // The call to the backend takes in only the performanceId
     dispatch(deletePerformance([concertId, performance_id]));
+    deletePerformanceApi(performance_id);
     handleClose();
   }, [concertId, performance_id, handleClose, params]);
 

@@ -7,7 +7,7 @@ class PerformancesController < ApplicationController
 
   def destroy
     performance = Performance.find(params[:id])
-    if User.find(session[:id]).is_admin
+    if User.find(session[:user_id]).is_admin
       performance.destroy
       head :no_content
     else
