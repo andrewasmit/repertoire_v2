@@ -42,7 +42,7 @@ const orgId = useMemo((): number | undefined=>{
 
   return (
     <div>
-      <h2>Edit Ensemble Details</h2>
+      <h2>Edit Concert Details</h2>
 
       <Formik
         initialValues={{

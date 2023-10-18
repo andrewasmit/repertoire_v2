@@ -11,6 +11,7 @@ import { useFetchOrganizationData } from "../hooks/api/useFetchOrganizationData"
 import "../App.css";
 import logo from '/logo-no-background.svg'
 import Loading from "../components/shared/Loading";
+import { Box } from "@mui/material";
 
 
 function Dashboard() {
