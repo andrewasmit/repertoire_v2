@@ -41,21 +41,3 @@ export const deletePerformanceApi = async (
     console.log("Performance successfully deleted");
   } else throw new Error(data.message);
 };
-
-// export const editEnsemble = async (
-//   newEnsData: EnsembleData
-// ): Promise<EnsembleResponse> => {
-//   const res = await fetch(`/api/ensembles/${newEnsData.ensemble_id}`, {
-//     method: "PATCH",
-//     body: JSON.stringify(newEnsData),
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//   });
-
-//   const data = await res.json();
-
-//   if (res.status === 200) {
-//     return data;
-//   } else throw new Error(data.message);
-// };
