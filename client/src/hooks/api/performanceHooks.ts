@@ -1,5 +1,4 @@
 // External Dependencies
-// import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 // Internal Dependencies
 import { Performance } from "../../redux/organizationSlice";
@@ -9,13 +8,6 @@ type PerformanceData = {
   ensemble_id: number | string | undefined;
   piece_id: number | string | undefined;
 };
-
-// type PerformanceResponse = {
-//   id: number;
-//   concert_id: number;
-//   ensemble_id: number;
-//   piece_id: number;
-// };
 
 export const addPerformanceApi = async (
   newPerformanceData: PerformanceData
