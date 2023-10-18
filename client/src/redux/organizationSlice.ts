@@ -15,6 +15,14 @@ export interface PerformedPiece {
   piece_id: number;
   ensemble: string;
   ensemble_id: number;
+  concert_id?: number;
+}
+
+export interface Performance {
+  id: number;
+  piece_id: number;
+  ensemble_id: number;
+  concert_id?: number;
 }
 
 export interface OrganizationResponse {
@@ -196,6 +204,14 @@ export const organizationSlice = createSlice({
       );
       targetConcert[0].program = newConcertProgram;
     },
+    addPerformance: (state, action: PayloadAction<Performance>) => {
+      const newState = [...state.concertPrograms];
+      const targetConcertIdx = newState.findIndex(
+        (concert) => (concert.concert_id = action.payload.concert_id)
+      );
+      newState[targetConcertIdx].program.push(action.payload);
+      state.concertPrograms = newState;
+    },
   },
 });
 
@@ -212,6 +228,7 @@ export const {
   updateConcert,
   deleteConcert,
   deletePerformance,
+  addPerformance,
 } = organizationSlice.actions;
 
 export const selectOrganization = (state: RootState) => state.organization;

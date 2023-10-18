@@ -6,12 +6,13 @@ import { Formik, Field, Form, FormikHelpers } from 'formik';
 // Internal Dependencies
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import { editConcert } from '../../../hooks/api/concertHooks';
-import { updateConcert } from '../../../redux/organizationSlice';
+import { addPerformance, updateConcert } from '../../../redux/organizationSlice';
+import { addPerformanceApi } from '../../../hooks/api/performanceHooks';
 
 
 // Local Items
 type Values={
-  concert_id: number | string;
+  concert_id: number | string | undefined;
   piece_id: string | undefined;
   ensemble_id: string | undefined;
 }
@@ -27,7 +28,7 @@ const AddPerformanceForm = ({ concertId, handleCloseForm }: AddPerformanceParams
 
 const { ensembles, library } = useAppSelector((state) => state.organization);
 
-// const dispatch = useAppDispatch();
+const dispatch = useAppDispatch();
 // const navigate = useNavigate();
 
 const pieceSelectOptions = useMemo(()=>{
@@ -63,12 +64,12 @@ const ensembleSelectOptions = useMemo(()=>{
         ) => {
           setTimeout(() => {
             console.log("VALUES BEFORE FETCH: ", values);
-            // addPerformanceApi(values)
-            // .then(res=>{
-            //   console.log("RES: ", res)
-            //   // dispatch(addPerformance(res))
-            //   handleCloseForm();
-            // });
+            addPerformanceApi(values)
+            .then(res=>{
+              console.log("RES: ", res)
+              dispatch(addPerformance(res))
+              handleCloseForm();
+            });
             setSubmitting(false);
           }, 500);
         }}
