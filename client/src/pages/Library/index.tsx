@@ -4,9 +4,12 @@ import { DataGrid } from '@mui/x-data-grid';
 
 // Internal Dependencies
 import { useAppSelector } from '../../redux/hooks';
+import { useIsOpen } from '../../hooks/useIsOpen';
 
 // Local Dependencies
 import { useColumns } from './hooks';
+import { Button, Collapse } from '@mui/material';
+import AddNewPieceForm from './AddNewPieceForm';
 
 
 function Library() {
@@ -15,11 +18,26 @@ function Library() {
   
   const columns = useColumns();
 
+  const { 
+    isOpen: isAddPieceOpen, 
+    handleOpen: handleOpenAddPiece, 
+    handleClose: handleCloseAddPiece, 
+    // toggleOpen: toggleOpenAddPiece 
+  } = useIsOpen();
+
   return (
     <div id='library-page'>
       <Box sx={{ height: 600, width: '100%' }}>
 
         <h1>This is the Library Page</h1>
+
+        {!isAddPieceOpen &&
+          <Button variant='contained' onClick={handleOpenAddPiece}>Add New Piece To Library</Button>
+        }
+
+        <Collapse in={isAddPieceOpen}>
+          <AddNewPieceForm handleClose={handleCloseAddPiece} />
+        </Collapse>
 
         { library ? 
           <DataGrid

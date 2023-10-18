@@ -53,3 +53,14 @@ export const useColumns = (): GridColDef[] => {
     },
   ];
 };
+
+
+export const useGetDifficultyOptions = ()=>{
+  const difficultyRange = [1,2,3,4,5];
+
+  return difficultyRange.map(d=>{
+    return <option value={d}>
+            {getDifficultyString(d)}
+          </option>
+  })
+}
