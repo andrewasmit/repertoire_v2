@@ -70,7 +70,7 @@ const EnsembleShow: FC<Ensemble> = ({
       navigate(`/library/${performance.performance.piece_id}`)
     }
 
-    return <div className="ens-performance">
+    return <div className="ens-performance" key={performance.name}>
       <h3 onClick={handleNavToPieceShow}>{performance.performance.piece}</h3>
       <h4 onClick={handleNavToConcertShow}>{performance.name} -{performance.year}</h4>
     </div>
