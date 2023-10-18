@@ -209,7 +209,21 @@ export const organizationSlice = createSlice({
       const targetConcertIdx = newState.findIndex(
         (concert) => (concert.concert_id = action.payload.concert_id)
       );
-      newState[targetConcertIdx].program.push(action.payload);
+      const targetEnsembleName = [...state.ensembles].filter(
+        (ens) => ens.id === action.payload.ensemble_id
+      )[0].name;
+      const targetPieceName = [...state.library].filter(
+        (piece) => piece.id === action.payload.piece_id
+      )[0].title;
+
+      const newPerformance = {
+        ensemble: targetEnsembleName,
+        ensemble_id: action.payload.ensemble_id,
+        performance_id: action.payload.id,
+        piece: targetPieceName,
+        piece_id: action.payload.piece_id,
+      };
+      newState[targetConcertIdx].program.push(newPerformance);
       state.concertPrograms = newState;
     },
   },
