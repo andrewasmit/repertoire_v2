@@ -4,7 +4,7 @@ import { Formik, Field, Form, FormikHelpers } from 'formik';
 
 // Internal Dependencies
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { useGetDifficultyOptions } from './hooks';
+import { useGetDifficultyOptions, useGetNumberOfPlayerOptions } from './hooks';
 
 // Local Dependencies
 
@@ -28,6 +28,7 @@ const AddNewPieceForm = ({ handleClose }:NewPieceParams) => {
 
 const { organization } = useAppSelector((state) => state.organization);
 const difficultyOptions = useGetDifficultyOptions();
+const numberOfPlayerOptions = useGetNumberOfPlayerOptions();
 const dispatch = useAppDispatch();
 
 const orgId = useMemo((): number | undefined=>{
@@ -88,8 +89,11 @@ const orgId = useMemo((): number | undefined=>{
           <Field 
             id="number_of_players" 
             name="number_of_players" 
-            placeholder="# of Players" 
-          />
+            as="select" 
+          >
+            <option value={0} disabled selected={true} >** Select Number of Players **</option>
+            {numberOfPlayerOptions}
+          </Field>
 
           <label htmlFor="genre">Difficulty</label>
           <Field
