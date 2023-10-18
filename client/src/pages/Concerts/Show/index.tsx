@@ -13,6 +13,7 @@ import ConfirmationDialog from "../../../components/shared/ConfirmationDialog/Co
 // Local Dependencies
 import EditConcertForm from "./EditConcertForm";
 import Performance from "../components/Performance";
+import AddPerformanceForm from "./AddPerformanceForm";
 
 
 type ConcertParams = {
@@ -81,10 +82,6 @@ function ConcertShow({ id, name, year, program}: ConcertParams) {
           margin: 'auto',
           width: 500,
           border: '1px solid #333',
-          // justifyContent: 'center',
-          // alignItems: 'center',
-          // padding: 2,
-          // margin: 5
         }}
       >
         {performancesToDisplay}
@@ -110,11 +107,14 @@ function ConcertShow({ id, name, year, program}: ConcertParams) {
       </Collapse>
 
       <Collapse in={isAddPerformanceOpen} timeout="auto" unmountOnExit>
-        <Typography variant="h2">THIS IS A FORM TO ADD NEW PERFORMANCES</Typography>
+        <AddPerformanceForm 
+          concertId={id}
+          handleCloseForm={handleCloseAddPerformance}
+        />
       </Collapse>
 
-      {!isEditOpen && !isAddPerformanceOpen ?
-        <button onClick={handleOpenDialog}>Delete Concert</button> : null
+      {!isEditOpen && !isAddPerformanceOpen &&
+        <button onClick={handleOpenDialog}>Delete Concert</button>
       }
 
       <ConfirmationDialog 
