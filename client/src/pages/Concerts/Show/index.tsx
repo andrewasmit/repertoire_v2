@@ -1,7 +1,7 @@
 // External Dependencies
 import { useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { Box, Collapse } from "@mui/material";
+import { Box, Collapse, Typography } from "@mui/material";
 
 // Internal Dependencies
 import { PerformedPiece, deleteConcert } from "../../../redux/organizationSlice";
@@ -34,6 +34,12 @@ function ConcertShow({ id, name, year, program}: ConcertParams) {
     isOpen: isEditOpen,
     handleClose: handleCloseEdit,
     toggleIsOpen: toggleEdit
+  } = useIsOpen();
+
+  const { 
+    isOpen: isAddPerformanceOpen,
+    handleClose: handleCloseAddPerformance,
+    toggleIsOpen: toggleAddPerformance
   } = useIsOpen();
 
   const navigate = useNavigate();
@@ -84,6 +90,11 @@ function ConcertShow({ id, name, year, program}: ConcertParams) {
         {performancesToDisplay}
       </Box>
 
+      <button onClick={toggleAddPerformance}>
+        {!isAddPerformanceOpen ? "Add Performance to Concert"
+        : "Discard New Performance" }
+      </button> 
+
       <button onClick={toggleEdit}>
         {!isEditOpen ? "Edit Concert Details"
         : "Discard Edits" }
@@ -98,8 +109,12 @@ function ConcertShow({ id, name, year, program}: ConcertParams) {
         />
       </Collapse>
 
-      {!isEditOpen && 
-        <button onClick={handleOpenDialog}>Delete Concert</button>
+      <Collapse in={isAddPerformanceOpen} timeout="auto" unmountOnExit>
+        <Typography variant="h2">THIS IS A FORM TO ADD NEW PERFORMANCES</Typography>
+      </Collapse>
+
+      {!isEditOpen && !isAddPerformanceOpen ?
+        <button onClick={handleOpenDialog}>Delete Concert</button> : null
       }
 
       <ConfirmationDialog 
