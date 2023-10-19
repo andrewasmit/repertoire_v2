@@ -2,7 +2,7 @@ require 'faker'
 puts 'Seeding db 🌱'
 
 org = Organization.create(name: 'Smit School of Percussion')
-test_org = Organization.create(name: 'This is a Test')
+# test_org = Organization.create(name: 'This is a Test')
 
 me = User.create(
   username: 'andrewasmit',
@@ -14,11 +14,11 @@ me = User.create(
 )
 
 test_user = User.create(
-  username: 'testing',
+  username: 'Another Director in my Organization',
   password: '123456',
   password_confirmation: '123456',
   email_address: 'test@email.com',
-  organization_id: test_org.id,
+  organization_id: org.id,
   is_admin: true
 )
 

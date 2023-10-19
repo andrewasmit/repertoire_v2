@@ -16,7 +16,7 @@ function NoteCard({ id, piece_id, user_id, note }: Note) {
     if(user_id === currentUser?.id){
       return currentUser?.username
     } 
-    // return users?.filter(user=>user.id === user_id)[0].username
+    return users?.filter(user=>user.id === user_id)[0].username
   },[users, user_id]);
 
 

@@ -5,6 +5,8 @@ import { useMemo } from "react";
 import { Piece } from "../../../redux/organizationSlice";
 import { getDifficultyString } from "../../../utils/getDifficultyString";
 import NoteCard from "./NoteCard";
+import { useAppSelector } from "../../../redux/hooks";
+import { findPerformances } from "../../../utils/findPerformances";
 
 // composer, difficulty, genre, id, # of players, orgId, reference Recording, title, notes
 
@@ -16,13 +18,19 @@ interface PieceProps{
 // Component Definition
 function LibraryShow({ piece }: PieceProps) {
 
+  const { ensembles, concertPrograms } = useAppSelector(state=>state.organization);
+
   const difficulty = useMemo(()=>{
     return getDifficultyString(piece.difficulty);
   }, [piece]);
 
   const notesToDisplay = piece.notes?.map(note=>{
     return <NoteCard id={note.id} key={note.id} piece_id={note.piece_id} user_id={note.user_id} note={note.note} />
-  })
+  });
+
+  const performances = useMemo(()=>{
+    return findPerformances(piece, concertPrograms)
+  },[ensembles, concertPrograms, piece]);
 
   return (
     <>
@@ -36,7 +44,7 @@ function LibraryShow({ piece }: PieceProps) {
       <h4>Number of Players: {piece.number_of_players}</h4>
       
       {notesToDisplay}
-      
+
       <a href={piece.reference_recording} target="__blank" >Reference Recording</a>
     </>
   )
