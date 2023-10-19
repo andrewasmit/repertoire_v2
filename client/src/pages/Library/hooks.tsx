@@ -32,6 +32,12 @@ export const useColumns = (): GridColDef[] => {
       headerName: "# of Players",
       type: "number",
       width: 120,
+      valueFormatter: (params: GridValueFormatterParams<string | number>) => {
+        if(params.value == 0){
+          return ""
+        } else
+        return params.value;
+      },
     },
     {
       field: "difficulty",
