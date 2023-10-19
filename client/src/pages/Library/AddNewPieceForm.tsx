@@ -5,6 +5,7 @@ import { Formik, Field, Form, FormikHelpers } from 'formik';
 // Internal Dependencies
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { useGetDifficultyOptions, useGetNumberOfPlayerOptions } from './hooks';
+import { addNewPieceApi } from '../../hooks/api/libraryHooks';
 
 // Local Dependencies
 
@@ -60,11 +61,11 @@ const orgId = useMemo((): number | undefined=>{
         ) => {
           setTimeout(() => {
             console.log("Values before fetch:", values)
-            // addNewPieceApi(values)
-            // .then(res=>{
-            //   console.log("RES: ", res)
+            addNewPieceApi(values)
+            .then(res=>{
+              console.log("RES: ", res)
             //   // dispatch(addNewEns(res))
-            // });
+            });
             handleClose();
             setSubmitting(false);
           }, 500);
