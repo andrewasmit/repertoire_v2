@@ -45,6 +45,8 @@ function LibraryShow({ piece }: PieceProps) {
       
       {notesToDisplay}
 
+      <h2>Last performance of {piece.title}</h2>
+
       <a href={piece.reference_recording} target="__blank" >Reference Recording</a>
     </>
   )
