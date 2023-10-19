@@ -7,6 +7,7 @@ interface UserState {
   emailAddress: string;
   organizationId: number | undefined;
   isAdmin: boolean | undefined;
+  id: number;
 }
 
 export interface UserResponse {
@@ -14,6 +15,7 @@ export interface UserResponse {
   email_address: string;
   organization_id: number | undefined;
   is_admin: boolean | undefined;
+  id: number;
 }
 
 const initialState: { currentUser: UserState | null } = {
@@ -31,6 +33,7 @@ export const userSlice = createSlice({
         emailAddress: action.payload.email_address,
         organizationId: action.payload.organization_id,
         isAdmin: action.payload.is_admin,
+        id: action.payload.id,
       };
     },
     signOut: (state) => {

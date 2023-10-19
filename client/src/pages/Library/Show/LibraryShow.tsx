@@ -5,7 +5,7 @@ import { useMemo } from "react";
 import { Piece } from "../../../redux/organizationSlice";
 import { getDifficultyString } from "../../../utils/getDifficultyString";
 
-// composer, difficulty, genre, id, # of players, orgId, reference Recording, title
+// composer, difficulty, genre, id, # of players, orgId, reference Recording, title, notes
 
 // Local Typings
 interface PieceProps{

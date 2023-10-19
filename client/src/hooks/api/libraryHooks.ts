@@ -1,7 +1,7 @@
 // External Dependencies
 
 // Internal Dependencies
-import { ConcertResponse } from "../../redux/organizationSlice";
+import { Piece } from "../../redux/organizationSlice";
 
 type PieceData = {
   composer: string;
@@ -15,7 +15,7 @@ type PieceData = {
 
 export const addNewPieceApi = async (
   newPieceData: PieceData
-): Promise<ConcertResponse> => {
+): Promise<Piece> => {
   const res = await fetch("/api/pieces", {
     method: "POST",
     body: JSON.stringify(newPieceData),

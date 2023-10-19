@@ -14,7 +14,6 @@ class UsersController < ApplicationController
   end
 
   def fetch_profile
-    # byebug
     user = User.find(session[:user_id])
     render json: user, status: :ok
   end
