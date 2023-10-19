@@ -61,10 +61,8 @@ const orgId = useMemo((): number | undefined=>{
           { setSubmitting }: FormikHelpers<Values>
         ) => {
           setTimeout(() => {
-            console.log("Values before fetch:", values)
             addNewPieceApi(values)
             .then(res=>{
-              console.log("RES: ", res)
               dispatch(addPieceToLibrary(res))
             });
             handleClose();
