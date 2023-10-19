@@ -82,6 +82,8 @@ export interface Piece {
 export interface Note {
   note: string;
   id: number;
+  user_id: number;
+  piece_id: number;
 }
 
 const initialState: {
