@@ -1,8 +1,4 @@
 export const getDifficultyString = (difficulty: number): string | null => {
-  if (difficulty > 5 || difficulty < 1) {
-    return null;
-  }
-
   switch (difficulty) {
     case 1:
       return "Easy";
@@ -14,6 +10,7 @@ export const getDifficultyString = (difficulty: number): string | null => {
       return "Med-Advanced";
     case 5:
       return "Advanced";
+    default:
+      return "";
   }
-  return null;
 };
