@@ -1,6 +1,6 @@
 // External Dependencies
 import Box from '@mui/material/Box';
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid, GridCallbackDetails, GridRowParams } from '@mui/x-data-grid';
 
 // Internal Dependencies
 import { useAppSelector } from '../../redux/hooks';
@@ -10,6 +10,8 @@ import { useIsOpen } from '../../hooks/useIsOpen';
 import { useColumns } from './hooks';
 import { Button, Collapse } from '@mui/material';
 import AddNewPieceForm from './AddNewPieceForm';
+import { useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 function Library() {
@@ -17,13 +19,17 @@ function Library() {
   const { library } = useAppSelector(state=>state.organization);
   
   const columns = useColumns();
+  const navigate = useNavigate();
 
   const { 
     isOpen: isAddPieceOpen, 
     handleOpen: handleOpenAddPiece, 
     handleClose: handleCloseAddPiece, 
-    // toggleOpen: toggleOpenAddPiece 
   } = useIsOpen();
+
+  const handleClickRow = useCallback((params: GridRowParams)=>{
+    navigate(`/library/${params.id}`)
+  }, []);
 
   return (
     <div id='library-page'>
@@ -43,11 +49,18 @@ function Library() {
           <DataGrid
             rows={library}
             columns={columns}
+            onRowClick={handleClickRow}
             initialState={{
               pagination: {
                 paginationModel: {
                   pageSize: 10,
                 },
+              },
+            }}
+            sx={{
+              '& .MuiDataGrid-row:hover': {
+                color: 'primary.main',
+                cursor: 'pointer',
               },
             }}
             pageSizeOptions={[10]}

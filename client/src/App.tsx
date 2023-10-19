@@ -7,10 +7,6 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import { useFetchExternalLibrary } from './hooks/api/useFetchExternalLibrary';
 import { hydrateEnsembles, hydrateSolos } from './redux/fetchedLibrarySlice';
 import { signIn} from './redux/userSlice';
-
-// Local Dependencies
-import './App.css'
-// import Dashboard from './pages/Dashboard';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Welcome from './pages/Welcome';
@@ -24,6 +20,10 @@ import Concerts from './pages/Concerts';
 import NewConcertForm from './pages/Concerts/Add/NewConcertForm';
 import ConcertShow from './pages/Concerts/Show';
 import Library from './pages/Library';
+import LibraryShow from './pages/Library/Show/LibraryShow';
+
+// Local Dependencies
+import './App.css'
 
 
 function App() {
@@ -87,6 +87,7 @@ function App() {
           <Route path='concerts/new' element={<NewConcertForm />} />
           <Route path='concerts/:id' element={<ConcertShow />} />
           <Route path='library' element={<Library />} />
+          <Route path='library/:id' element={<LibraryShow />} />
         </Route>
       </Routes>
     </>
