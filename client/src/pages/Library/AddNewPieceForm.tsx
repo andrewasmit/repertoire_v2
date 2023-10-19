@@ -6,6 +6,7 @@ import { Formik, Field, Form, FormikHelpers } from 'formik';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { useGetDifficultyOptions, useGetNumberOfPlayerOptions } from './hooks';
 import { addNewPieceApi } from '../../hooks/api/libraryHooks';
+import { addPieceToLibrary } from '../../redux/organizationSlice';
 
 // Local Dependencies
 
@@ -64,7 +65,7 @@ const orgId = useMemo((): number | undefined=>{
             addNewPieceApi(values)
             .then(res=>{
               console.log("RES: ", res)
-            //   // dispatch(addNewEns(res))
+              dispatch(addPieceToLibrary(res))
             });
             handleClose();
             setSubmitting(false);

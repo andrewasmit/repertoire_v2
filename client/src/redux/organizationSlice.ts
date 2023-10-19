@@ -67,7 +67,7 @@ interface User {
   isAdmin: boolean;
 }
 
-interface Piece {
+export interface Piece {
   id: number;
   title: string;
   composer: string;
@@ -75,6 +75,7 @@ interface Piece {
   genre: string;
   difficulty: number;
   reference_recording: string;
+  organization_id?: number;
 }
 
 const initialState: {
@@ -199,6 +200,10 @@ export const organizationSlice = createSlice({
         (concert) => concert.concert_id === action.payload[0]
       );
 
+      console.log(
+        `REDUX: Deleting performance from ${targetConcert[0].title}.`
+      );
+
       const newConcertProgram = targetConcert[0].program.filter(
         (perf: PerformedPiece) => perf.performance_id !== action.payload[1]
       );
@@ -216,6 +221,10 @@ export const organizationSlice = createSlice({
         (piece) => piece.id === action.payload.piece_id
       )[0].title;
 
+      console.log(
+        `REDUX: Adding ${targetEnsembleName}'s performance of ${targetPieceName} to concert.`
+      );
+
       const newPerformance = {
         ensemble: targetEnsembleName,
         ensemble_id: action.payload.ensemble_id,
@@ -225,6 +234,11 @@ export const organizationSlice = createSlice({
       };
       newState[targetConcertIdx].program.push(newPerformance);
       state.concertPrograms = newState;
+    },
+    addPieceToLibrary: (state, action: PayloadAction<Piece>) => {
+      console.log(`REDUX: Adding ${action.payload.title} to library`);
+
+      state.library?.push(action.payload);
     },
   },
 });
@@ -243,6 +257,7 @@ export const {
   deleteConcert,
   deletePerformance,
   addPerformance,
+  addPieceToLibrary,
 } = organizationSlice.actions;
 
 export const selectOrganization = (state: RootState) => state.organization;
