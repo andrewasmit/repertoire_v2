@@ -1,7 +1,7 @@
 // External Dependencies
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import { IconButton } from '@mui/material';
+import { Box, IconButton } from '@mui/material';
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -21,14 +21,16 @@ function RefRecordingBtn({ link, id }: Props) {
 
   if(link){
     return (
-      <a href={link} target="_blank">
-        <YouTubeIcon >Reference Recording</YouTubeIcon>
-      </a>
+      <Box sx={{ margin: 'auto' }} >
+        <a href={link} target="_blank">
+          <YouTubeIcon >Reference Recording</YouTubeIcon>
+        </a>
+      </Box>
     )
   }
 
   return (
-    <IconButton onClick={handleNavToAddReference} >
+    <IconButton onClick={handleNavToAddReference} sx={{ margin: 'auto' }} >
       <AddCircleIcon />
     </IconButton>
   )
