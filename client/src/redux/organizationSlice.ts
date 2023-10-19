@@ -76,6 +76,12 @@ export interface Piece {
   difficulty: number;
   reference_recording: string;
   organization_id?: number;
+  notes: Note[] | null;
+}
+
+export interface Note {
+  note: string;
+  id: number;
 }
 
 const initialState: {
