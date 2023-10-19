@@ -1,6 +1,6 @@
 // External Dependencies
 import Box from '@mui/material/Box';
-import { DataGrid, GridCallbackDetails, GridRowParams } from '@mui/x-data-grid';
+import { DataGrid, GridRowParams } from '@mui/x-data-grid';
 
 // Internal Dependencies
 import { useAppSelector } from '../../redux/hooks';
