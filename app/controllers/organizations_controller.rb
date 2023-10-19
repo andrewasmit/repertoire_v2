@@ -8,12 +8,13 @@ class OrganizationsController < ApplicationController
   end
 
   def show
-    render json: @org, status: :ok, include: [:ensembles, :users, :pieces]
+    render json: @org, status: :ok, include: [:ensembles, :users, pieces: { include: :notes }]
   end
 
   def update
     @org.update!(organization_params)
     render json: @org, status: :ok
+    
   end
 
   def destroy
