@@ -44,7 +44,9 @@ function MainContainer() {
     if(params.id !== undefined){
       return library?.filter(piece=>piece.id === parseInt(params.id))[0];
     }
-  }, [params, library])
+  }, [params, library]);
+
+  console.log("PIECE ", piece)
 
   return (
     <div className="main-container">
@@ -57,7 +59,7 @@ function MainContainer() {
         <Route path='concerts/new' element={<NewConcertForm />} />
         <Route path='concerts/:id' element={<ConcertShow id={concert?.concert_id} name={concert?.name} year={concert?.year} program={concert?.program} />} />
         <Route path='library' element={<Library />} />
-        <Route path='library/:id' element={<LibraryShow />} />
+        <Route path='library/:id' element={<LibraryShow piece={piece} />} />
       </Routes>
 
     </div>

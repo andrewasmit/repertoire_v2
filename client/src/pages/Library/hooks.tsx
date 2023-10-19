@@ -65,7 +65,7 @@ export const useGetDifficultyOptions = ()=>{
   const difficultyRange = [1,2,3,4,5];
 
   return difficultyRange.map(d=>{
-    return <option value={d}>
+    return <option value={d} key={d}>
             {getDifficultyString(d)}
           </option>
   })
@@ -75,7 +75,7 @@ export const useGetNumberOfPlayerOptions = ()=>{
   const numberOfPlayersRange = [1,2,3,4,5,6,7,8,9,10,11,"12+"];
 
   return numberOfPlayersRange.map(num=>{
-    return <option value={num}>
+    return <option value={num} key={num}>
             {num}
           </option>
   })
