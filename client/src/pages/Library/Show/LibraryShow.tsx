@@ -1,6 +1,6 @@
 // External Dependencies 
-import { useMemo } from "react";
-import { Button, Collapse } from "@mui/material";
+import { useCallback, useMemo } from "react";
+import { Box, Button, Collapse, Typography } from "@mui/material";
 
 // Internal Dependencies
 import { Piece } from "../../../redux/organizationSlice";
@@ -12,6 +12,8 @@ import { useIsOpen } from "../../../hooks/useIsOpen";
 // Local Dependencies
 import NoteCard from "./NoteCard";
 import PerformanceCard from "./PerformanceCard";
+import AddNewNoteForm from "./NewNoteForm";
+import YoutubeEmbed from "../../../components/YoutubeVideo/YoutubeVideo";
 
 // Local Typings
 interface PieceProps{
@@ -21,20 +23,37 @@ interface PieceProps{
 // Component Definition
 function LibraryShow({ piece }: PieceProps) {
 
-  const { ensembles, concertPrograms } = useAppSelector(state=>state.organization);
+  const { concertPrograms } = useAppSelector(state=>state.organization);
+  const { currentUser } = useAppSelector(state=>state.user);
   const { isOpen: isPerformancesOpen, toggleIsOpen: togglePerformances} = useIsOpen();
+  const { 
+    isOpen: isNewNoteOpen, 
+    handleClose: handleCloseNewNote, 
+    handleOpen: handleOpenNewNote, 
+    toggleIsOpen: toggleNewNote
+  } = useIsOpen();
 
   const difficulty = useMemo(()=>{
     return getDifficultyString(piece.difficulty);
   }, [piece]);
 
-  const notesToDisplay = piece.notes?.map(note=>{
-    return <NoteCard id={note.id} key={note.id} piece_id={note.piece_id} user_id={note.user_id} note={note.note} />
-  });
+  const notesToDisplay = useMemo(()=>{
+    if(piece.notes){
+      return piece?.notes.map(note=>{
+        return <NoteCard 
+                  id={note.id} 
+                  key={note.id} 
+                  piece_id={note.piece_id} 
+                  user_id={note.user_id} 
+                  note={note.note} 
+                />
+      })
+    } else return [];
+  },[piece]);
+
 
   const performancesToDisplay = useMemo(()=>{
     const allPerformances = findPerformances(piece, concertPrograms)
-
     return allPerformances.map(perf=>{
       return <PerformanceCard 
                 concertId={perf.concertId} 
@@ -45,42 +64,61 @@ function LibraryShow({ piece }: PieceProps) {
     })
   },[concertPrograms, piece]);
 
-
-  // const performanceToDisplay = useMemo(()=>{
-  //   return performances
-  // }, [performances]);
+  
 
   return (
     <>
-      <div>This page will show info about a specific piece</div>
-      <h1>{piece.title}</h1>
-      <h3>{piece.composer}</h3>
-
-      <h3>{piece.genre}</h3>
-
-      <h4>Difficulty: {difficulty}</h4>
-      <h4>Number of Players: {piece.number_of_players}</h4>
+      <Typography variant="h1" >{piece.title}</Typography>
+      <Typography variant="h3" >{piece.composer}</Typography>
+      <Typography variant="h5" >Genre: {piece.genre}</Typography>
+      <Typography variant="h5" >Difficulty: {difficulty}</Typography>
+      <Typography variant="h5" >Number of Players: {piece.number_of_players}</Typography>
       
-      {notesToDisplay.length > 0 && 
-        <div>
-          <h2>Notes about {piece.title}</h2>
+      {notesToDisplay.length > 0 ? 
+        <Box component={'div'}>
+          <Typography variant="h4" >Notes about {piece.title}</Typography>
           {notesToDisplay}
-        </div>
+        </Box> : 
+        <Box component={'div'} sx={{ marginTop: 4 }}>
+          <Typography variant="h5" >There are currently no notes about {piece.title}</Typography>
+        </Box>
       }
 
-      <h2>Last performance of {piece.title}</h2>
-      { performancesToDisplay[0] }
+      <Button onClick={toggleNewNote}>
+        {isNewNoteOpen ? "Discard New Note" : "Add New Note" }
+      </Button>
+
+      {isNewNoteOpen &&
+        <AddNewNoteForm 
+          handleClose={handleCloseNewNote} 
+          pieceId={piece.id} 
+          userID={currentUser?.id}
+        />
+      }
+
+      {performancesToDisplay.length === 0 && 
+        <Typography variant="h4" >{piece.title} has not been performed yet</Typography> 
+      }
 
       {performancesToDisplay.length > 1 && 
-        <div>
+        <Box>
+          <Box component={'div'} sx={{ marginTop: 4 }}>
+            <Typography variant="h6" >Most recent performance of {piece.title}:</Typography>
+            { performancesToDisplay[0] }
+          </Box>
+          
+          
           <Button onClick={togglePerformances}>
-            { isPerformancesOpen ? 'Hide Performances' : "Show All Performances" }
+            { isPerformancesOpen ? 'Hide Performances' : "Show More Performances" }
           </Button>
+
           <Collapse in={isPerformancesOpen}>
-            {performancesToDisplay}
+            {performancesToDisplay.slice(1)}
           </Collapse>
-        </div>
+        </Box>
       }
+
+      <YoutubeEmbed url={'https://www.youtube.com/embed/zN_wLoILpu8?si=pZv-0N5-drEnEdaV'}/>
 
       <a href={piece.reference_recording} target="__blank" >Reference Recording</a>
     </>
@@ -88,3 +126,6 @@ function LibraryShow({ piece }: PieceProps) {
 }
 
 export default LibraryShow;
+
+
+{/* <iframe width="560" height="315" src="https://www.youtube.com/embed/zN_wLoILpu8?si=pZv-0N5-drEnEdaV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> */}
