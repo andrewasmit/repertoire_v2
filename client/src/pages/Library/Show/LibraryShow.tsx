@@ -100,16 +100,18 @@ function LibraryShow({ piece }: PieceProps) {
         <Typography variant="h4" >{piece.title} has not been performed yet</Typography> 
       }
 
+      {performancesToDisplay.length > 0 &&
+        <Box component={'div'} >
+          <Typography variant="h6" >Most recent performance of {piece.title}:</Typography>
+          { performancesToDisplay[0] }
+        </Box>
+      }
+
       {performancesToDisplay.length > 1 && 
         <Box>
           <Button onClick={togglePerformances}>
             { isPerformancesOpen ? 'Hide Performances' : "Show More Performances" }
           </Button>
-
-          <Box component={'div'} >
-            <Typography variant="h6" >Most recent performance of {piece.title}:</Typography>
-            { performancesToDisplay[0] }
-          </Box>
           
           <Collapse in={isPerformancesOpen}>
             {performancesToDisplay.slice(1)}
