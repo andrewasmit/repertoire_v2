@@ -1,17 +1,11 @@
 // External Dependencies
-import { useMemo } from 'react';
 import { Formik, Field, Form, FormikHelpers } from 'formik';
 
 // Internal Dependencies
-import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
-import { useGetDifficultyOptions, useGetNumberOfPlayerOptions } from './hooks';
-import { addNewPieceApi } from '../../hooks/api/libraryHooks';
-import { addPieceToLibrary } from '../../redux/organizationSlice';
-import { Button, TextField } from '@mui/material';
+import { useAppDispatch } from '../../../redux/hooks';
+import { Button } from '@mui/material';
 import { addNewNoteApi } from '../../../hooks/api/noteHooks';
 import { addNoteToPiece } from '../../../redux/organizationSlice';
-
-// Local Dependencies
 
 // Local Items
 interface NewPieceParams{
@@ -35,8 +29,6 @@ const dispatch = useAppDispatch();
 
   return (
     <div>
-      <h1>THIS IS WHERE YOU CAN ADD A NEW NOTE ABOUT A PIECE</h1>
-
       <Formik
         initialValues={{
           note: "",
@@ -48,10 +40,8 @@ const dispatch = useAppDispatch();
           { setSubmitting }: FormikHelpers<Values>
         ) => {
           setTimeout(() => {
-            console.log("VALUES BEFORE FETCH: ", values)
             addNewNoteApi(values)
             .then(res=>{
-              console.log("RES:", res);
               dispatch(addNoteToPiece(res));
             });
             handleClose();
