@@ -255,7 +255,20 @@ export const organizationSlice = createSlice({
         (piece) => piece.id === action.payload.piece_id
       )[0];
       targetPiece.notes.push(action.payload);
-      // state.library?.push(action.payload);
+    },
+    deleteNote: (state, action: PayloadAction<any>) => {
+      // Action.payload is an array [ pieceId, noteId]
+      console.log(`REDUX: Deleting NOTE`);
+      const oldState = [...state.library];
+      const targetPieceIdx = oldState.findIndex(
+        (piece) => piece.id === action.payload[0]
+      );
+      const updatedNotes = oldState[targetPieceIdx].notes.filter(
+        (note: Note) => note.id !== action.payload[1]
+      );
+
+      oldState[targetPieceIdx].notes = updatedNotes;
+      state.library = oldState;
     },
   },
 });
@@ -276,6 +289,7 @@ export const {
   addPerformance,
   addPieceToLibrary,
   addNoteToPiece,
+  deleteNote,
 } = organizationSlice.actions;
 
 export const selectOrganization = (state: RootState) => state.organization;

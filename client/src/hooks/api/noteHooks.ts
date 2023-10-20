@@ -25,19 +25,17 @@ export const addNewNoteApi = async (newNoteData: NoteData): Promise<Note> => {
   } else throw new Error(data.message);
 };
 
-// export const destroyConcert = async (
-//   concertId: number | string
-// ): Promise<any> => {
-//   const res = await fetch(`/api/concerts/${concertId}`, {
-//     method: "DELETE",
-//   });
+export const destroyNote = async (noteId: number | string): Promise<any> => {
+  const res = await fetch(`/api/notes/${noteId}`, {
+    method: "DELETE",
+  });
 
-//   const data = await res.json();
+  const data = await res.json();
 
-//   if (res.status === 204) {
-//     console.log("Concert successfully deleted");
-//   } else throw new Error(data.message);
-// };
+  if (res.status === 204) {
+    console.log("Note successfully deleted");
+  } else throw new Error(data.message);
+};
 
 // export const editConcert = async (
 //   updatedConcertData: ConcertData

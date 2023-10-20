@@ -23,9 +23,7 @@ type Values={
 // Component Definition
 const AddNewNoteForm = ({ handleClose, pieceId, userID }:NewPieceParams) => {
 
-// const { organization } = useAppSelector((state) => state.organization);
 const dispatch = useAppDispatch();
-
 
   return (
     <div>
