@@ -11,7 +11,6 @@ const YoutubeEmbed = ({ url }:YoutubeParams) => (
         height="480"
         // src={`https://www.youtube.com/embed/${url}`}
         src={url}
-        // frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
         title="Embedded youtube"

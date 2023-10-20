@@ -2,11 +2,9 @@
 
 //Internal Dependencies
 
-//Local Dependencies
 import MainContainer from "../../components/MainContainer"
 import NavBar from "../../components/shared/NavBar"
 import SideBar from "../../components/shared/SideBar"
-// import './navigation.css'
 
 function Home() {
 

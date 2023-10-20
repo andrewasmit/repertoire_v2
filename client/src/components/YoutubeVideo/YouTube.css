@@ -8,8 +8,7 @@
 .video-responsive iframe {
   left: 0;
   top: 0;
+  width: 500px;
   height: 300px;
-  width: 450px;
   position: relative;
-  /* margin: auto; */
 }
