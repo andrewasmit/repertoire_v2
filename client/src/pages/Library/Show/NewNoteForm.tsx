@@ -8,6 +8,8 @@ import { useGetDifficultyOptions, useGetNumberOfPlayerOptions } from './hooks';
 import { addNewPieceApi } from '../../hooks/api/libraryHooks';
 import { addPieceToLibrary } from '../../redux/organizationSlice';
 import { Button, TextField } from '@mui/material';
+import { addNewNoteApi } from '../../../hooks/api/noteHooks';
+import { addNoteToPiece } from '../../../redux/organizationSlice';
 
 // Local Dependencies
 
@@ -47,10 +49,11 @@ const dispatch = useAppDispatch();
         ) => {
           setTimeout(() => {
             console.log("VALUES BEFORE FETCH: ", values)
-            // addNewPieceApi(values)
-            // .then(res=>{
-            //   dispatch(addPieceToLibrary(res))
-            // });
+            addNewNoteApi(values)
+            .then(res=>{
+              console.log("RES:", res);
+              dispatch(addNoteToPiece(res));
+            });
             handleClose();
             setSubmitting(false);
           }, 500);

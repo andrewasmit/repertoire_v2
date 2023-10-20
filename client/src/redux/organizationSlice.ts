@@ -248,6 +248,15 @@ export const organizationSlice = createSlice({
 
       state.library?.push(action.payload);
     },
+    addNoteToPiece: (state, action: PayloadAction<Note>) => {
+      console.log(`REDUX: Adding NOTE to PIECE`);
+
+      const targetPiece = [...state.library].filter(
+        (piece) => piece.id === action.payload.piece_id
+      )[0];
+      targetPiece.notes.push(action.payload);
+      // state.library?.push(action.payload);
+    },
   },
 });
 
@@ -266,6 +275,7 @@ export const {
   deletePerformance,
   addPerformance,
   addPieceToLibrary,
+  addNoteToPiece,
 } = organizationSlice.actions;
 
 export const selectOrganization = (state: RootState) => state.organization;
