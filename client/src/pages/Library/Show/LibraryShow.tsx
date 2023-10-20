@@ -1,14 +1,17 @@
 // External Dependencies 
+import { useMemo } from "react";
+import { Button, Collapse } from "@mui/material";
 
 // Internal Dependencies
-import { useMemo } from "react";
 import { Piece } from "../../../redux/organizationSlice";
 import { getDifficultyString } from "../../../utils/getDifficultyString";
-import NoteCard from "./NoteCard";
 import { useAppSelector } from "../../../redux/hooks";
 import { findPerformances } from "../../../utils/findPerformances";
+import { useIsOpen } from "../../../hooks/useIsOpen";
 
-// composer, difficulty, genre, id, # of players, orgId, reference Recording, title, notes
+// Local Dependencies
+import NoteCard from "./NoteCard";
+import PerformanceCard from "./PerformanceCard";
 
 // Local Typings
 interface PieceProps{
@@ -19,6 +22,7 @@ interface PieceProps{
 function LibraryShow({ piece }: PieceProps) {
 
   const { ensembles, concertPrograms } = useAppSelector(state=>state.organization);
+  const { isOpen: isPerformancesOpen, toggleIsOpen: togglePerformances} = useIsOpen();
 
   const difficulty = useMemo(()=>{
     return getDifficultyString(piece.difficulty);
@@ -28,9 +32,23 @@ function LibraryShow({ piece }: PieceProps) {
     return <NoteCard id={note.id} key={note.id} piece_id={note.piece_id} user_id={note.user_id} note={note.note} />
   });
 
-  const performances = useMemo(()=>{
-    return findPerformances(piece, concertPrograms)
-  },[ensembles, concertPrograms, piece]);
+  const performancesToDisplay = useMemo(()=>{
+    const allPerformances = findPerformances(piece, concertPrograms)
+
+    return allPerformances.map(perf=>{
+      return <PerformanceCard 
+                concertId={perf.concertId} 
+                name={perf.name} 
+                performance={perf.performance}
+                year={perf.year}
+             />
+    })
+  },[concertPrograms, piece]);
+
+
+  // const performanceToDisplay = useMemo(()=>{
+  //   return performances
+  // }, [performances]);
 
   return (
     <>
@@ -43,9 +61,26 @@ function LibraryShow({ piece }: PieceProps) {
       <h4>Difficulty: {difficulty}</h4>
       <h4>Number of Players: {piece.number_of_players}</h4>
       
-      {notesToDisplay}
+      {notesToDisplay.length > 0 && 
+        <div>
+          <h2>Notes about {piece.title}</h2>
+          {notesToDisplay}
+        </div>
+      }
 
       <h2>Last performance of {piece.title}</h2>
+      { performancesToDisplay[0] }
+
+      {performancesToDisplay.length > 1 && 
+        <div>
+          <Button onClick={togglePerformances}>
+            { isPerformancesOpen ? 'Hide Performances' : "Show All Performances" }
+          </Button>
+          <Collapse in={isPerformancesOpen}>
+            {performancesToDisplay}
+          </Collapse>
+        </div>
+      }
 
       <a href={piece.reference_recording} target="__blank" >Reference Recording</a>
     </>
