@@ -46,8 +46,6 @@ function MainContainer() {
     }
   }, [params, library]);
 
-  console.log("PIECE ", piece)
-
   return (
     <div className="main-container">
       <Routes>
