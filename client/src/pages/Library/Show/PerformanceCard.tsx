@@ -29,9 +29,20 @@ function PerformanceCard({ concertId, name, performance, year }: PerformancePara
   const handleNavToConcert = useCallback(()=>{
     navigate(`/concerts/${concertId}`);
   },[concertId])
+
+  const cardStyles = {
+    backgroundColor: '#f4f4f4',
+    ':hover':{ 
+      color: '#333', 
+      backgroundColor: '#cef987', 
+      opacity:0.98,
+      boxShadow: 1,
+      cursor: 'pointer'
+    },
+  }
   
   return (
-    <Box component={'div'} onClick={handleNavToConcert} >
+    <Box component={'div'} onClick={handleNavToConcert} sx={cardStyles}>
       <h2>Performed by {performance.ensemble}</h2>
       <h3>{name} {year}</h3>
     </Box>

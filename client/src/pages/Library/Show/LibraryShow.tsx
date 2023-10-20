@@ -102,23 +102,22 @@ function LibraryShow({ piece }: PieceProps) {
 
       {performancesToDisplay.length > 1 && 
         <Box>
-          <Box component={'div'} sx={{ marginTop: 4 }}>
-            <Typography variant="h6" >Most recent performance of {piece.title}:</Typography>
-            { performancesToDisplay[0] }
-          </Box>
-          
-          
           <Button onClick={togglePerformances}>
             { isPerformancesOpen ? 'Hide Performances' : "Show More Performances" }
           </Button>
 
+          <Box component={'div'} >
+            <Typography variant="h6" >Most recent performance of {piece.title}:</Typography>
+            { performancesToDisplay[0] }
+          </Box>
+          
           <Collapse in={isPerformancesOpen}>
             {performancesToDisplay.slice(1)}
           </Collapse>
         </Box>
       }
 
-      <YoutubeEmbed url={'https://www.youtube.com/embed/zN_wLoILpu8?si=pZv-0N5-drEnEdaV'}/>
+      {/* <YoutubeEmbed url={piece.reference_recording}/> */}
 
       <a href={piece.reference_recording} target="__blank" >Reference Recording</a>
     </>
