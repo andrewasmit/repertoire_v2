@@ -172,7 +172,7 @@ export const organizationSlice = createSlice({
       state.concertPrograms?.push(newConcert);
     },
     updateConcert: (state, action: PayloadAction<ConcertResponse>) => {
-      console.log(`REDUX: UPDATING ENSEMBLE with ID:${action.payload.id}`);
+      console.log(`REDUX: UPDATING CONCERT with ID:${action.payload.id}`);
 
       const oldState = [...state.concertPrograms];
       const idx = oldState.findIndex(
