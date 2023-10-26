@@ -5,7 +5,8 @@
   margin-top: 70px;
   height: auto;
   padding: 15px 30px;
-  /* width: 91.5%; */
+  width: 91.5%;
+  /* width: 88vw; */
   /* height: 91vh; */
   overflow: scroll;
 }
