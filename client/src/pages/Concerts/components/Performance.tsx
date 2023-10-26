@@ -68,7 +68,7 @@ function Performance({ performance_id, piece, piece_id, ensemble, ensemble_id }:
           borderBottom: 'none'
         },
         maxWidth: 500, 
-        '&:nth-of-type(2)':{
+        '&:nth-of-type(2n)':{
           backgroundColor: '#fff'
         },
         padding: 1
