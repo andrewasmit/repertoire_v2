@@ -6,6 +6,7 @@
 
 .navbar {
   background: #333;
+  opacity: 0.98;
   color: #fff;
   position: fixed;
   width: 100%;
