@@ -1,11 +1,13 @@
 .main-container {
-  border: solid cyan 3px;
+  border: solid cyan 1px;
   position: fixed;
-  margin-left: 150px;
+  /* margin-left: 150px; */
   margin-top: 70px;
-  height: auto;
+  /* height: auto; */
+  height: 100vh;
   padding: 15px 30px;
-  width: 91.5%;
+  /* width: 91.5%; */
+  width: 100%;
   /* width: 88vw; */
   /* height: 91vh; */
   overflow: scroll;

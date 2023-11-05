@@ -28,6 +28,22 @@ function NavBar() {
     navigate('/home');
   }, []);
 
+  const handleNavToEnsembles = useCallback((): void=>{
+    navigate('/ensembles');
+  }, []);
+
+  const handleNavToConcerts = useCallback((): void=>{
+    navigate('/concerts');
+  }, []);
+
+  const handleNavToLibrary = useCallback((): void=>{
+    navigate('/library');
+  }, []);
+
+  const handleNavToBrowse = useCallback((): void=>{
+    navigate('/browse');
+  }, []);
+
   return (
     <div className="navbar">
       <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
@@ -35,16 +51,19 @@ function NavBar() {
       </a>
       <ul>
         <li>
-          <button >Home</button>
-        </li>
-        <li>
           <button onClick={handleNavToDash} >Dashboard</button>
         </li>
         <li>
-          <button  >Find New Music</button>
+          <button onClick={handleNavToEnsembles} >Ensembles</button>
         </li>
         <li>
-          <button  >My Account</button>
+          <button onClick={handleNavToConcerts} >Concerts</button>
+        </li>
+        <li>
+          <button onClick={handleNavToLibrary} >Library</button>
+        </li>
+        <li>
+          <button onClick={handleNavToBrowse} >Find New Music</button>
         </li>
       </ul>
       <button className="logout-btn" onClick={handleSignOutClick}>Sign Out</button>

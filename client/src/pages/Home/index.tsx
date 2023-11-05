@@ -11,7 +11,7 @@ function Home() {
   return (
     <div>
       <NavBar />
-      <SideBar />
+      {/* <SideBar /> */}
       <MainContainer />
     </div>
   )
