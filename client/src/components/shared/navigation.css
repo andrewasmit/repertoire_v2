@@ -15,7 +15,7 @@
   align-items: center;
   justify-content: space-between;
 }
-
+/* 
 .navbar li {
   list-style: none;
   display: inline-block;
@@ -58,7 +58,7 @@
 }
 
 .side-navbar {
-  /* border: solid red 2px; */
+  border: solid red 2px;
   position: fixed;
   width: 150px;
   height: 100%;
@@ -86,4 +86,4 @@
 .nav-btn:active {
   background-color: #ffa320;
   color: #fff;
-}
+} */
