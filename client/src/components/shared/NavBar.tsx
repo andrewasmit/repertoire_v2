@@ -1,28 +1,16 @@
 // External Depencies
-import { useCallback, 
-  // useEffect 
-} from "react";
-import { useNavigate } from "react-router-dom";
+import { useCallback } from "react";
+import { useNavigate } from 'react-router-dom';
 
-// Internal Depencies
-import { userSignOut } from "../../hooks/userSignOut";
-import { useAppDispatch } from "../../redux/hooks";
-import { signOut } from "../../redux/userSlice";
+// Local Dependencies
+import MyAccountBtn from "./MyAccountBtn";
 import './navigation.css'
 import logo from '/logo-no-background.svg'
-
 
 
 function NavBar() {
 
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-
-  const handleSignOutClick = useCallback(():void=>{
-    userSignOut();
-    dispatch(signOut());
-    navigate('/signin');
-  }, [])
 
   const handleNavToDash = useCallback((): void=>{
     navigate('/home');
@@ -66,7 +54,7 @@ function NavBar() {
           <button onClick={handleNavToBrowse} >Find New Music</button>
         </li>
       </ul>
-      <button className="logout-btn" onClick={handleSignOutClick}>Sign Out</button>
+      <MyAccountBtn />
     </div>
   )
 }
