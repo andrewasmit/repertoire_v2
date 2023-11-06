@@ -1,6 +1,6 @@
 // External Depencies
 import { useEffect, useMemo } from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 
 // Internal Depencies
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
@@ -17,6 +17,7 @@ import Loading from "../components/shared/Loading";
 function Dashboard() {
 
   const dispatch = useAppDispatch();
+  const theme = useTheme();
   const { currentUser } = useAppSelector(state=>state.user);
   const { organization, ensembles, concertPrograms, users, library } = useAppSelector(state=>state.organization);
 
@@ -57,19 +58,21 @@ function Dashboard() {
 
   return (
     <div>
-      <Box
-        component="img"
-        className="logo"
-        sx={{
-          height: 'auto',
-          width: 250,
-          marginTop: 8,
-          padding: 2,
-          boxSizing: 'border-box'
-        }}
-        alt="Main Logo"
-        src={logo}
-      />
+      <Box sx={{ background: theme.palette.secondary.main }} >
+        <Box
+          component="img"
+          className="logo"
+          sx={{
+            height: 'auto',
+            width: 250,
+            margin: 3,
+            padding: 2,
+            boxSizing: 'border-box',
+          }}
+          alt="Main Logo"
+          src={logo}
+        />
+      </Box>
 
       <Typography variant="h1">Repertoire</Typography>
 
