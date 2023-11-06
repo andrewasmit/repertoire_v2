@@ -1,15 +1,3 @@
-/* @font-face {
-  font-family: "Alegreya";
-  font-weight: bold;
-  src: url("./assets/fonts/Alegreya\ Sans\ SC\ Regular.ttf") format("ttf");
-}
-
-@font-face {
-  font-family: "Armata";
-  font-weight: bold;
-  src: url("assets/fonts/Armata\ Regular.ttf") format("ttf");
-} */
-
 #root {
   margin: 0;
   padding: 0;
