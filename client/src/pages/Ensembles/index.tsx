@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 // Internal Depencies
 import EnsembleCard from "./components/EnsembleCard";
 import { useAppSelector } from "../../redux/hooks";
-import { Button, useTheme } from "@mui/material";
+import { Box, Button, Typography, useTheme } from "@mui/material";
 // import { useAppDispatch } from "../../redux/hooks";
 
 // Local Depencies
@@ -32,6 +32,7 @@ function Ensembles() {
   }, []);
 
   const btnStyles = {
+    marginTop: 3,
     ':hover':{
       color: theme.palette.secondary.main,
       bgcolor: theme.palette.primary.main
@@ -40,15 +41,17 @@ function Ensembles() {
 
 
   return (
-    <div className="ens-page">
-      <h1 id="ens-name">{organization?.name}</h1>
+    <Box className="ens-page" sx={{ background: '#fff' }}>
+      <Typography variant="h3" sx={{ marginTop: 0, padding: 1 }}>{organization?.name}</Typography>
 
-      <h2>Here are the ensembles currently in your organization</h2>
+      <Typography variant="h5">
+        Here are the ensembles currently in your organization
+      </Typography>
 
       <Button 
         onClick={handleAddEnsClick} 
-        variant="outlined" 
-        color="primary" 
+        variant="contained" 
+        color="secondary" 
         sx={btnStyles}
       >
         Add New Ensemble
@@ -57,7 +60,7 @@ function Ensembles() {
       <div id="ens-card-container">
         {ensembleCards}
       </div>
-    </div>
+    </Box>
   );
 }
 

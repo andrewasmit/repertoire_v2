@@ -49,7 +49,7 @@ function MainContainer() {
   }, [params, library]);
 
   return (
-    <Box className="main-container" sx={{ background: theme.palette.secondary.main }} >
+    <Box className="main-container">
       <Routes>
         <Route path='home' element={<Dashboard />} />
         <Route path='ensembles' element={<Ensembles />} />
