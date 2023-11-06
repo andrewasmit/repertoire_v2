@@ -64,9 +64,16 @@ function NavBar() {
 
   return (
     <div className="navbar">
-      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
-        <img src={logo} className="logo" alt="Main logo" />
-      </a>
+      <Box
+        component="img"
+        className="logo"
+        sx={{
+          height: 'auto',
+          width: 150,
+        }}
+        alt="Main Logo"
+        src={logo}
+      />
     
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs 
