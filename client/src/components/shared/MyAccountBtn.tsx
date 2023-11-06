@@ -1,14 +1,8 @@
 // External Dependencies
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { useNavigate } from 'react-router-dom';
-
-// Internal Dependencies
-import { useAppDispatch } from '../../redux/hooks';
-import { userSignOut } from '../../hooks/userSignOut';
-import { signOut } from '../../redux/userSlice';
 import { Divider } from '@mui/material';
 
 interface Props{
@@ -26,16 +20,6 @@ export default function MyAccountBtn({ handleOpen }: Props) {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  // const navigate = useNavigate();
-  // const dispatch = useAppDispatch();
-
-  // const handleSignOutClick = useCallback(():void=>{
-  //   userSignOut();
-  //   dispatch(signOut());
-  //   handleClose();
-  //   navigate('/signin');
-  // }, [])
 
   const styles = {
     marginTop: 2,  
@@ -62,6 +46,7 @@ export default function MyAccountBtn({ handleOpen }: Props) {
       >
         My Account
       </Button>
+
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}
@@ -72,8 +57,11 @@ export default function MyAccountBtn({ handleOpen }: Props) {
         }}
       >
         <MenuItem onClick={handleClose}>My Organization</MenuItem>
+        
         <MenuItem onClick={handleClose}>Account Settings</MenuItem>
+
         <Divider />
+        
         <MenuItem onClick={handleOpen}>Logout</MenuItem>
       </Menu>
     </div>
