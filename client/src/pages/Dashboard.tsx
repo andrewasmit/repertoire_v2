@@ -59,10 +59,11 @@ function Dashboard() {
     <div>
       <Box
         component="img"
+        className="logo"
         sx={{
           height: 'auto',
-          width: 300,
-          marginTop:2,
+          width: 250,
+          marginTop: 8,
           padding: 2,
           boxSizing: 'border-box'
         }}

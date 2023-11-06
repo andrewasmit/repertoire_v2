@@ -9,9 +9,7 @@ import {
 } from '@tanstack/react-query'
 import { ThemeProvider, createTheme } from '@mui/material';
 
-
 // Local Dependencies
-import './index.css'
 import App from './App.tsx'
 
 export const queryClient = new QueryClient({
@@ -43,6 +41,9 @@ const theme = createTheme({
     warning: {
       main: '#D7EA21'
     }
+  },
+  typography:{
+    fontFamily: 'Alegreya Sans SC Regular, Armata, Roboto'
   }
 });
 

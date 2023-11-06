@@ -32,7 +32,7 @@ function Ensembles() {
 
   return (
     <div className="ens-page">
-      <h1>{organization?.name}</h1>
+      <h1 id="ens-name">{organization?.name}</h1>
       <h2>Here are the ensembles currently in your organization</h2>
       <button onClick={handleAddEnsClick}>Add New Ensemble</button>
 

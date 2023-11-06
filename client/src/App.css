@@ -1,19 +1,30 @@
+/* @font-face {
+  font-family: "Alegreya";
+  font-weight: bold;
+  src: url("./assets/fonts/Alegreya\ Sans\ SC\ Regular.ttf") format("ttf");
+}
+
+@font-face {
+  font-family: "Armata";
+  font-weight: bold;
+  src: url("assets/fonts/Armata\ Regular.ttf") format("ttf");
+} */
+
 #root {
   margin: 0;
   padding: 0;
   text-align: center;
-  font-family: "Libre Caslon Display";
 }
 
 .logo {
   height: 6em;
   padding: 1.5em;
   will-change: filter;
-  transition: filter 300ms;
+  transition: filter 400ms;
 }
 
 .logo:hover {
-  filter: drop-shadow(0 0 1em #883d1a);
+  filter: drop-shadow(0 0 1em #d7ea21);
 }
 
 #loading-container {
