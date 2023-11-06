@@ -44,7 +44,14 @@ const EnsembleCard: FC<EnsembleCardProps> = ({
   };
 
   return (
-    <Grid item xs={12} md={6} lg={4} xl={3} sx={{ justifyContent: 'center', alignItems: 'center', display: 'flex' }}>
+    <Grid 
+      item xs={12} md={6} lg={4} xl={3} 
+      sx={{ 
+          justifyContent: 'center', 
+          alignItems: 'center', 
+          display: 'flex' 
+        }}
+      >
       <Box 
         component='div'
         className='ens-card' 

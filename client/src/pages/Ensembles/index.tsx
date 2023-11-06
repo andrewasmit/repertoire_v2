@@ -34,24 +34,28 @@ function Ensembles() {
 
   const btnStyles = {
     marginTop: 3,
+    border: `${theme.palette.info.main} 1px solid`,
     ':hover':{
       color: theme.palette.primary.main,
-      bgcolor: theme.palette.info.main
+      bgcolor: theme.palette.info.main,
+      border: `${theme.palette.secondary.main} 1px solid`,
     }
   };
 
   const gridStyles = {
-    backgroundImage: `url(${"../../../public/concert-hall.jpg"})`,
+    background: `url(${"../../../public/concert-hall.jpg"}) no-repeat center center/cover`,
+    opacity: 0.9,
     height: '100vh',
+    marginBottom: '70px'
   }
 
   return (
-    <Box className="ens-page" sx={{ background: '#fff' }}>
+    <Box className="ens-page" sx={gridStyles}>
       <Box 
-        className="ens-header" 
         sx={{ 
           background: theme.palette.primary.main, 
           color: theme.palette.secondary.main,
+          opacity:0.95,
           padding: 5,
           }} 
         >
@@ -79,7 +83,7 @@ function Ensembles() {
       <Grid 
         container 
         spacing={3} 
-        sx={gridStyles}
+        // sx={gridStyles}
       >
         {ensembleCards}
       </Grid>
