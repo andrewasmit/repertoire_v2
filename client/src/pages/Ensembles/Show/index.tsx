@@ -58,18 +58,6 @@ const EnsembleShow: FC<Ensemble> = ({
   const performancesToDisplay: JSX.Element[] | null = useMemo(()=>{
     if (ensPerformances){
       return ensPerformances.map(performance=>{
-        // const handleNavToConcertShow = ()=>{
-        //   navigate(`/concerts/${performance.concertId}`)
-        // }
-
-        // const handleNavToPieceShow = ()=>{
-        //   navigate(`/library/${performance.performance.piece_id}`)
-        // }
-
-        // return <div className="ens-performance" key={performance.name}>
-        //   <Typography variant="h5" onClick={handleNavToPieceShow}>"{performance.performance.piece}"</Typography>
-        //   <Typography variant="body1" onClick={handleNavToConcertShow}>{performance.name} -{performance.year}</Typography>
-        // </div>
         return <Performance 
                   name={performance.name}
                   concertId={performance.concertId}
