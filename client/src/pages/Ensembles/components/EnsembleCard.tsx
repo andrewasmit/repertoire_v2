@@ -36,6 +36,7 @@ const EnsembleCard: FC<EnsembleCardProps> = ({
       bgcolor: theme.palette.info.main,
       border: `${theme.palette.primary.main} 1px solid`,
       cursor: 'pointer',
+      opacity: 0.95
     },
     ':active':{
       cursor: 'grab',
@@ -49,7 +50,8 @@ const EnsembleCard: FC<EnsembleCardProps> = ({
       sx={{ 
           justifyContent: 'center', 
           alignItems: 'center', 
-          display: 'flex' 
+          display: 'flex',
+          opacity: 0.95,
         }}
       >
       <Box 
@@ -58,7 +60,7 @@ const EnsembleCard: FC<EnsembleCardProps> = ({
         sx={styles}
         onClick={handleNavToShowPage}
       >
-        <Typography variant='h5' sx={{ padding: '15px 30px' }} >{name}</Typography>
+        <Typography variant='h5' sx={{ padding: '15px 30px', boxSizing: 'border-box', minWidth: '143px' }} >{name}</Typography>
 
         <Divider light={true} />
 

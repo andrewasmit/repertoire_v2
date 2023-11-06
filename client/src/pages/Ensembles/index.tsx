@@ -46,7 +46,8 @@ function Ensembles() {
     background: `url(${"../../../public/concert-hall.jpg"}) no-repeat center center/cover`,
     opacity: 0.9,
     height: '100vh',
-    marginBottom: '70px'
+    marginBottom: '70px',
+    overflow: 'auto'
   }
 
   return (
