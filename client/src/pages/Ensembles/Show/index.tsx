@@ -13,7 +13,7 @@ import ConfirmationDialog from "../../../components/shared/ConfirmationDialog/Co
 // Local Depencies
 import '../ensembles.css'
 import EditEnsembleForm from "./EditEnsembleForm";
-import { Collapse } from "@mui/material";
+import { Button, Collapse, Typography } from "@mui/material";
 
 
 // Component Definition
@@ -79,18 +79,24 @@ const EnsembleShow: FC<Ensemble> = ({
 
   return (
     <div className='ens-show'>
-      <button className="back-btn" onClick={handleBackClick}>BACK</button>
+      <Button variant='contained' color="secondary" onClick={handleBackClick}>BACK</Button>
 
-      <h3 className="heading">{name}</h3>
-      <h4 className="heading">{grade_level}th grade</h4>
+      <Typography variant="h3" >{name}</Typography>
+      <Typography variant="h5">{grade_level}th grade</Typography>
 
-      <button onClick={handleClickEditEns}>
+      <Button  variant="outlined" color='primary' onClick={handleClickEditEns}>
         {!isEdit ? "Edit Ensemble Details"
         : "Discard Edits" }
-      </button> 
+      </Button> 
 
       {!isEdit && 
-        <button onClick={handleClickDeleteEns}>Delete Ensemble</button>
+        <Button 
+          variant="contained" 
+          color='primary' 
+          onClick={handleClickDeleteEns}
+        >
+          Delete Ensemble
+        </Button>
       }
 
       <Collapse in={isEdit} timeout="auto" unmountOnExit>
@@ -103,8 +109,8 @@ const EnsembleShow: FC<Ensemble> = ({
       </Collapse>
 
       {performancesToDisplay.length > 0 ? 
-        <h2>Performances from {name}</h2> : 
-        <h2>{name} has not yet performed</h2>
+        <Typography variant="h4">Performances from {name}</Typography> : 
+        <Typography variant="h5">{name} has not yet performed</Typography>
       }
 
       {performancesToDisplay}
