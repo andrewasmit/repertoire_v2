@@ -5,6 +5,7 @@ import {
   useParams
 } from "react-router-dom";
 import { useMemo } from "react";
+import { Box, useTheme } from "@mui/material";
 
 // Internal Dependencies
 import { useAppSelector } from "../../redux/hooks";
@@ -26,6 +27,7 @@ import './MainContainer.css'
 function MainContainer() {
 
   const params = useParams();
+  const theme = useTheme();
   const { ensembles, concertPrograms, library } = useAppSelector(state=>state.organization);
 
   const ensemble = useMemo(()=>{
@@ -47,7 +49,7 @@ function MainContainer() {
   }, [params, library]);
 
   return (
-    <div className="main-container">
+    <Box className="main-container" sx={{ background: theme.palette.secondary.main }} >
       <Routes>
         <Route path='home' element={<Dashboard />} />
         <Route path='ensembles' element={<Ensembles />} />
@@ -59,8 +61,7 @@ function MainContainer() {
         <Route path='library' element={<Library />} />
         <Route path='library/:id' element={<LibraryShow piece={piece} />} />
       </Routes>
-
-    </div>
+    </Box>
   )
 }
 

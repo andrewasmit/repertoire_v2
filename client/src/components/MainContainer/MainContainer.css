@@ -5,5 +5,5 @@
   height: 100vh;
   padding: 15px 30px;
   width: 100%;
-  overflow: scroll;
+  /* overflow: scroll;  */
 }
