@@ -1,7 +1,7 @@
 // External Depencies
-import { FC, useCallback, useMemo, useState } from "react";
+import { FC, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Collapse, Typography } from "@mui/material";
+import { Box, Button, ButtonGroup, Collapse, Typography, useTheme } from "@mui/material";
 
 // Internal Depencies
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
@@ -16,7 +16,6 @@ import { useIsOpen } from "../../../hooks/useIsOpen";
 import '../ensembles.css'
 import EditEnsembleForm from "./EditEnsembleForm";
 
-
 // Component Definition
 const EnsembleShow: FC<Ensemble> = ({
   name, grade_level, id
@@ -24,6 +23,7 @@ const EnsembleShow: FC<Ensemble> = ({
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const theme = useTheme();
 
   const { isOpen, handleClose, handleOpen } = useIsOpen();
   const { 
@@ -44,7 +44,7 @@ const EnsembleShow: FC<Ensemble> = ({
     navigate('/ensembles')
   }, [])
 
-  
+
   const handleConfirmDelete: ()=> void = useCallback((): void=>{
     handleClose();
     deleteEnsemble(id);
@@ -70,36 +70,62 @@ const EnsembleShow: FC<Ensemble> = ({
   })
 }, [ensPerformances]);
 
+const headerStyles = {
+  // backgroundColor: theme.palette.secondary.main,
+  background: `url(${'../../../../public/instruments.jpeg'}) no-repeat center center/cover`,
+  padding: 3,
+  opacity: 0.8,
+}
+
+const headerTextStyles = {
+  color: theme.palette.secondary.main, 
+  opacity: .9, 
+  backgroundColor: theme.palette.primary.main, 
+  width: 'auto',
+  padding: 0.5,
+}
+
   return (
-    <div className='ens-show'>
-      <Button variant='contained' color="secondary" onClick={handleBackClick}>BACK</Button>
-
-      <Typography variant="h3" >{name}</Typography>
-      <Typography variant="h5">{grade_level}th grade</Typography>
-
-      <Button  variant="outlined" color='primary' onClick={toggleEditMode}>
-        {!isEditOpen ? "Edit Ensemble Details"
-        : "Discard Edits" }
-      </Button> 
-
-      {!isEditOpen && 
+    <div>
+      <Box sx={headerStyles}>
         <Button 
-          variant="contained" 
-          color='primary' 
-          onClick={handleOpen}
+          variant='contained' 
+          color="primary" 
+          onClick={handleBackClick}
+          sx={{ marginBottom: 2 }}
         >
-          Delete Ensemble
+          BACK
         </Button>
-      }
 
-      <Collapse in={isEditOpen} timeout="auto" unmountOnExit>
-        <EditEnsembleForm 
-          name={name} 
-          gradeLevel={grade_level} 
-          ensembleId={id} 
-          handleCloseForm={toggleEditMode}
-        />
-      </Collapse>
+        <Typography variant="h3" sx={headerTextStyles} >{name}</Typography>
+        <Typography variant="h5" sx={headerTextStyles} >{grade_level}th grade</Typography>
+
+        <ButtonGroup sx={{ backgroundColor: theme.palette.secondary.main, marginTop: 1 }}>
+          <Button  variant="outlined" color='primary' onClick={toggleEditMode}>
+            {!isEditOpen ? "Edit Ensemble Details"
+            : "Discard Edits" }
+          </Button> 
+
+          {!isEditOpen && 
+            <Button 
+              variant="contained" 
+              color='primary' 
+              onClick={handleOpen}
+            >
+              Delete Ensemble
+            </Button>
+          }
+        </ButtonGroup>
+
+        <Collapse in={isEditOpen} timeout="auto" unmountOnExit>
+          <EditEnsembleForm 
+            name={name} 
+            gradeLevel={grade_level} 
+            ensembleId={id} 
+            handleCloseForm={toggleEditMode}
+          />
+        </Collapse>
+      </Box>
 
       {performancesToDisplay.length > 0 ? 
         <Typography variant="h4">Performances from {name}</Typography> : 
