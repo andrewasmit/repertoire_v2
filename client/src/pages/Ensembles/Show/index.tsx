@@ -37,6 +37,7 @@ const EnsembleShow: FC<Ensemble> = ({
     if (concertPrograms){
       return findEnsemblePerformances(id, concertPrograms);
     }
+    return null;
   }, [concertPrograms]);
 
 
@@ -53,21 +54,24 @@ const EnsembleShow: FC<Ensemble> = ({
   }, [])
 
   
-  const performancesToDisplay: JSX.Element[] = useMemo(()=>{
-    return ensPerformances.map(performance=>{
-    const handleNavToConcertShow = ()=>{
-      navigate(`/concerts/${performance.concertId}`)
-    }
+  const performancesToDisplay: JSX.Element[] | null = useMemo(()=>{
+    if (ensPerformances){
+      return ensPerformances.map(performance=>{
+        const handleNavToConcertShow = ()=>{
+          navigate(`/concerts/${performance.concertId}`)
+        }
 
-    const handleNavToPieceShow = ()=>{
-      navigate(`/library/${performance.performance.piece_id}`)
-    }
+        const handleNavToPieceShow = ()=>{
+          navigate(`/library/${performance.performance.piece_id}`)
+        }
 
-    return <div className="ens-performance" key={performance.name}>
-      <h3 onClick={handleNavToPieceShow}>{performance.performance.piece}</h3>
-      <h4 onClick={handleNavToConcertShow}>{performance.name} -{performance.year}</h4>
-    </div>
-  })
+        return <div className="ens-performance" key={performance.name}>
+          <h3 onClick={handleNavToPieceShow}>{performance.performance.piece}</h3>
+          <h4 onClick={handleNavToConcertShow}>{performance.name} -{performance.year}</h4>
+        </div>
+      })
+    }
+    return null;
 }, [ensPerformances]);
 
 const headerStyles = {
@@ -126,7 +130,7 @@ const headerTextStyles = {
         </Collapse>
       </Box>
 
-      {performancesToDisplay.length > 0 ? 
+      {performancesToDisplay !== null ? 
         <Typography variant="h4">Performances from {name}</Typography> : 
         <Typography variant="h5">{name} has not yet performed</Typography>
       }
