@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 // Internal Depencies
 import EnsembleCard from "./components/EnsembleCard";
 import { useAppSelector } from "../../redux/hooks";
+import { Button, useTheme } from "@mui/material";
 // import { useAppDispatch } from "../../redux/hooks";
 
 // Local Depencies
@@ -12,8 +13,8 @@ import { useAppSelector } from "../../redux/hooks";
 function Ensembles() {
 
   const { ensembles, organization } = useAppSelector(state=>state.organization);
-
   const navigate = useNavigate();
+  const theme = useTheme();
 
   const ensembleCards = useMemo(()=>{
     return ensembles?.map(ens=>{
@@ -30,11 +31,28 @@ function Ensembles() {
     navigate('/ensembles/new');
   }, []);
 
+  const btnStyles = {
+    ':hover':{
+      color: theme.palette.secondary.main,
+      bgcolor: theme.palette.primary.main
+    }
+  };
+
+
   return (
     <div className="ens-page">
       <h1 id="ens-name">{organization?.name}</h1>
+
       <h2>Here are the ensembles currently in your organization</h2>
-      <button onClick={handleAddEnsClick}>Add New Ensemble</button>
+
+      <Button 
+        onClick={handleAddEnsClick} 
+        variant="outlined" 
+        color="primary" 
+        sx={btnStyles}
+      >
+        Add New Ensemble
+      </Button>
 
       <div id="ens-card-container">
         {ensembleCards}
