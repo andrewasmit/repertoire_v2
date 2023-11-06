@@ -15,6 +15,7 @@ import { useIsOpen } from "../../../hooks/useIsOpen";
 // Local Depencies
 import '../ensembles.css'
 import EditEnsembleForm from "./EditEnsembleForm";
+import Performance from "../components/Performance";
 
 // Component Definition
 const EnsembleShow: FC<Ensemble> = ({
@@ -57,18 +58,25 @@ const EnsembleShow: FC<Ensemble> = ({
   const performancesToDisplay: JSX.Element[] | null = useMemo(()=>{
     if (ensPerformances){
       return ensPerformances.map(performance=>{
-        const handleNavToConcertShow = ()=>{
-          navigate(`/concerts/${performance.concertId}`)
-        }
+        // const handleNavToConcertShow = ()=>{
+        //   navigate(`/concerts/${performance.concertId}`)
+        // }
 
-        const handleNavToPieceShow = ()=>{
-          navigate(`/library/${performance.performance.piece_id}`)
-        }
+        // const handleNavToPieceShow = ()=>{
+        //   navigate(`/library/${performance.performance.piece_id}`)
+        // }
 
-        return <div className="ens-performance" key={performance.name}>
-          <h3 onClick={handleNavToPieceShow}>{performance.performance.piece}</h3>
-          <h4 onClick={handleNavToConcertShow}>{performance.name} -{performance.year}</h4>
-        </div>
+        // return <div className="ens-performance" key={performance.name}>
+        //   <Typography variant="h5" onClick={handleNavToPieceShow}>"{performance.performance.piece}"</Typography>
+        //   <Typography variant="body1" onClick={handleNavToConcertShow}>{performance.name} -{performance.year}</Typography>
+        // </div>
+        return <Performance 
+                  name={performance.name}
+                  concertId={performance.concertId}
+                  piece_id={performance.performance.piece_id}
+                  piece={performance.performance.piece}
+                  year={performance.year}
+                />
       })
     }
     return null;
@@ -78,7 +86,7 @@ const headerStyles = {
   background: `url(${'../../../../public/instruments.jpeg'}) no-repeat center center/cover`,
   padding: 3,
   opacity: 0.8,
-}
+};
 
 const headerTextStyles = {
   color: theme.palette.secondary.main, 
@@ -86,10 +94,16 @@ const headerTextStyles = {
   backgroundColor: theme.palette.primary.main, 
   width: 'auto',
   padding: 0.5,
+};
+
+const bodyStyles = {
+  backgroundColor: theme.palette.secondary.main,
+  height:'100vh'
 }
 
   return (
     <div>
+      {/* Header of Page */}
       <Box sx={headerStyles}>
         <Button 
           variant='contained' 
@@ -129,14 +143,16 @@ const headerTextStyles = {
           />
         </Collapse>
       </Box>
+      
+      {/* Body of Page */}
+      <Box sx={bodyStyles}>
+        {performancesToDisplay !== null && performancesToDisplay.length > 0 ? 
+          <Typography variant="h4" sx={{ padding: 2 }}>Performances from {name}</Typography> : 
+          <Typography variant="h5">{name} has not yet performed</Typography>
+        }
 
-      {performancesToDisplay !== null && performancesToDisplay.length > 0 ? 
-        <Typography variant="h4">Performances from {name}</Typography> : 
-        <Typography variant="h5">{name} has not yet performed</Typography>
-      }
-
-      {performancesToDisplay}
-
+        {performancesToDisplay}
+      </Box>
       <ConfirmationDialog 
         isOpen={isOpen} 
         handleClose={handleClose}
