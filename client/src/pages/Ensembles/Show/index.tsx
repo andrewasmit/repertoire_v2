@@ -71,7 +71,6 @@ const EnsembleShow: FC<Ensemble> = ({
 }, [ensPerformances]);
 
 const headerStyles = {
-  // backgroundColor: theme.palette.secondary.main,
   background: `url(${'../../../../public/instruments.jpeg'}) no-repeat center center/cover`,
   padding: 3,
   opacity: 0.8,
@@ -138,7 +137,7 @@ const headerTextStyles = {
         isOpen={isOpen} 
         handleClose={handleClose}
         onConfirm={handleConfirmDelete}
-        headerText={`Are you sure you want to delete ${name}`}
+        headerText={`Are you sure you want to delete ${name}?`}
         bodyText="Deleting this ensemble will also erase all corresponding performances. This action is permanent and cannot be undone."
       />
     </div>
