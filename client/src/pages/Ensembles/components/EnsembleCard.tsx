@@ -27,7 +27,6 @@ const EnsembleCard: FC<EnsembleCardProps> = ({
     backgroundColor: theme.palette.secondary.main,
     width: '250px',
     height: '200px',
-    // minWidth: '397px',
     padding: 2,
     margin: 10,
     border: `${theme.palette.info.main} 1px solid`,
