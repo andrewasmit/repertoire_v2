@@ -130,7 +130,7 @@ const headerTextStyles = {
         </Collapse>
       </Box>
 
-      {performancesToDisplay !== null ? 
+      {performancesToDisplay !== null && performancesToDisplay.length > 0 ? 
         <Typography variant="h4">Performances from {name}</Typography> : 
         <Typography variant="h5">{name} has not yet performed</Typography>
       }
