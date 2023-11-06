@@ -1,5 +1,6 @@
 // External Depencies
 import { useEffect, useMemo } from "react";
+import { Box, Typography } from "@mui/material";
 
 // Internal Depencies
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
@@ -9,9 +10,8 @@ import { useFetchOrganizationData } from "../hooks/api/useFetchOrganizationData"
 
 // Local Depencies
 import "../App.css";
-import logo from '/logo-no-background.svg'
+import logo from '/logo-color.svg'
 import Loading from "../components/shared/Loading";
-import { Box } from "@mui/material";
 
 
 function Dashboard() {
@@ -57,14 +57,26 @@ function Dashboard() {
 
   return (
     <div>
-      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
-        <img src={logo} className="logo" alt="Main logo" />
-      </a>
+      <Box
+        component="img"
+        sx={{
+          height: 'auto',
+          width: 300,
+          marginTop:2,
+          padding: 2,
+          boxSizing: 'border-box'
+        }}
+        alt="Main Logo"
+        src={logo}
+      />
 
-      <h1>Repertoire</h1>
-      <h2>This is the Dashboard</h2>
-      <h3>This is where all of your organization information will be</h3>
+      <Typography variant="h1">Repertoire</Typography>
 
+      <Typography variant="h3">This is the Dashboard</Typography>
+
+      <Typography variant="body1">
+        This is where all of your organization information will be
+      </Typography>
     </div>
   );
 }
