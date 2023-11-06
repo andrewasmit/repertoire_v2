@@ -7,6 +7,7 @@ import EnsembleCard from "./components/EnsembleCard";
 import { useAppSelector } from "../../redux/hooks";
 import { Box, Button, Grid, Typography, useTheme } from "@mui/material";
 // import { useAppDispatch } from "../../redux/hooks";
+import backgroundImg from '../../../public/concert-hall.jpg'
 
 // Local Depencies
 
@@ -39,6 +40,10 @@ function Ensembles() {
     }
   };
 
+  const gridStyles = {
+    backgroundImage: `url(${"../../../public/concert-hall.jpg"})`,
+    height: '100vh',
+  }
 
   return (
     <Box className="ens-page" sx={{ background: '#fff' }}>
@@ -71,7 +76,11 @@ function Ensembles() {
         </Button>
       </Box>
 
-      <Grid container spacing={3} >
+      <Grid 
+        container 
+        spacing={3} 
+        sx={gridStyles}
+      >
         {ensembleCards}
       </Grid>
     </Box>
