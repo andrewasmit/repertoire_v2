@@ -3,21 +3,37 @@ import { useCallback, useState } from "react";
 import { useNavigate, useParams } from 'react-router-dom';
 import { Box, Button, ButtonGroup, Tab, Tabs, Typography } from "@mui/material";
 
+// Internal Dependencies
+import { useIsOpen } from "../../hooks/useIsOpen";
+
 // Local Dependencies
 import MyAccountBtn from "./MyAccountBtn";
 import './navigation.css'
 import logo from '/logo-no-background.svg'
+import ConfirmationDialog from "./ConfirmationDialog/ConfirmationDialog";
+import { useAppDispatch } from "../../redux/hooks";
+import { userSignOut } from "../../hooks/userSignOut";
+import { signOut } from "../../redux/userSlice";
 
 
 function NavBar() {
 
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const [value, setValue] = useState(0);
+  const { isOpen, handleClose, handleOpen } = useIsOpen();
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
     handleNavigate(newValue);
   };
+
+  const handleSignOut = useCallback(():void=>{
+    userSignOut();
+    dispatch(signOut());
+    handleClose();
+    navigate('/signin');
+  }, [])
 
   const handleNavigate = useCallback((value: number): void=>{
     switch (value){
@@ -38,26 +54,6 @@ function NavBar() {
         break;
     }
   },[]);
-
-  const handleNavToDash = useCallback((): void=>{
-    navigate('/home');
-  }, []);
-
-  const handleNavToEnsembles = useCallback((): void=>{
-    navigate('/ensembles');
-  }, []);
-
-  const handleNavToConcerts = useCallback((): void=>{
-    navigate('/concerts');
-  }, []);
-
-  const handleNavToLibrary = useCallback((): void=>{
-    navigate('/library');
-  }, []);
-
-  const handleNavToBrowse = useCallback((): void=>{
-    navigate('/browse');
-  }, []);
   
   function a11yProps(index: number) {
     return {
@@ -71,24 +67,7 @@ function NavBar() {
       <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
         <img src={logo} className="logo" alt="Main logo" />
       </a>
-      {/* <ul>
-        <li>
-          <button onClick={handleNavToDash} >Dashboard</button>
-        </li>
-        <li>
-          <button onClick={handleNavToEnsembles} >Ensembles</button>
-        </li>
-        <li>
-          <button onClick={handleNavToConcerts} >Concerts</button>
-        </li>
-        <li>
-          <button onClick={handleNavToLibrary} >Library</button>
-        </li>
-        <li>
-          <button onClick={handleNavToBrowse} >Find New Music</button>
-        </li>
-      </ul> */}
-
+    
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs 
           value={value} 
@@ -102,11 +81,19 @@ function NavBar() {
           <Tab label="Ensembles" {...a11yProps(1)} />
           <Tab label="Concerts" {...a11yProps(2)} />
           <Tab label="Library" {...a11yProps(3)} />
-          <Tab label="Find New Music" {...a11yProps(4)} />
+          {/* <Tab label="Find New Music" {...a11yProps(4)} /> */}
         </Tabs>
       </Box>
 
-      <MyAccountBtn />
+      <MyAccountBtn handleOpen={handleOpen} />
+      
+      <ConfirmationDialog 
+        isOpen={isOpen}
+        handleClose={handleClose}
+        onConfirm={handleSignOut}
+        headerText="Are you sure you want to logout?"
+        bodyText=""
+      />
     </div>
   )
 }

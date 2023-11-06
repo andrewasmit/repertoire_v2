@@ -11,8 +11,11 @@ import { userSignOut } from '../../hooks/userSignOut';
 import { signOut } from '../../redux/userSlice';
 import { Divider } from '@mui/material';
 
+interface Props{
+  handleOpen: ()=> void;
+}
 
-export default function MyAccountBtn() {
+export default function MyAccountBtn({ handleOpen }: Props) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -24,15 +27,15 @@ export default function MyAccountBtn() {
     setAnchorEl(null);
   };
 
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
+  // const navigate = useNavigate();
+  // const dispatch = useAppDispatch();
 
-  const handleSignOutClick = useCallback(():void=>{
-    userSignOut();
-    dispatch(signOut());
-    handleClose();
-    navigate('/signin');
-  }, [])
+  // const handleSignOutClick = useCallback(():void=>{
+  //   userSignOut();
+  //   dispatch(signOut());
+  //   handleClose();
+  //   navigate('/signin');
+  // }, [])
 
   const styles = {
     marginTop: 2,  
@@ -71,7 +74,7 @@ export default function MyAccountBtn() {
         <MenuItem onClick={handleClose}>My Organization</MenuItem>
         <MenuItem onClick={handleClose}>Account Settings</MenuItem>
         <Divider />
-        <MenuItem onClick={handleSignOutClick}>Logout</MenuItem>
+        <MenuItem onClick={handleOpen}>Logout</MenuItem>
       </Menu>
     </div>
   );
