@@ -43,7 +43,7 @@ function Ensembles() {
   return (
     <Box className="ens-page" sx={{ background: '#fff' }}>
       <Box 
-        className="ens-header" 
+        className="heading" 
         sx={{ 
           background: theme.palette.primary.main, 
           color: theme.palette.secondary.main,
