@@ -5,13 +5,12 @@ import {
   DialogActions, 
   DialogContent, 
   DialogContentText, 
-  DialogTitle 
+  DialogTitle, 
+  useTheme
 } from '@mui/material';
 
-// Internal Dependencies
-
 // Local Dependencies
-import './ConfirmationDialog.css'
+// import './ConfirmationDialog.css'
 
 interface ConfirmationDialogParams {
   isOpen: boolean;
@@ -30,6 +29,8 @@ function ConfirmationDialog({
   headerText 
 }: ConfirmationDialogParams) {
 
+  const theme = useTheme();
+
   return (
     <div>
       <Dialog
@@ -47,8 +48,10 @@ function ConfirmationDialog({
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={onConfirm} autoFocus variant="contained">
+          <Button onClick={handleClose} color='primary' >
+            Cancel
+          </Button>
+          <Button onClick={onConfirm} autoFocus variant="contained" color="secondary" >
             Yes, Do It!
           </Button>
         </DialogActions>
