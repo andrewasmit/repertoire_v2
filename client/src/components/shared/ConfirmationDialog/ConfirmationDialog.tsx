@@ -1,16 +1,14 @@
 // External Dependencies
 import { 
+  Box,
   Button, 
   Dialog, 
   DialogActions, 
   DialogContent, 
   DialogContentText, 
   DialogTitle, 
-  useTheme
 } from '@mui/material';
 
-// Local Dependencies
-// import './ConfirmationDialog.css'
 
 interface ConfirmationDialogParams {
   isOpen: boolean;
@@ -18,7 +16,6 @@ interface ConfirmationDialogParams {
   onConfirm: ()=> void;
   headerText: string;
   bodyText: string;
-
 }
 
 function ConfirmationDialog({ 
@@ -29,34 +26,37 @@ function ConfirmationDialog({
   headerText 
 }: ConfirmationDialogParams) {
 
-  const theme = useTheme();
-
   return (
-    <div>
+    <Box>
       <Dialog
         open={isOpen}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
+
         <DialogTitle id="alert-dialog-title">
           {headerText}
         </DialogTitle>
+
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             {bodyText}
           </DialogContentText>
         </DialogContent>
+
         <DialogActions>
           <Button onClick={handleClose} color='primary' >
             Cancel
           </Button>
+
           <Button onClick={onConfirm} autoFocus variant="contained" color="secondary" >
             Yes, Do It!
           </Button>
+          
         </DialogActions>
       </Dialog>
-    </div>
+    </Box>
   )
 }
 
