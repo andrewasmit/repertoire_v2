@@ -1,6 +1,7 @@
 // External Depencies
 import { FC, useCallback, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Button, Collapse, Typography } from "@mui/material";
 
 // Internal Depencies
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
@@ -9,11 +10,11 @@ import { deleteEns } from "../../../redux/organizationSlice";
 import { deleteEnsemble } from "../../../hooks/api/ensembleHooks";
 import { findEnsemblePerformances } from "../../../utils/findEnsemblePerformances";
 import ConfirmationDialog from "../../../components/shared/ConfirmationDialog/ConfirmationDialog";
+import { useIsOpen } from "../../../hooks/useIsOpen";
 
 // Local Depencies
 import '../ensembles.css'
 import EditEnsembleForm from "./EditEnsembleForm";
-import { Button, Collapse, Typography } from "@mui/material";
 
 
 // Component Definition
@@ -21,11 +22,14 @@ const EnsembleShow: FC<Ensemble> = ({
   name, grade_level, id
 })=>{
 
-  const [isOpen, setIsOpen] = useState(false);
-  const [isEdit, setIsEdit] = useState(false);
-
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+
+  const { isOpen, handleClose, handleOpen } = useIsOpen();
+  const { 
+    toggleIsOpen: toggleEditMode, 
+    isOpen: isEditOpen  
+  } = useIsOpen();
 
   const { concertPrograms } = useAppSelector(state=> state.organization);
 
@@ -40,20 +44,9 @@ const EnsembleShow: FC<Ensemble> = ({
     navigate('/ensembles')
   }, [])
 
-  const handleClickDeleteEns: ()=> void = useCallback((): void=>{
-    setIsOpen(true);
-  }, []);
-
-  const handleCloseDialog: ()=> void = useCallback((): void=>{
-    setIsOpen(false);
-  }, []);
-
-  const handleClickEditEns: ()=> void = useCallback((): void=>{
-    setIsEdit(!isEdit)
-  }, [isEdit]);
-
+  
   const handleConfirmDelete: ()=> void = useCallback((): void=>{
-    setIsOpen(false);
+    handleClose();
     deleteEnsemble(id);
     dispatch(deleteEns(id));
     navigate('/ensembles');
@@ -84,27 +77,27 @@ const EnsembleShow: FC<Ensemble> = ({
       <Typography variant="h3" >{name}</Typography>
       <Typography variant="h5">{grade_level}th grade</Typography>
 
-      <Button  variant="outlined" color='primary' onClick={handleClickEditEns}>
-        {!isEdit ? "Edit Ensemble Details"
+      <Button  variant="outlined" color='primary' onClick={toggleEditMode}>
+        {!isEditOpen ? "Edit Ensemble Details"
         : "Discard Edits" }
       </Button> 
 
-      {!isEdit && 
+      {!isEditOpen && 
         <Button 
           variant="contained" 
           color='primary' 
-          onClick={handleClickDeleteEns}
+          onClick={handleOpen}
         >
           Delete Ensemble
         </Button>
       }
 
-      <Collapse in={isEdit} timeout="auto" unmountOnExit>
+      <Collapse in={isEditOpen} timeout="auto" unmountOnExit>
         <EditEnsembleForm 
           name={name} 
           gradeLevel={grade_level} 
           ensembleId={id} 
-          handleCloseForm={handleClickEditEns}
+          handleCloseForm={toggleEditMode}
         />
       </Collapse>
 
@@ -117,7 +110,7 @@ const EnsembleShow: FC<Ensemble> = ({
 
       <ConfirmationDialog 
         isOpen={isOpen} 
-        handleClose={handleCloseDialog}
+        handleClose={handleClose}
         onConfirm={handleConfirmDelete}
         headerText={`Are you sure you want to delete ${name}`}
         bodyText="Deleting this ensemble will also erase all corresponding performances. This action is permanent and cannot be undone."
