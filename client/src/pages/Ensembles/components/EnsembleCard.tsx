@@ -1,7 +1,7 @@
 // External Dependencies
 import { FC, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { Box, Divider, Typography, useTheme } from '@mui/material';
+import { Box, Divider, Grid, Typography, useTheme } from '@mui/material';
 
 
 interface EnsembleCardProps{
@@ -27,8 +27,9 @@ const EnsembleCard: FC<EnsembleCardProps> = ({
     backgroundColor: theme.palette.secondary.main,
     width: '250px',
     height: '200px',
+    // minWidth: '397px',
     padding: 2,
-    margin: 2,
+    margin: 10,
     border: `${theme.palette.info.main} 1px solid`,
     borderRadius: 3,
     ':hover':{
@@ -44,18 +45,20 @@ const EnsembleCard: FC<EnsembleCardProps> = ({
   };
 
   return (
-    <Box 
-      component='div'
-      className='ens-card' 
-      sx={styles}
-      onClick={handleNavToShowPage}
-    >
-      <Typography variant='h5' sx={{ padding: '15px 30px' }} >{name}</Typography>
+    <Grid item xs={12} md={6} lg={4} xl={3} sx={{ justifyContent: 'center', alignItems: 'center', display: 'flex' }}>
+      <Box 
+        component='div'
+        className='ens-card' 
+        sx={styles}
+        onClick={handleNavToShowPage}
+      >
+        <Typography variant='h5' sx={{ padding: '15px 30px' }} >{name}</Typography>
 
-      <Divider light={true} />
+        <Divider light={true} />
 
-      <Typography variant='body1' sx={{ padding: '10px 20px' }}>{grade}th grade</Typography>
-    </Box>
+        <Typography variant='body1' sx={{ padding: '10px 20px' }}>{grade}th grade</Typography>
+      </Box>
+    </Grid>
   )
 }
 

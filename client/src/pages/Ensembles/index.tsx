@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 // Internal Depencies
 import EnsembleCard from "./components/EnsembleCard";
 import { useAppSelector } from "../../redux/hooks";
-import { Box, Button, Typography, useTheme } from "@mui/material";
+import { Box, Button, Grid, Typography, useTheme } from "@mui/material";
 // import { useAppDispatch } from "../../redux/hooks";
 
 // Local Depencies
@@ -43,7 +43,7 @@ function Ensembles() {
   return (
     <Box className="ens-page" sx={{ background: '#fff' }}>
       <Box 
-        className="heading" 
+        className="ens-header" 
         sx={{ 
           background: theme.palette.primary.main, 
           color: theme.palette.secondary.main,
@@ -71,9 +71,9 @@ function Ensembles() {
         </Button>
       </Box>
 
-      <div id="ens-card-container">
+      <Grid container spacing={3} >
         {ensembleCards}
-      </div>
+      </Grid>
     </Box>
   );
 }
