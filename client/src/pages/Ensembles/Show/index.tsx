@@ -57,7 +57,7 @@ const EnsembleShow: FC<Ensemble> = ({
   };
 
   const bodyStyles = {
-    backgroundColor: '#f7f7f7',
+    backgroundColor: '#f5f5f5',
     height: '100vh',
     overflow: 'auto',
   }

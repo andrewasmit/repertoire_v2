@@ -7,6 +7,7 @@ import { PerformedPiece } from "../../../redux/organizationSlice"
 
 // Local Dependencies
 import '../concerts.css'
+import { List, ListItem, Typography } from "@mui/material";
 
 type ConcertCardParams = {
   year: number | string;
@@ -25,21 +26,30 @@ function ConcertCard({ year, id, name, program }: ConcertCardParams) {
 
 
   const performancesToDisplay = program?.map(performance=>{
-    return <li key ={performance.performance_id}>
-      <h5>{performance.piece}</h5>
-      <h6>{performance.ensemble}</h6>
-    </li>
+    return <ListItem 
+              key ={performance.performance_id}
+              sx={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center',
+                ':nth-child(odd)':{
+                  background: '#efefef'
+                }
+              }}
+            >
+              <Typography variant="body2"><i>{performance.piece}</i></Typography>
+            </ListItem>
   });
 
 
   return (
     <div id={`concert-${id}`} className="concert-card" onClick={handleNavToShowPage}>
       <div className="concert-card-wrapper">
-        <h3>{name}</h3>
-        <h4>{year}</h4>
-        <ul>
+        <Typography variant="h5" color="secondary" >{name}</Typography>
+        <Typography variant="h6" color="secondary">{year}</Typography>
+        <List>
           {performancesToDisplay}
-        </ul>
+        </List>
       </div>
     </div>
   )

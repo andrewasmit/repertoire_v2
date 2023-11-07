@@ -8,7 +8,6 @@ import { useAppSelector } from "../../redux/hooks";
 
 // Local Dependencies
 import ConcertCard from "./components/ConcertCard";
-import './concerts.css'
 
 function Concerts() {
 
