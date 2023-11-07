@@ -1,7 +1,7 @@
 // External Dependencies
-import { FC } from 'react'
+import { FC, useMemo } from 'react'
 import { NavLink } from 'react-router-dom';
-import { TableCell, TableRow } from '@mui/material';
+import { TableCell, TableRow, useTheme } from '@mui/material';
 import LaunchIcon from '@mui/icons-material/Launch';
 
 
@@ -23,17 +23,36 @@ const Performance: FC<PerformanceProps> = ({
   name, 
 })=>{
 
+  const theme = useTheme();
+
+  const rowStyles={
+    color: theme.palette.primary.main,
+    background: '#fff',
+    ':hover':{
+      background: theme.palette.secondary.main,
+      opacity: 0.9
+    }
+  }
+
+  const cellStyles = useMemo(()=>{
+    return {
+      color: theme.palette.primary.main,
+      fontSize: 'medium',
+      textDecoration: 'none',
+      padding: 3,
+    }
+  }, []);
 
   return (
-    <TableRow key={performance_id}>
-      <TableCell>{name}</TableCell>
-      <TableCell>
-        <NavLink to={`/pieces/${piece_id}`}>
+    <TableRow key={performance_id}  sx={rowStyles}>
+      <TableCell sx={cellStyles}>{name}</TableCell>
+      <TableCell sx={cellStyles}>
+        <NavLink to={`/pieces/${piece_id}`} >
           "{piece}"
         </NavLink>
       </TableCell>
-      <TableCell>{year}</TableCell>
-      <TableCell align="right">
+      <TableCell sx={cellStyles}>{year}</TableCell>
+      <TableCell align="right" sx={cellStyles}>
         <NavLink to={`/concerts/${concertId}`}>
           <LaunchIcon color='primary'/>
         </NavLink>

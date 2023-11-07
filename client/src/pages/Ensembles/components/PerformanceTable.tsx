@@ -7,7 +7,8 @@ import {
   TableHead, 
   TableRow, 
   Box,
-  Typography
+  Typography,
+  useTheme
 } from '@mui/material';
 
 // Internal Dependencies
@@ -25,6 +26,7 @@ interface Props{
 
 export default function PerformanceTable({ id }: Props) {
 
+  const theme = useTheme();
   const { concertPrograms, ensembles } = useAppSelector(state=> state.organization);
 
   const ensPerformances = useMemo(()=>{
@@ -58,6 +60,13 @@ export default function PerformanceTable({ id }: Props) {
     return null;
   }, [ensPerformances]);
 
+  const tableHeaderStyles = useMemo(()=>{
+    return {
+      color: theme.palette.info.main,
+      fontSize: 'large',
+      fontWeight: 'fontWeightBold'
+    }
+  }, []);
 
   return (
     <Box sx={{ padding: 4 }}>
@@ -65,21 +74,23 @@ export default function PerformanceTable({ id }: Props) {
           <Typography variant="h4" sx={{ padding: 2 }}>Performances from {ensName}</Typography> : 
           <Typography variant="h5">{ensName} has not yet performed</Typography>
         }
+      
+      <Box sx={{ padding: 5, background: theme.palette.primary.main, opacity: 0.8, }}>
+        <Table size="medium">
+          <TableHead>
+            <TableRow>
+              <TableCell sx={tableHeaderStyles}>Concert Title</TableCell>
+              <TableCell sx={tableHeaderStyles}>Performance</TableCell>
+              <TableCell sx={tableHeaderStyles}>Year</TableCell>
+              <TableCell sx={tableHeaderStyles} align="right">Concert Details</TableCell>
+            </TableRow>
+          </TableHead>
 
-      <Table size="medium">
-        <TableHead>
-          <TableRow>
-            <TableCell><strong>Concert Title</strong></TableCell>
-            <TableCell><strong>Performance</strong></TableCell>
-            <TableCell><strong>Year</strong></TableCell>
-            <TableCell align="right"><strong>Concert Details</strong></TableCell>
-          </TableRow>
-        </TableHead>
-
-        <TableBody>
-          {performancesToDisplay}
-        </TableBody>
-      </Table>
+          <TableBody>
+            {performancesToDisplay}
+          </TableBody>
+        </Table>
+      </Box>
     </Box>
   );
 }
