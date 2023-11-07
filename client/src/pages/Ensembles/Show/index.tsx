@@ -1,21 +1,18 @@
 // External Depencies
-import { FC, useCallback, useMemo } from "react";
+import { FC, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Button, ButtonGroup, Collapse, Typography, useTheme } from "@mui/material";
 
 // Internal Depencies
-import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { useAppDispatch } from "../../../redux/hooks";
 import { Ensemble } from "../../../redux/organizationSlice";
 import { deleteEns } from "../../../redux/organizationSlice";
 import { deleteEnsemble } from "../../../hooks/api/ensembleHooks";
-import { findEnsemblePerformances } from "../../../utils/findEnsemblePerformances";
 import ConfirmationDialog from "../../../components/shared/ConfirmationDialog/ConfirmationDialog";
 import { useIsOpen } from "../../../hooks/useIsOpen";
 
 // Local Depencies
-import '../ensembles.css'
 import EditEnsembleForm from "./EditEnsembleForm";
-import Performance from "../components/Performance";
 import PerformanceTable from "../components/PerformanceTable";
 
 // Component Definition
