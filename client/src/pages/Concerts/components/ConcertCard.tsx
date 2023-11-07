@@ -24,7 +24,8 @@ function ConcertCard({ year, id, name, program }: ConcertCardParams) {
     navigate(`/concerts/${id}`);
   }, []);
 
-
+  console.log("PROGRAM: ", program)
+  
   const performancesToDisplay = program?.map(performance=>{
     return <ListItem 
               key ={performance.performance_id}
