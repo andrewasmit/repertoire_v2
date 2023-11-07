@@ -11,7 +11,6 @@ import {
 import LaunchIcon from '@mui/icons-material/Launch';
 import { NavLink } from'react-router-dom';
 
-
 // Internal Dependencies
 import { useAppSelector } from '../../../redux/hooks';
 import { findEnsemblePerformances } from '../../../utils/findEnsemblePerformances';
