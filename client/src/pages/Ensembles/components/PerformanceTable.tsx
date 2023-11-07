@@ -48,8 +48,8 @@ export default function PerformanceTable({ id }: Props) {
     if(ensPerformances){
       return ensPerformances.map((performance) => (
         <Performance 
-          concertId={performance.performance.performance_id}
-          performance_id={performance.concertId}
+          concertId={performance.concertId}
+          performance_id={performance.performance.performance_id}
           piece_id={performance.performance.piece_id}
           piece={performance.performance.piece}
           name={performance.name}
@@ -68,12 +68,16 @@ export default function PerformanceTable({ id }: Props) {
     }
   }, []);
 
+  if(performancesToDisplay === null || performancesToDisplay.length === 0){
+    return (
+      <Typography variant="h5">{ensName} has not yet performed</Typography>
+      // TODO: Add a link to Add Performances
+    )
+  }
+
   return (
     <Box sx={{ padding: 4 }}>
-      {performancesToDisplay !== null && performancesToDisplay.length > 0 ? 
-          <Typography variant="h4" sx={{ padding: 2 }}>Performances from {ensName}</Typography> : 
-          <Typography variant="h5">{ensName} has not yet performed</Typography>
-        }
+      <Typography variant="h4" sx={{ padding: 2 }}>Performances from {ensName}</Typography> 
       
       <Box sx={{ padding: 5, background: theme.palette.primary.main, opacity: 0.8, }}>
         <Table size="medium">
