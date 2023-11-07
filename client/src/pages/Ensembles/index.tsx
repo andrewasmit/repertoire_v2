@@ -65,8 +65,8 @@ function Ensembles() {
           {organization?.name}
         </Typography>
 
-        <Typography variant="h5">
-          Here are the ensembles currently in your organization
+        <Typography variant="h4">
+          Ensembles
         </Typography>
 
         <Button 
