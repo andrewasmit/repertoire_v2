@@ -16,6 +16,7 @@ import { useIsOpen } from "../../../hooks/useIsOpen";
 import '../ensembles.css'
 import EditEnsembleForm from "./EditEnsembleForm";
 import Performance from "../components/Performance";
+import PerformanceTable from "../components/PerformanceTable";
 
 // Component Definition
 const EnsembleShow: FC<Ensemble> = ({
@@ -85,8 +86,9 @@ const headerTextStyles = {
 };
 
 const bodyStyles = {
-  backgroundColor: theme.palette.secondary.main,
-  height:'100vh'
+  backgroundColor: '#f5f5f5',
+  height: '100vh',
+  overflow: 'auto',
 }
 
   return (
@@ -138,9 +140,9 @@ const bodyStyles = {
           <Typography variant="h4" sx={{ padding: 2 }}>Performances from {name}</Typography> : 
           <Typography variant="h5">{name} has not yet performed</Typography>
         }
-
-        {performancesToDisplay}
+        <PerformanceTable id={id} />
       </Box>
+
       <ConfirmationDialog 
         isOpen={isOpen} 
         handleClose={handleClose}
