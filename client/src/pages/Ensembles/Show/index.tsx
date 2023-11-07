@@ -33,16 +33,6 @@ const EnsembleShow: FC<Ensemble> = ({
     isOpen: isEditOpen  
   } = useIsOpen();
 
-  const { concertPrograms } = useAppSelector(state=> state.organization);
-
-  const ensPerformances = useMemo(()=>{
-    if (concertPrograms){
-      return findEnsemblePerformances(id, concertPrograms);
-    }
-    return null;
-  }, [concertPrograms]);
-
-
   const handleBackClick: ()=> void  = useCallback(():void=>{
     navigate('/ensembles')
   }, [])
@@ -55,41 +45,25 @@ const EnsembleShow: FC<Ensemble> = ({
     navigate('/ensembles');
   }, [])
 
-  
-  const performancesToDisplay: JSX.Element[] | null = useMemo(()=>{
-    if (ensPerformances){
-      return ensPerformances.map(performance=>{
-        return <Performance 
-                  name={performance.name}
-                  concertId={performance.concertId}
-                  piece_id={performance.performance.piece_id}
-                  piece={performance.performance.piece}
-                  year={performance.year}
-                />
-      })
-    }
-    return null;
-}, [ensPerformances]);
+  const headerStyles = {
+    background: `url(${'../../../../public/instruments.jpeg'}) no-repeat center center/cover`,
+    padding: 3,
+    opacity: 0.8,
+  };
 
-const headerStyles = {
-  background: `url(${'../../../../public/instruments.jpeg'}) no-repeat center center/cover`,
-  padding: 3,
-  opacity: 0.8,
-};
+  const headerTextStyles = {
+    color: theme.palette.secondary.main, 
+    opacity: .9, 
+    backgroundColor: theme.palette.primary.main, 
+    width: 'auto',
+    padding: 0.5,
+  };
 
-const headerTextStyles = {
-  color: theme.palette.secondary.main, 
-  opacity: .9, 
-  backgroundColor: theme.palette.primary.main, 
-  width: 'auto',
-  padding: 0.5,
-};
-
-const bodyStyles = {
-  backgroundColor: '#f5f5f5',
-  height: '100vh',
-  overflow: 'auto',
-}
+  const bodyStyles = {
+    backgroundColor: '#f5f5f5',
+    height: '100vh',
+    overflow: 'auto',
+  }
 
   return (
     <div>
@@ -136,10 +110,6 @@ const bodyStyles = {
       
       {/* Body of Page */}
       <Box sx={bodyStyles}>
-        {performancesToDisplay !== null && performancesToDisplay.length > 0 ? 
-          <Typography variant="h4" sx={{ padding: 2 }}>Performances from {name}</Typography> : 
-          <Typography variant="h5">{name} has not yet performed</Typography>
-        }
         <PerformanceTable id={id} />
       </Box>
 
