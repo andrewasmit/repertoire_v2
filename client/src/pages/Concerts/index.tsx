@@ -1,5 +1,6 @@
 // External Dependencies
 import { useNavigate } from "react-router-dom";
+import { Box, Button, Typography, useTheme } from "@mui/material";
 
 // Internal Dependencies
 import { useCallback } from "react";
@@ -12,6 +13,7 @@ import './concerts.css'
 function Concerts() {
 
   const navigate = useNavigate();
+  const theme = useTheme();
   const { concertPrograms, organization } = useAppSelector(state=>state.organization)
 
   const concertProgramsToDisplay = concertPrograms?.map(concert=>{
@@ -28,15 +30,52 @@ function Concerts() {
     return navigate('/concerts/new');
   },[])
 
-  return (
-    <div>
-      <h1>{organization?.name}'s</h1>
-      <h2>Concert History</h2>
+  const btnStyles = {
+    marginTop: 3,
+    border: `${theme.palette.info.main} 1px solid`,
+    ':hover':{
+      color: theme.palette.primary.main,
+      bgcolor: theme.palette.info.main,
+      border: `${theme.palette.secondary.main} 1px solid`,
+    }
+  };
 
-      <button onClick={handleNavigateToAddNewConcert}>Add New Concert</button>
+  const gridStyles = {
+    background: `url(${"../../../public/concert.jpg"}) no-repeat center center/cover`,
+    opacity: 0.95,
+    height: '100vh',
+    marginBottom: '70px',
+    overflow: 'auto'
+  }
+
+  return (
+    <Box sx={gridStyles}>
+      <Box 
+        sx={{ 
+          background: theme.palette.primary.main, 
+          color: theme.palette.secondary.main,
+          opacity:0.85,
+          padding: 5,
+          }} 
+        >
+          <Typography 
+            variant="h3" 
+            sx={{ marginTop: 0, padding: 1, color: theme.palette.info.main }}
+          >
+            {organization?.name}
+          </Typography>
+
+          <Typography variant="h5">
+            Here are the ensembles currently in your organization
+          </Typography>
+
+        <Button variant="contained" onClick={handleNavigateToAddNewConcert} color='secondary' sx={btnStyles}>
+          Add New Concert
+        </Button>
+      </Box>
 
       {concertProgramsToDisplay}
-    </div>
+    </Box>
   )
 }
 
