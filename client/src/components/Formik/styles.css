@@ -1,0 +1,158 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Form––––––––––––––––––––––––––––––––– */
+.form {
+  background-color: aqua;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  width: 1000px;
+  margin: auto;
+  height: 500px;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  color: blue;
+}
+
+input[type="text"] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  padding: 0.65rem 0.5rem;
+  font-size: 1rem;
+  border: 2px solid purple;
+  background-color: #f4f4f4;
+  color: red;
+  border-radius: 10px;
+  appearance: none;
+}
+
+input[type="text"],
+textarea,
+select {
+  width: 600px;
+}
+
+select {
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0.65rem 0.5rem;
+  font-size: 1rem;
+  border: 2px solid #f4f4f4;
+  border-radius: 10px;
+  color: #333;
+  height: auto;
+  background-color: #f3f3f3;
+  background-repeat: no-repeat;
+  background-size: 1rem;
+  background-position: center right 0.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  select {
+    background-color: #333;
+    /* background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 125.304 125.304"><path d="M62.652 103.895L0 21.41h125.304" fill="%23ffffff"/></svg>'); */
+    border-color: #444;
+    color: white;
+  }
+}
+
+textarea {
+  appearance: none;
+  font-size: 1rem;
+  border: 2px solid var(--gray-200);
+  color: var(--gray-700);
+  border-radius: 10px;
+  resize: vertical;
+  background-color: var(--gray-100);
+  box-sizing: border-box;
+  padding: 0.65rem 0.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, "avenir next", avenir,
+    "helvetica neue", helvetica, ubuntu, roboto, noto, "segoe ui", arial,
+    sans-serif;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border: 2px solid purple;
+}
+
+input:invalid,
+select:invalid,
+textarea:invalid {
+  border: 2px solid #ff7d87;
+  box-shadow: none;
+}
+
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+button {
+  padding: 0.5rem 1.25rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  background-color: orange;
+  border: 2px solid yellow;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  appearance: none;
+  display: inline-block;
+  line-height: initial;
+  transition: background-color 200ms ease-in-out, border 200ms ease-in-out,
+    transform 200ms ease-in-out;
+}
+
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover,
+button:hover {
+  cursor: pointer;
+  background-color: purple;
+}
+
+button:focus-visible,
+input[type="submit"]:focus-visible,
+input[type="reset"]:focus-visible,
+input[type="button"]:focus-visible {
+  border-color: purple;
+  outline: none;
+}
+
+.error {
+  color: red;
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed !important;
+}
+
+button + button {
+  margin-left: 0.5rem;
+}
+
+button.secondary,
+button[type="reset"] {
+  background-color: var(--gray-300);
+  border: 2px solid var(--gray-300);
+  color: var(--gray-900);
+}
+
+button.secondary:hover,
+button[type="reset"]:hover {
+  background-color: var(--gray-400);
+}

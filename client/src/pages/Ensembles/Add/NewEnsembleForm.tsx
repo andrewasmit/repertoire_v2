@@ -1,14 +1,18 @@
 // External Dependencies
 import { useCallback, useMemo } from 'react';
-import { Formik, Field, Form, FormikHelpers } from 'formik';
+import { Formik, Field, Form, FormikHelpers, ErrorMessage } from 'formik';
 import { useNavigate } from 'react-router-dom';
+import * as Yup from 'yup'
 
 // Internal Dependencies
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import { postNewEnsemble } from '../../../hooks/api/ensembleHooks';
 import { addNewEns } from '../../../redux/organizationSlice';
+import { FormikTextInput } from '../../../components/Formik';
+import { Grid } from '@mui/material';
 
 // Local Dependencies
+// import '../../../components/Formik/styles.css'
 
 // Local Items
 type Values={
@@ -16,7 +20,6 @@ type Values={
   name: string;
   organization_id: number | undefined;
 }
-
 
 // Component Definition
 const NewEnsembleForm = () => {
@@ -58,24 +61,27 @@ const handleNavigateBack = useCallback(()=>{
             setSubmitting(false);
           }, 500);
         }}
+        validationSchema={Yup.object({
+          name: Yup.string()
+            .required('Required'),
+          grade_level: Yup.string()
+            .required('Required')
+        })}
       >
-        <Form>
-          {/* <label htmlFor="username">Username</label> */}
-          <Field 
-            id="name" 
-            name="name" 
-            placeholder="Name of Ensemble" 
+        <Form className='form'>
+          <FormikTextInput 
+            name='name'
+            label="Name Of Ensemble"
+            type="text"
           />
 
-          {/* <label htmlFor="password">Password</label> */}
-          <Field 
-            id="gradeLevel" 
-            name="grade_level" 
-            placeholder="Grade Level" 
+          <FormikTextInput 
+            name='grade_level'
+            label="Grade Level of Ensemble"
+            type="text"
           />
-
+          
           <button type="submit">Create New Ensemble</button>
-
         </Form>
       </Formik>
     </div>
