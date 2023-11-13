@@ -1,6 +1,5 @@
 // External Depencies
-import { useCallback, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+import { useMemo } from "react";
 
 // Internal Depencies
 import EnsembleCard from "./components/EnsembleCard";
@@ -14,9 +13,12 @@ import { useIsOpen } from "../../hooks/useIsOpen";
 function Ensembles() {
 
   const { ensembles, organization } = useAppSelector(state=>state.organization);
-  const navigate = useNavigate();
   const theme = useTheme();
-  const { isOpen: isNewEnsFormOpen, handleClose: handleCloseNewEnsForm, handleOpen: handleOpenNewEnsForm } = useIsOpen();
+  const { 
+    isOpen: isNewEnsFormOpen, 
+    handleClose: handleCloseNewEnsForm, 
+    handleOpen: handleOpenNewEnsForm 
+  } = useIsOpen();
 
   const ensembleCards = useMemo(()=>{
     return ensembles?.map(ens=>{
@@ -28,10 +30,6 @@ function Ensembles() {
               />
     });
   }, [ensembles])
-
-  const handleAddEnsClick = useCallback(()=>{
-    navigate('/ensembles/new');
-  }, []);
 
   const btnStyles = {
     marginTop: 3,
@@ -73,7 +71,6 @@ function Ensembles() {
         </Typography>
 
         <Button 
-          // onClick={handleAddEnsClick} 
           onClick={handleOpenNewEnsForm} 
           variant="contained" 
           color="secondary" 

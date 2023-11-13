@@ -82,7 +82,6 @@ function App() {
           <Route path='home' element={<Dashboard />} />
           <Route path='ensembles' element={<Ensembles />} />
           <Route path='ensembles/:id' element={<EnsembleShow />} />
-          <Route path='ensembles/new' element={<NewEnsembleForm />} />
           <Route path='concerts' element={<Concerts />} />
           <Route path='concerts/new' element={<NewConcertForm />} />
           <Route path='concerts/:id' element={<ConcertShow />} />
