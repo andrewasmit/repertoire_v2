@@ -66,6 +66,7 @@ const backgroundStyles = {
           .then(res=>dispatch(addNewEns(res)));
           handleNavigateBack();
           setSubmitting(false);
+          handleClose();
         }, 500);
       }}
       validationSchema={Yup.object({
@@ -85,7 +86,7 @@ const backgroundStyles = {
             id="alert-dialog-title" 
             sx={ {
               ...backgroundStyles, 
-              color: '#e4cec5',
+              color: '#d7ea21',
               textAlign: 'center',
               fontWeight: 'bold', 
               fontSize: 40
@@ -94,26 +95,39 @@ const backgroundStyles = {
             Add a New Ensemble
           </DialogTitle>
 
-          <DialogContent sx={backgroundStyles}>
-            <Form className='form'>
-              <FormikTextInput 
-                name='name'
-                label="Name Of Ensemble"
-                type="text"
-              />
+          <Form className='form'>
+            <DialogContent sx={{ ...backgroundStyles, backgroundColor: '#e4cec5' }}>
+                <FormikTextInput 
+                  name='name'
+                  label="Name Of Ensemble"
+                  type="text"
+                />
 
-              <FormikTextInput 
-                name='grade_level'
-                label="Grade Level of Ensemble"
-                type="text"
-              />
-            </Form>
-          </DialogContent>
+                <FormikTextInput 
+                  name='grade_level'
+                  label="Grade Level of Ensemble"
+                  type="text"
+                />
+            </DialogContent>
 
-          <DialogActions sx={{ ...backgroundStyles, paddingBottom: 2.5 }} >
-            <Button color='secondary' variant='text' onClick={handleClose}>Discard New Ensemble</Button>
-            <Button variant='contained' color='secondary' type="submit" >Create New Ensemble</Button>
-          </DialogActions>
+            <DialogActions sx={{ ...backgroundStyles, paddingBottom: 2.5, paddingTop: 2 }} >
+              <Button 
+                color='secondary' 
+                variant='text' 
+                onClick={handleClose}
+              >
+                Discard New Ensemble
+              </Button>
+              <Button 
+                variant='contained' 
+                color='secondary' 
+                type="submit" 
+              >
+                Create New Ensemble
+              </Button>
+            </DialogActions>
+          </Form>
+
       </Dialog>
     </Formik>
   )
