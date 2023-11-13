@@ -3,7 +3,7 @@ import { useCallback, useMemo } from 'react';
 import { Formik, Form, FormikHelpers } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup'
-import { Button, ButtonGroup, Typography } from '@mui/material';
+import { Button, ButtonGroup, Dialog, DialogActions, DialogContent, DialogTitle, Typography } from '@mui/material';
 
 // Internal Dependencies
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
@@ -19,8 +19,16 @@ type Values={
   organization_id: number | undefined;
 }
 
+interface NewEnsParams {
+  isOpen: boolean;
+  handleClose: ()=> void;
+}
+
 // Component Definition
-const NewEnsembleForm = () => {
+const NewEnsembleForm = ({
+  isOpen, 
+  handleClose, 
+}: NewEnsParams) => {
 
 const { organization } = useAppSelector((state) => state.organization);
 const dispatch = useAppDispatch();
@@ -38,53 +46,62 @@ const handleNavigateBack = useCallback(()=>{
 }, []);
 
   return (
-    <div>
-      <Typography variant='h3'>Add a New Ensemble</Typography>
-
-      <Formik
-        initialValues={{
-          grade_level: '',
-          name: '',
-          organization_id: orgId
-        }}
-        onSubmit={(
-          values: Values,
-          { setSubmitting }: FormikHelpers<Values>
-        ) => {
-          setTimeout(() => {
-            postNewEnsemble(values)
-            .then(res=>dispatch(addNewEns(res)));
-            handleNavigateBack();
-            setSubmitting(false);
-          }, 500);
-        }}
-        validationSchema={Yup.object({
-          name: Yup.string()
-            .required('Required'),
-          grade_level: Yup.string()
-            .required('Required')
-        })}
+    <Formik
+      initialValues={{
+        grade_level: '',
+        name: '',
+        organization_id: orgId
+      }}
+      onSubmit={(
+        values: Values,
+        { setSubmitting }: FormikHelpers<Values>
+      ) => {
+        setTimeout(() => {
+          postNewEnsemble(values)
+          .then(res=>dispatch(addNewEns(res)));
+          handleNavigateBack();
+          setSubmitting(false);
+        }, 500);
+      }}
+      validationSchema={Yup.object({
+        name: Yup.string()
+          .required('Required'),
+        grade_level: Yup.string()
+          .required('Required')
+      })}
       >
-        <Form className='form'>
-          <FormikTextInput 
-            name='name'
-            label="Name Of Ensemble"
-            type="text"
-          />
+        <Dialog
+          open={isOpen}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">
+            Add a New Ensemble
+          </DialogTitle>
 
-          <FormikTextInput 
-            name='grade_level'
-            label="Grade Level of Ensemble"
-            type="text"
-          />
-          
-          <ButtonGroup sx={{ marginTop: 2.5 }}>
-            <Button color='primary' variant='text' onClick={handleNavigateBack}>Discard New Ensemble</Button>
+          <DialogContent >
+            <Form className='form'>
+              <FormikTextInput 
+                name='name'
+                label="Name Of Ensemble"
+                type="text"
+              />
+
+              <FormikTextInput 
+                name='grade_level'
+                label="Grade Level of Ensemble"
+                type="text"
+              />
+            </Form>
+          </DialogContent>
+
+          <DialogActions>
+            <Button color='primary' variant='text' onClick={handleClose}>Discard New Ensemble</Button>
             <Button variant='contained' type="submit" >Create New Ensemble</Button>
-          </ButtonGroup>
-        </Form>
-      </Formik>
-    </div>
+          </DialogActions>
+      </Dialog>
+    </Formik>
   )
 }
 

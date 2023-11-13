@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import EnsembleCard from "./components/EnsembleCard";
 import { useAppSelector } from "../../redux/hooks";
 import { Box, Button, Grid, Typography, useTheme } from "@mui/material";
+import NewEnsembleForm from "./Add/NewEnsembleForm";
+import { useIsOpen } from "../../hooks/useIsOpen";
 
 // Local Depencies
 
@@ -14,6 +16,7 @@ function Ensembles() {
   const { ensembles, organization } = useAppSelector(state=>state.organization);
   const navigate = useNavigate();
   const theme = useTheme();
+  const { isOpen: isNewEnsFormOpen, handleClose: handleCloseNewEnsForm, handleOpen: handleOpenNewEnsForm } = useIsOpen();
 
   const ensembleCards = useMemo(()=>{
     return ensembles?.map(ens=>{
@@ -70,7 +73,8 @@ function Ensembles() {
         </Typography>
 
         <Button 
-          onClick={handleAddEnsClick} 
+          // onClick={handleAddEnsClick} 
+          onClick={handleOpenNewEnsForm} 
           variant="contained" 
           color="secondary" 
           sx={btnStyles}
@@ -85,6 +89,11 @@ function Ensembles() {
       >
         {ensembleCards}
       </Grid>
+
+      <NewEnsembleForm 
+        isOpen={isNewEnsFormOpen}
+        handleClose={handleCloseNewEnsForm}
+      />
     </Box>
   );
 }
