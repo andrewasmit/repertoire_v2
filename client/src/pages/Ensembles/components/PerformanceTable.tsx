@@ -70,7 +70,13 @@ export default function PerformanceTable({ id }: Props) {
 
   if(performancesToDisplay === null || performancesToDisplay.length === 0){
     return (
-      <Typography variant="h5">{ensName} has not yet performed</Typography>
+      <Typography 
+        variant="h5"
+        sx={{ marginTop: 4 }}
+        color='primary'
+      >
+        {ensName} has not yet performed
+      </Typography>
       // TODO: Add a link to Add Performances
     )
   }
