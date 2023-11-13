@@ -1,6 +1,6 @@
 // External Dependencies
 import { useCallback, useMemo } from 'react';
-import { Formik, Field, Form, FormikHelpers, ErrorMessage } from 'formik';
+import { Formik, Form, FormikHelpers } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup'
 
@@ -9,10 +9,8 @@ import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import { postNewEnsemble } from '../../../hooks/api/ensembleHooks';
 import { addNewEns } from '../../../redux/organizationSlice';
 import { FormikTextInput } from '../../../components/Formik';
-import { Grid } from '@mui/material';
+import { Button } from '@mui/material';
 
-// Local Dependencies
-// import '../../../components/Formik/styles.css'
 
 // Local Items
 type Values={
@@ -81,7 +79,7 @@ const handleNavigateBack = useCallback(()=>{
             type="text"
           />
           
-          <button type="submit">Create New Ensemble</button>
+          <Button variant='contained' type="submit">Create New Ensemble</Button>
         </Form>
       </Formik>
     </div>
