@@ -3,13 +3,13 @@ import { useCallback, useMemo } from 'react';
 import { Formik, Form, FormikHelpers } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup'
+import { Button, ButtonGroup, Typography } from '@mui/material';
 
 // Internal Dependencies
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import { postNewEnsemble } from '../../../hooks/api/ensembleHooks';
 import { addNewEns } from '../../../redux/organizationSlice';
 import { FormikTextInput } from '../../../components/Formik';
-import { Button } from '@mui/material';
 
 
 // Local Items
@@ -39,8 +39,7 @@ const handleNavigateBack = useCallback(()=>{
 
   return (
     <div>
-      <h1>THIS IS WHERE YOU CAN ADD A NEW ENSEMBLE</h1>
-      <button onClick={handleNavigateBack}>EXIT</button>
+      <Typography variant='h3'>Add a New Ensemble</Typography>
 
       <Formik
         initialValues={{
@@ -79,7 +78,10 @@ const handleNavigateBack = useCallback(()=>{
             type="text"
           />
           
-          <Button variant='contained' type="submit">Create New Ensemble</Button>
+          <ButtonGroup sx={{ marginTop: 2.5 }}>
+            <Button color='primary' variant='text' onClick={handleNavigateBack}>Discard New Ensemble</Button>
+            <Button variant='contained' type="submit" >Create New Ensemble</Button>
+          </ButtonGroup>
         </Form>
       </Formik>
     </div>

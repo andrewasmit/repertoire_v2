@@ -22,7 +22,8 @@ label {
   font-weight: bold;
   display: block;
   color: #143b38;
-  padding-top: 20px;
+  padding-top: 25px;
+  padding-bottom: 10px;
 }
 
 input[type="text"] {
@@ -84,6 +85,6 @@ textarea:focus {
 
 .error {
   color: red;
-  margin-top: 0.25rem;
+  margin-top: 0.3rem;
   margin-bottom: 0.5rem;
 }
