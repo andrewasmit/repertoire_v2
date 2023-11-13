@@ -45,6 +45,11 @@ const handleNavigateBack = useCallback(()=>{
   navigate('/ensembles');
 }, []);
 
+const backgroundStyles = { 
+  backgroundColor: '#143b38', 
+  opacity: '0.8',
+}
+
   return (
     <Formik
       initialValues={{
@@ -76,11 +81,20 @@ const handleNavigateBack = useCallback(()=>{
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
-          <DialogTitle id="alert-dialog-title">
+          <DialogTitle 
+            id="alert-dialog-title" 
+            sx={ {
+              ...backgroundStyles, 
+              color: '#e4cec5',
+              textAlign: 'center',
+              fontWeight: 'bold', 
+              fontSize: 40
+              }} 
+          >
             Add a New Ensemble
           </DialogTitle>
 
-          <DialogContent >
+          <DialogContent sx={backgroundStyles}>
             <Form className='form'>
               <FormikTextInput 
                 name='name'
@@ -96,9 +110,9 @@ const handleNavigateBack = useCallback(()=>{
             </Form>
           </DialogContent>
 
-          <DialogActions>
-            <Button color='primary' variant='text' onClick={handleClose}>Discard New Ensemble</Button>
-            <Button variant='contained' type="submit" >Create New Ensemble</Button>
+          <DialogActions sx={{ ...backgroundStyles, paddingBottom: 2.5 }} >
+            <Button color='secondary' variant='text' onClick={handleClose}>Discard New Ensemble</Button>
+            <Button variant='contained' color='secondary' type="submit" >Create New Ensemble</Button>
           </DialogActions>
       </Dialog>
     </Formik>
