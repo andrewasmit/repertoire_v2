@@ -1,14 +1,13 @@
 // External Dependencies
 import { useMemo } from 'react';
-import { Formik, Field, Form, FormikHelpers } from 'formik';
-// import { useNavigate } from 'react-router-dom';
+import { Formik, Form, FormikHelpers } from 'formik';
 
 // Internal Dependencies
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import { editEnsemble } from '../../../hooks/api/ensembleHooks';
 import { editEns } from '../../../redux/organizationSlice';
-
-// Local Dependencies
+import { FormikTextInput } from '../../../components/Formik';
+import { Button, Typography } from '@mui/material';
 
 // Local Items
 type Values={
@@ -24,7 +23,6 @@ interface EditFormParams{
   ensembleId: number;
   handleCloseForm: ()=> void;
 }
-
 
 // Component Definition
 const EditEnsembleForm = ({ name, gradeLevel, ensembleId, handleCloseForm }: EditFormParams) => {
@@ -42,7 +40,19 @@ const orgId = useMemo((): number | undefined=>{
 
   return (
     <div>
-      <h2>Edit Ensemble Details</h2>
+      <Typography 
+        variant='h4' 
+        color='primary' 
+        sx={{ 
+          backgroundColor: '#e4cec5', 
+          opacity: .7, 
+          width: '450px', 
+          display: 'inline-block',
+          marginTop: 1
+        }} 
+      >
+        Edit Ensemble Details
+      </Typography>
 
       <Formik
         initialValues={{
@@ -66,21 +76,26 @@ const orgId = useMemo((): number | undefined=>{
         }}
       >
         <Form>
-          <label htmlFor="username">Ensemble Name: </label>
-          <Field 
-            id="name" 
-            name="name" 
-            placeholder="Name of Ensemble" 
+          <FormikTextInput 
+            name='name'
+            label="Name Of Ensemble"
+            type="text"
           />
 
-          <label htmlFor="password">Grade Level: </label>
-          <Field 
-            id="gradeLevel" 
-            name="grade_level" 
-            placeholder="Grade Level" 
+          <FormikTextInput 
+            name='grade_level'
+            label="Grade Level"
+            type="text"
           />
 
-          <button type="submit">Submit</button>
+          <Button 
+            variant='contained' 
+            color='secondary' 
+            type="submit"
+            sx={{ marginTop: 2 }}
+          >
+            Submit
+          </Button>
         </Form>
       </Formik>
     </div>
