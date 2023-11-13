@@ -3,7 +3,7 @@ import { useCallback, useMemo } from 'react';
 import { Formik, Form, FormikHelpers } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup'
-import { Button, ButtonGroup, Dialog, DialogActions, DialogContent, DialogTitle, Typography } from '@mui/material';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 
 // Internal Dependencies
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
@@ -127,7 +127,6 @@ const backgroundStyles = {
               </Button>
             </DialogActions>
           </Form>
-
       </Dialog>
     </Formik>
   )
