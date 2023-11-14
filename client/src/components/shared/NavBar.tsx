@@ -5,16 +5,15 @@ import { Box, Button, ButtonGroup, Tab, Tabs, Typography } from "@mui/material";
 
 // Internal Dependencies
 import { useIsOpen } from "../../hooks/useIsOpen";
+import { useAppDispatch } from "../../redux/hooks";
+import { userSignOut } from "../../hooks/userSignOut";
+import { signOut } from "../../redux/userSlice";
 
 // Local Dependencies
 import MyAccountBtn from "./MyAccountBtn";
 import './navigation.css'
 import logo from '/logo-no-background.svg'
 import ConfirmationDialog from "./ConfirmationDialog/ConfirmationDialog";
-import { useAppDispatch } from "../../redux/hooks";
-import { userSignOut } from "../../hooks/userSignOut";
-import { signOut } from "../../redux/userSlice";
-
 
 function NavBar() {
 
