@@ -27,15 +27,16 @@ function MyPieChart({ orgData, theme }: Props) {
   }, [theme]);
 
   return (
-    <Box sx={{ backgroundColor: '#f4f4f4', opacity: 0.95 }}>
+    <Box sx={{ backgroundColor: '#f4f4f4', opacity: 0.95, display: 'inline-block' }}>
       <PieChart
         series={[
           {
-            data: data
+            data: data,
           },
         ]}
         width={400}
         height={200}
+        
         colors={palette}
       />
     </Box>

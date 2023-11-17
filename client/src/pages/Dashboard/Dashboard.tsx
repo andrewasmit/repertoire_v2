@@ -86,10 +86,10 @@ function Dashboard() {
       </Typography>
 
       {fetchedOrganizationData &&
-        <div>
+        <Box sx={{ backgroundColor: '#f4f4f4', opacity: 0.95, display: 'flex', justifyContent: 'center', alignItems: 'center',  }}>
           <MyPieChart theme={theme} orgData={fetchedOrganizationData} />
           <MyBarChart theme={theme} orgData={fetchedOrganizationData} />
-        </div>
+        </Box>
       }
     </div>
   );

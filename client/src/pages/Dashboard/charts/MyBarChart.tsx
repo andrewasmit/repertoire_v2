@@ -31,7 +31,7 @@ function MyBarChart({ theme, orgData }: Props) {
 
 
   return (
-    <Box sx={{ display: 'inline-block' }}>
+    <Box sx={{ display: 'inline-block', backgroundColor: '#f4f4f4', opacity: 0.95 }}>
       <BarChart
         xAxis={[
           {
