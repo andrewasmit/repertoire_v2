@@ -1,9 +1,12 @@
 // External Dependencies
 import { BarChart } from '@mui/x-charts'
-import { OrganizationResponse } from '../../../redux/organizationSlice';
 import { useMemo } from 'react';
-import { Box, Theme, Typography } from '@mui/material';
+import { Box, Theme } from '@mui/material';
+
+// Internal Dependencies
 import { getYAxisData } from '../../../utils/getYAxisData';
+import { OrganizationResponse } from '../../../redux/organizationSlice';
+
 
 interface Props{
   theme: Theme;
