@@ -81,7 +81,15 @@ function Dashboard() {
         />
       </Box>
 
-      <Typography variant="h1" sx={{ fontSize: 80 }}>
+      <Typography 
+      variant="h1" 
+      sx={{ 
+        fontSize: 80, 
+        backgroundColor: theme.palette.info.main, 
+        opacity: 0.85, 
+        color: theme.palette.primary.main 
+        }}
+      >
         {fetchedOrganizationData?.name}
       </Typography>
 
