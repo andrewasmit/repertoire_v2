@@ -15,7 +15,6 @@ import logo from '/logo-color.svg'
 import MyBarChart from "./charts/MyBarChart";
 
 
-
 function Dashboard() {
 
   const dispatch = useAppDispatch();
@@ -58,13 +57,13 @@ function Dashboard() {
     return <Loading />
   }
 
-  const palette = useMemo(()=>{
-    return [
-      theme.palette.primary.main,
-      theme.palette.secondary.main,
-      theme.palette.info.main,
-    ]
-  }, [])
+  // const palette = useMemo(()=>{
+  //   return [
+  //     theme.palette.primary.main,
+  //     theme.palette.secondary.main,
+  //     theme.palette.info.main,
+  //   ]
+  // }, [theme]);
 
   return (
     <div>
@@ -106,11 +105,11 @@ function Dashboard() {
         ]}
         width={400}
         height={200}
-        colors={palette}
+        // colors={palette}
       />
 
-      {fetchedOrganizationData && 
-        <MyBarChart palette= {palette} orgData={fetchedOrganizationData} />
+      {fetchedOrganizationData &&
+        <MyBarChart theme={theme} orgData={fetchedOrganizationData} />
       }
     </div>
   );

@@ -1,28 +1,31 @@
 // External Dependencies
 import { BarChart } from '@mui/x-charts'
 import { OrganizationResponse } from '../../../redux/organizationSlice';
+import { useMemo } from 'react';
+import { Theme } from '@mui/material';
+import { getYAxisData } from '../../../utils/getYAxisData';
 
 interface Props{
-  palette: any;
+  theme: Theme;
   orgData: OrganizationResponse;
 };
 
-function MyBarChart({ palette, orgData }: Props) {
+function MyBarChart({ theme, orgData }: Props) {
 
-  // const chartSetting = {
-  //   yAxis: [
-  //     {
-  //       label: 'rainfall (mm)',
-  //     },
-  //   ],
-  //   width: 500,
-  //   height: 300,
-  //   sx: {
-  //     [`.${axisClasses.left} .${axisClasses.label}`]: {
-  //       transform: 'translate(-20px, 0)',
-  //     },
-  //   },
-  // };
+  const palette = useMemo(()=>{
+    return [
+      theme.palette.primary.main,
+      theme.palette.secondary.main,
+      theme.palette.info.main,
+    ]
+  }, [theme]);
+
+  const yAxisData: number[] | undefined = useMemo(()=>{
+    if(orgData){
+      return getYAxisData(orgData);
+    };
+  }, [orgData])
+
 
   return (
     <div>
@@ -32,8 +35,8 @@ function MyBarChart({ palette, orgData }: Props) {
             id: 'barCategories',
             data: ['1','2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12+'],
             scaleType: 'band',
-            label: '# of Players'
-          },
+            label: '# of Players',
+          }
         ]}
         yAxis={[
           {
@@ -42,7 +45,7 @@ function MyBarChart({ palette, orgData }: Props) {
         ]}
         series={[
           {
-            data: [2, 5, 3],
+            data: yAxisData,
           },
         ]}
         width={800}
