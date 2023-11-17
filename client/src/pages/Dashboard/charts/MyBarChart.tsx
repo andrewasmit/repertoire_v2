@@ -2,7 +2,7 @@
 import { BarChart } from '@mui/x-charts'
 import { OrganizationResponse } from '../../../redux/organizationSlice';
 import { useMemo } from 'react';
-import { Theme } from '@mui/material';
+import { Box, Theme, Typography } from '@mui/material';
 import { getYAxisData } from '../../../utils/getYAxisData';
 
 interface Props{
@@ -28,7 +28,7 @@ function MyBarChart({ theme, orgData }: Props) {
 
 
   return (
-    <div>
+    <Box sx={{ display: 'inline-block' }}>
       <BarChart
         xAxis={[
           {
@@ -36,24 +36,35 @@ function MyBarChart({ theme, orgData }: Props) {
             data: ['1','2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12+'],
             scaleType: 'band',
             label: '# of Players',
+            labelFontSize: 24,
+            tickFontSize: 18
           }
         ]}
         yAxis={[
           {
-            label: 'Pieces of Music'
+            id:'barData',
+            label: 'Pieces of Music',
+            tickMinStep: 1,
+            // TODO: Fix size of label and ticks
+            // tickSize: 10,
+            // tickLabelStyle:{
+            //   fontSize: 50,
+            //   color: 'red'
+            // }
           },
         ]}
         series={[
           {
             data: yAxisData,
+            label: 'Pieces of Music in Library'
           },
         ]}
         width={800}
-        height={450}
+        height={500}
         colors={palette}
         sx={{ paddingBottom: 10 }}
       />
-    </div>
+    </Box>
   )
 }
 
