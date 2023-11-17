@@ -12,7 +12,7 @@ import SignUp from './pages/SignUp';
 import Welcome from './pages/Welcome';
 import Loading from './components/shared/Loading';
 import Home from './pages/Home';
-import Dashboard from './pages/Dashboard';
+import Dashboard from './pages/Dashboard/Dashboard';
 import Ensembles from './pages/Ensembles';
 import EnsembleShow from './pages/Ensembles/Show';
 import NewEnsembleForm from './pages/Ensembles/Add/NewEnsembleForm';

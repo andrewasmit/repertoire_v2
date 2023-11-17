@@ -4,16 +4,16 @@ import { Box, Typography, useTheme } from "@mui/material";
 import { PieChart } from '@mui/x-charts/PieChart';
 
 // Internal Depencies
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { hydrateConcertPrograms, hydrateOrganization, hydrateUsers, hydrateEnsembles, hydrateLibrary  } from "../redux/organizationSlice";
-import { useFetchOrganizationConcerts } from "../hooks/api/useFetchOrganizationConcerts";
-import { useFetchOrganizationData } from "../hooks/api/useFetchOrganizationData";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { hydrateConcertPrograms, hydrateOrganization, hydrateUsers, hydrateEnsembles, hydrateLibrary  } from "../../redux/organizationSlice";
+import { useFetchOrganizationConcerts } from "../../hooks/api/useFetchOrganizationConcerts";
+import { useFetchOrganizationData } from "../../hooks/api/useFetchOrganizationData";
+import Loading from "../../components/shared/Loading";
 
 // Local Depencies
-import "../App.css";
 import logo from '/logo-color.svg'
-import Loading from "../components/shared/Loading";
-import { BarChart } from "@mui/x-charts";
+import MyBarChart from "./charts/MyBarChart";
+
 
 
 function Dashboard() {
@@ -58,7 +58,13 @@ function Dashboard() {
     return <Loading />
   }
 
-  console.log(fetchedOrganizationData);
+  const palette = useMemo(()=>{
+    return [
+      theme.palette.primary.main,
+      theme.palette.secondary.main,
+      theme.palette.info.main,
+    ]
+  }, [])
 
   return (
     <div>
@@ -100,24 +106,12 @@ function Dashboard() {
         ]}
         width={400}
         height={200}
+        colors={palette}
       />
 
-      <BarChart
-        xAxis={[
-          {
-            id: 'barCategories',
-            data: ['bar A', 'bar B', 'bar C'],
-            scaleType: 'band',
-          },
-        ]}
-        series={[
-          {
-            data: [2, 5, 3],
-          },
-        ]}
-        width={500}
-        height={300}
-      />
+      {fetchedOrganizationData && 
+        <MyBarChart palette= {palette} orgData={fetchedOrganizationData} />
+      }
     </div>
   );
 }
