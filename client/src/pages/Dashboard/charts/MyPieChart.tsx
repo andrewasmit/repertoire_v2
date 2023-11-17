@@ -1,6 +1,6 @@
 // External Dependencies
 import { useMemo } from 'react'
-import { Box, Theme } from '@mui/material'
+import { Box, Theme, Typography } from '@mui/material'
 import { PieChart } from '@mui/x-charts'
 
 // Internal Dependencies
@@ -28,6 +28,7 @@ function MyPieChart({ orgData, theme }: Props) {
 
   return (
     <Box sx={{ backgroundColor: '#f4f4f4', opacity: 0.95, display: 'inline-block' }}>
+      <Typography variant='body1'> Pieces by Difficulty Level</Typography>
       <PieChart
         series={[
           {
