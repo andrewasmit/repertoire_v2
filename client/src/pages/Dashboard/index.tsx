@@ -99,6 +99,10 @@ function Dashboard() {
           <MyBarChart theme={theme} orgData={fetchedOrganizationData} />
         </Box>
       }
+
+      <Typography variant="h4" >Most Recent Concert</Typography>
+
+
     </div>
   );
 }

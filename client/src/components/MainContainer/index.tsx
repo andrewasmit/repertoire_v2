@@ -9,7 +9,7 @@ import { Box, useTheme } from "@mui/material";
 
 // Internal Dependencies
 import { useAppSelector } from "../../redux/hooks";
-import Dashboard from "../../pages/Dashboard/Dashboard";
+import Dashboard from "../../pages/Dashboard";
 import Ensembles from "../../pages/Ensembles";
 import EnsembleShow from "../../pages/Ensembles/Show";
 import NewEnsembleForm from "../../pages/Ensembles/Add/NewEnsembleForm";
